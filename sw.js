@@ -1,10 +1,10 @@
-const CACHE_NAME = "calorie-tracker-v2";
+const CACHE_NAME = "calorie-tracker-v3";
 const APP_FILES = [
  "./",
  "./index.html",
  "./manifest.json",
- "./icon-192.png",
- "./icon-512.png"
+ "./calorie-icon-192.png",
+ "./calorie-icon-512.png"
 ];
 self.addEventListener("install", event => {
  event.waitUntil(
