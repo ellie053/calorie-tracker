@@ -1,0 +1,2057 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Calorie Tracker</title>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#f3bfd7">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Calories">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<style>
+:root {
+    --background: #fff7fc;
+    --card: rgba(255,252,255,.95);
+    --pink: #f3bfd7;
+    --pink-medium: #dc93b7;
+    --pink-dark: #b96f96;
+    --lavender: #e2c9ef;
+    --purple: #a77abd;
+    --purple-dark: #875d9d;
+    --soft-pink: #fbe5f0;
+    --soft-purple: #eee2f6;
+    --text: #55445c;
+    --muted: #97869d;
+    --border: #eadbea;
+    --good-bg: #eadcf4;
+    --good-text: #805b96;
+    --over-bg: #f7d9e5;
+    --over-text: #a84f77;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    color: var(--text);
+    min-height: 100vh;
+    padding-bottom: 105px;
+    background:
+        radial-gradient(circle at 10% 10%, rgba(245,190,220,.55), transparent 30%),
+        radial-gradient(circle at 90% 35%, rgba(215,188,239,.58), transparent 32%),
+        radial-gradient(circle at 15% 80%, rgba(238,201,226,.40), transparent 30%),
+        linear-gradient(160deg, #fff8fc 0%, #faeaf4 48%, #eee4fa 100%);
+    background-attachment: fixed;
+}
+
+button, input, select { font-family: inherit; }
+
+header {
+    padding: calc(27px + env(safe-area-inset-top)) 20px 12px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 27px;
+    font-weight: 760;
+    color: var(--purple-dark);
+}
+
+.title-pink { color: var(--pink-dark); }
+
+.date {
+    margin-top: 7px;
+    color: var(--pink-dark);
+    font-size: 15px;
+    font-weight: 650;
+}
+
+.container { width: min(94%,600px); margin: auto; }
+.hidden { display: none !important; }
+
+.summary, .history-day, .weight-card {
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,.8);
+    box-shadow: 0 6px 22px rgba(125,84,145,.08);
+    backdrop-filter: blur(10px);
+}
+
+.summary {
+    border-radius: 26px;
+    padding: 23px;
+    margin: 12px 0 18px;
+    text-align: center;
+}
+
+.summary-title {
+    color: var(--pink-dark);
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.net-calories {
+    font-size: 44px;
+    font-weight: 780;
+    line-height: 1.1;
+    color: var(--purple-dark);
+}
+
+.kcal-label {
+    color: var(--pink-dark);
+    font-size: 14px;
+    margin-top: 3px;
+}
+
+.status {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.good { background: var(--good-bg); color: var(--good-text); }
+.over { background: var(--over-bg); color: var(--over-text); }
+
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 11px;
+    margin-top: 20px;
+}
+
+.stat {
+    background: linear-gradient(145deg,#fff8fc,#f7edf9);
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    padding: 13px;
+}
+
+.stat-name { font-size: 13px; color: var(--muted); }
+.stat-number { font-size: 21px; font-weight: 760; margin-top: 4px; }
+.eaten-number { color: var(--pink-dark); }
+.burned-number { color: var(--purple-dark); }
+
+.date-chooser {
+    background: rgba(255,252,255,.86);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 13px 15px;
+    margin-bottom: 14px;
+}
+
+.date-chooser label { margin-top: 0; }
+
+.selected-date-name {
+    text-align: center;
+    margin-top: 9px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--pink-dark);
+}
+
+.section-title {
+    margin: 24px 4px 11px;
+    font-size: 18px;
+    font-weight: 760;
+    color: var(--purple-dark);
+}
+
+.section-title .pink { color: var(--pink-dark); }
+
+.entry {
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,.8);
+    border-radius: 18px;
+    padding: 15px 16px;
+    margin-bottom: 9px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(125,84,145,.07);
+}
+
+.entry-left { min-width: 0; }
+
+.entry-name {
+    font-weight: 680;
+    font-size: 16px;
+    overflow-wrap: anywhere;
+}
+
+.entry-time {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+.entry-right { text-align: right; flex-shrink: 0; }
+.entry-calories { font-weight: 780; white-space: nowrap; }
+.food-calories { color: var(--pink-dark); }
+.burned-calories { color: var(--purple-dark); }
+
+.entry-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 7px;
+    margin-top: 6px;
+}
+
+.mini-button {
+    border: none;
+    background: var(--soft-purple);
+    color: var(--purple-dark);
+    border-radius: 20px;
+    padding: 5px 9px;
+    font-size: 11px;
+    font-weight: 650;
+}
+
+.mini-button.delete {
+    background: var(--soft-pink);
+    color: var(--pink-dark);
+}
+
+.empty {
+    text-align: center;
+    color: var(--muted);
+    padding: 35px 10px;
+    line-height: 1.7;
+}
+
+.add-button {
+    position: fixed;
+    right: 22px;
+    bottom: calc(88px + env(safe-area-inset-bottom));
+    width: 61px;
+    height: 61px;
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(145deg,var(--pink),var(--lavender));
+    color: white;
+    font-size: 33px;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding: 0 0 3px 0;
+    z-index: 50;
+    box-shadow: 0 8px 22px rgba(150,100,170,.30);
+}
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-height: 72px;
+    background: rgba(255,250,254,.95);
+    border-top: 1px solid var(--border);
+    display: flex;
+    z-index: 40;
+    padding-bottom: env(safe-area-inset-bottom);
+    backdrop-filter: blur(15px);
+}
+
+.nav-button {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 650;
+    padding-top: 8px;
+}
+
+.nav-symbol { display: block; font-size: 20px; margin-bottom: 3px; }
+.nav-button.active { color: var(--pink-dark); }
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(73,50,82,.40);
+    z-index: 100;
+    align-items: flex-end;
+    backdrop-filter: blur(3px);
+}
+
+.modal.open { display: flex; }
+
+.modal-box {
+    background: linear-gradient(160deg,#fffaff,#fbf1f8);
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 24px 20px calc(30px + env(safe-area-inset-bottom));
+    border-radius: 27px 27px 0 0;
+    max-height: 92vh;
+    overflow-y: auto;
+    box-shadow: 0 -8px 30px rgba(95,60,110,.14);
+}
+
+.modal-box h2 {
+    margin: 0 0 20px;
+    color: var(--purple-dark);
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin: 14px 0 6px;
+    font-size: 14px;
+    font-weight: 650;
+}
+
+input, select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    background: white;
+    font-size: 16px;
+    color: var(--text);
+    outline: none;
+}
+
+input:focus, select:focus {
+    border-color: var(--lavender);
+    box-shadow: 0 0 0 3px rgba(218,190,234,.25);
+}
+
+.type-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+    margin-bottom: 16px;
+}
+
+.type-button {
+    border: 1px solid var(--border);
+    background: white;
+    padding: 14px;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 650;
+    color: var(--text);
+}
+
+.type-button.selected {
+    background: linear-gradient(145deg,var(--pink),var(--lavender));
+    color: white;
+    border-color: transparent;
+}
+
+.save-button {
+    width: 100%;
+    margin-top: 22px;
+    padding: 15px;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(135deg,var(--pink),var(--purple));
+    color: white;
+    font-size: 17px;
+    font-weight: 700;
+    box-shadow: 0 5px 14px rgba(160,100,165,.20);
+}
+
+.cancel-button {
+    width: 100%;
+    margin-top: 8px;
+    padding: 12px;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-size: 15px;
+}
+
+.history-day {
+    border-radius: 20px;
+    padding: 17px;
+    margin-bottom: 11px;
+}
+
+.history-date {
+    font-weight: 760;
+    color: var(--pink-dark);
+    margin-bottom: 10px;
+}
+
+.history-summary {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-top: 7px;
+}
+
+.history-net {
+    font-weight: 760;
+    padding-top: 6px;
+    margin-top: 8px;
+    border-top: 1px solid var(--border);
+}
+
+.open-day-button {
+    width: 100%;
+    margin-top: 13px;
+    padding: 9px;
+    border: none;
+    border-radius: 12px;
+    background: var(--soft-purple);
+    color: var(--purple-dark);
+    font-weight: 650;
+}
+
+.weight-card {
+    border-radius: 22px;
+    padding: 18px;
+    margin-bottom: 13px;
+}
+
+.weight-card-title {
+    color: var(--pink-dark);
+    font-weight: 760;
+    font-size: 17px;
+    margin-bottom: 12px;
+}
+
+.weight-number {
+    font-size: 25px;
+    font-weight: 780;
+    color: var(--purple-dark);
+}
+
+.weight-date {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.weight-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.weight-actions button { flex: 1; }
+
+.compare-result {
+    margin-top: 13px;
+    font-size: 18px;
+    font-weight: 760;
+    color: var(--pink-dark);
+    line-height: 1.5;
+}
+
+.two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>˚₊‧ <span class="title-pink">♡</span> Calorie Tracker <span class="title-pink">♡</span> ‧₊˚</h1>
+    <div class="date" id="todayHeaderDate"></div>
+</header>
+
+<div class="container">
+
+<div id="diaryPage">
+
+    <div class="date-chooser">
+        <label>✧ Choose diary date</label>
+        <input type="date" id="diaryDate" onchange="changeDiaryDate()">
+        <div class="selected-date-name" id="selectedDateName"></div>
+    </div>
+
+    <div class="summary">
+        <div class="summary-title">Net calories</div>
+        <div class="net-calories" id="netCalories">0</div>
+        <div class="kcal-label">kcal</div>
+
+        <div class="status good" id="status">Within daily range ♡</div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-name">♡ Eaten</div>
+                <div class="stat-number eaten-number" id="eatenCalories">0</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-name">✦ Burned</div>
+                <div class="stat-number burned-number" id="burnedCalories">0</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-title">୨୧ <span class="pink">Entries</span></div>
+    <div id="entries"></div>
+
+</div>
+
+<div id="historyPage" class="hidden">
+    <div class="section-title">✧ <span class="pink">Diary history</span></div>
+    <div id="historyList"></div>
+</div>
+
+<div id="weightPage" class="hidden">
+
+    <div class="section-title">୨୧ <span class="pink">Weight tracker</span></div>
+
+    <div class="weight-card">
+        <div class="weight-card-title">♡ Add your weight</div>
+
+        <label>Date</label>
+        <input type="date" id="weightDate">
+
+        <label>Weight (kg)</label>
+        <input type="number" id="weightAmount" min="1" step="0.1" inputmode="decimal">
+
+        <button class="save-button" onclick="saveWeight()">Save weight ♡</button>
+    </div>
+
+    <div class="weight-card">
+        <div class="weight-card-title">✦ Compare weights</div>
+
+        <div class="two-columns">
+            <div>
+                <label>Earlier date</label>
+                <select id="compareFrom"></select>
+            </div>
+
+            <div>
+                <label>Later date</label>
+                <select id="compareTo"></select>
+            </div>
+        </div>
+
+        <button class="save-button" onclick="compareWeights()">Compare ✧</button>
+        <div class="compare-result" id="compareResult"></div>
+    </div>
+
+    <div class="weight-card">
+        <div class="weight-card-title">✧ Data safety</div>
+        <p style="margin:0;color:var(--muted);font-size:14px;line-height:1.55;">
+            Your diary and weight data are stored locally on this device using IndexedDB.
+            You can also save a backup file and restore it later.
+        </p>
+        <button class="save-button" onclick="backupData()">Backup data ✧</button>
+        <button class="open-day-button" onclick="document.getElementById('restoreFile').click()">Restore backup ♡</button>
+        <input type="file" id="restoreFile" accept=".json,application/json" class="hidden" onchange="restoreData(event)">
+    </div>
+
+    <div class="section-title">♡ <span class="pink">Weight history</span></div>
+    <div id="weightHistory"></div>
+
+</div>
+
+</div>
+
+<button class="add-button" id="addButton" onclick="openEntryModal()">+</button>
+
+<nav class="bottom-nav">
+    <button class="nav-button active" id="diaryNav" onclick="showPage('diary')">
+        <span class="nav-symbol">♡</span>
+        Diary
+    </button>
+
+    <button class="nav-button" id="historyNav" onclick="showPage('history')">
+        <span class="nav-symbol">✧</span>
+        History
+    </button>
+
+    <button class="nav-button" id="weightNav" onclick="showPage('weight')">
+        <span class="nav-symbol">୨୧</span>
+        Weight
+    </button>
+</nav>
+
+<div class="modal" id="entryModal">
+
+<div class="modal-box">
+
+    <h2 id="entryModalTitle">⋆｡°✩ Add entry ✩°｡⋆</h2>
+
+    <div class="type-selector">
+        <button class="type-button selected" id="foodTypeButton" onclick="setEntryType('food')">♡ Food</button>
+        <button class="type-button" id="activityTypeButton" onclick="setEntryType('activity')">✦ Activity</button>
+    </div>
+
+    <label>Date</label>
+    <input type="date" id="entryDate">
+
+    <div id="foodFields">
+        <label>What did you eat?</label>
+        <input type="text" id="foodName">
+
+        <label>Calories</label>
+        <input type="number" id="foodCalories" min="1" inputmode="numeric">
+    </div>
+
+    <div id="activityFields" class="hidden">
+
+        <label>Activity</label>
+
+        <select id="activityName">
+            <option value="Dancing">Dancing</option>
+            <option value="Walking">Walking</option>
+            <option value="Swimming">Swimming</option>
+            <option value="Exercising">Exercising</option>
+        </select>
+
+        <label>Time (minutes)</label>
+        <input type="number" id="activityMinutes" min="1" inputmode="numeric">
+
+        <label>Calories burned</label>
+        <input type="number" id="activityCalories" min="1" inputmode="numeric">
+
+    </div>
+
+    <button class="save-button" onclick="saveEntry()">Save entry ♡</button>
+    <button class="cancel-button" onclick="closeEntryModal()">Cancel</button>
+
+</div>
+
+</div>
+
+<script>
+
+let entries = [];
+let weights = [];
+
+const DB_NAME = "calorie_tracker_database";
+const DB_VERSION = 1;
+let db = null;
+
+
+function openDatabase() {
+    return new Promise(function(resolve, reject) {
+
+        if (db) {
+            resolve(db);
+            return;
+        }
+
+        const request =
+            indexedDB.open(DB_NAME, DB_VERSION);
+
+        request.onupgradeneeded =
+            function(event) {
+
+                const database =
+                    event.target.result;
+
+                if (!database.objectStoreNames.contains("entries")) {
+                    database.createObjectStore(
+                        "entries",
+                        { keyPath: "id" }
+                    );
+                }
+
+                if (!database.objectStoreNames.contains("weights")) {
+                    database.createObjectStore(
+                        "weights",
+                        { keyPath: "id" }
+                    );
+                }
+
+                if (!database.objectStoreNames.contains("settings")) {
+                    database.createObjectStore(
+                        "settings",
+                        { keyPath: "key" }
+                    );
+                }
+            };
+
+        request.onsuccess =
+            function(event) {
+
+                db =
+                    event.target.result;
+
+                db.onversionchange =
+                    function() {
+                        db.close();
+                        db = null;
+                    };
+
+                resolve(db);
+            };
+
+        request.onerror =
+            function() {
+                reject(request.error);
+            };
+    });
+}
+
+
+function getAllFromStore(storeName) {
+    return new Promise(function(resolve, reject) {
+
+        const transaction =
+            db.transaction(storeName, "readonly");
+
+        const store =
+            transaction.objectStore(storeName);
+
+        const request =
+            store.getAll();
+
+        request.onsuccess =
+            function() {
+                resolve(request.result || []);
+            };
+
+        request.onerror =
+            function() {
+                reject(request.error);
+            };
+    });
+}
+
+
+function getSetting(key) {
+    return new Promise(function(resolve, reject) {
+
+        const transaction =
+            db.transaction("settings", "readonly");
+
+        const request =
+            transaction.objectStore("settings").get(key);
+
+        request.onsuccess =
+            function() {
+                resolve(request.result ? request.result.value : null);
+            };
+
+        request.onerror =
+            function() {
+                reject(request.error);
+            };
+    });
+}
+
+
+function setSetting(key, value) {
+    return new Promise(function(resolve, reject) {
+
+        const transaction =
+            db.transaction("settings", "readwrite");
+
+        transaction.objectStore("settings").put({
+            key: key,
+            value: value
+        });
+
+        transaction.oncomplete =
+            function() {
+                resolve();
+            };
+
+        transaction.onerror =
+            function() {
+                reject(transaction.error);
+            };
+    });
+}
+
+
+function replaceStoreContents(storeName, items) {
+    return new Promise(function(resolve, reject) {
+
+        const transaction =
+            db.transaction(storeName, "readwrite");
+
+        const store =
+            transaction.objectStore(storeName);
+
+        store.clear();
+
+        items.forEach(
+            function(item) {
+                store.put(item);
+            }
+        );
+
+        transaction.oncomplete =
+            function() {
+                resolve();
+            };
+
+        transaction.onerror =
+            function() {
+                reject(transaction.error);
+            };
+
+        transaction.onabort =
+            function() {
+                reject(transaction.error);
+            };
+    });
+}
+
+
+async function migrateLocalStorageOnce() {
+
+    const alreadyMigrated =
+        await getSetting("localStorageMigrated");
+
+    if (alreadyMigrated) {
+        return;
+    }
+
+    let oldEntries = [];
+    let oldWeights = [];
+
+    try {
+        oldEntries =
+            JSON.parse(
+                localStorage.getItem("calorie_entries_v2")
+            ) || [];
+
+        if (oldEntries.length === 0) {
+
+            oldEntries =
+                JSON.parse(
+                    localStorage.getItem("calorie_entries_v1")
+                ) || [];
+
+            oldEntries =
+                oldEntries.map(
+                    function(entry) {
+                        return {
+                            ...entry,
+                            minutes: entry.minutes || null
+                        };
+                    }
+                );
+        }
+
+        oldWeights =
+            JSON.parse(
+                localStorage.getItem("weight_entries_v1")
+            ) || [];
+
+    } catch (error) {
+        console.warn(
+            "Old localStorage data could not be read.",
+            error
+        );
+    }
+
+    const existingEntries =
+        await getAllFromStore("entries");
+
+    const existingWeights =
+        await getAllFromStore("weights");
+
+    if (existingEntries.length === 0 && oldEntries.length > 0) {
+        await replaceStoreContents("entries", oldEntries);
+    }
+
+    if (existingWeights.length === 0 && oldWeights.length > 0) {
+        await replaceStoreContents("weights", oldWeights);
+    }
+
+    await setSetting(
+        "localStorageMigrated",
+        true
+    );
+}
+
+
+async function backupData() {
+
+    const backup = {
+        app: "Calorie Tracker",
+        version: 1,
+        createdAt: new Date().toISOString(),
+        entries: entries,
+        weights: weights
+    };
+
+    const blob =
+        new Blob(
+            [JSON.stringify(backup, null, 2)],
+            { type: "application/json" }
+        );
+
+    const url =
+        URL.createObjectURL(blob);
+
+    const link =
+        document.createElement("a");
+
+    link.href = url;
+    link.download =
+        "calorie-tracker-backup-" +
+        getDateKey() +
+        ".json";
+
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    setTimeout(
+        function() {
+            URL.revokeObjectURL(url);
+        },
+        1000
+    );
+}
+
+
+async function restoreData(event) {
+
+    const file =
+        event.target.files[0];
+
+    if (!file) {
+        return;
+    }
+
+    try {
+
+        const text =
+            await file.text();
+
+        const backup =
+            JSON.parse(text);
+
+        if (
+            !backup ||
+            !Array.isArray(backup.entries) ||
+            !Array.isArray(backup.weights)
+        ) {
+            throw new Error("Invalid backup");
+        }
+
+        const confirmed =
+            confirm(
+                "Restore this backup? This will replace the calorie and weight data currently stored in the app."
+            );
+
+        if (!confirmed) {
+            event.target.value = "";
+            return;
+        }
+
+        entries = backup.entries;
+        weights = backup.weights;
+
+        await replaceStoreContents(
+            "entries",
+            entries
+        );
+
+        await replaceStoreContents(
+            "weights",
+            weights
+        );
+
+        renderAll();
+
+        alert("Backup restored successfully ♡");
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "This file could not be restored. Please choose a valid Calorie Tracker backup."
+        );
+    }
+
+    event.target.value = "";
+}
+
+
+let entryType = "food";
+let editingEntryId = null;
+let selectedDiaryDate = getDateKey();
+
+
+function getDateKey(date = new Date()) {
+
+    const year = date.getFullYear();
+
+    const month =
+        String(
+            date.getMonth() + 1
+        ).padStart(2,"0");
+
+    const day =
+        String(
+            date.getDate()
+        ).padStart(2,"0");
+
+    return year + "-" + month + "-" + day;
+}
+
+
+function formatDate(date) {
+
+    return date.toLocaleDateString(
+        "en-GB",
+        {
+            weekday: "long",
+            day: "numeric",
+            month: "short",
+            year: "numeric"
+        }
+    );
+}
+
+
+function formatDateKey(dateKey) {
+
+    const parts =
+        dateKey
+            .split("-")
+            .map(Number);
+
+    return formatDate(
+        new Date(
+            parts[0],
+            parts[1] - 1,
+            parts[2]
+        )
+    );
+}
+
+
+function formatTime(timestamp) {
+
+    return new Date(timestamp)
+        .toLocaleTimeString(
+            "en-GB",
+            {
+                hour: "2-digit",
+                minute: "2-digit"
+            }
+        );
+}
+
+
+function saveEntries() {
+    return replaceStoreContents("entries", entries);
+}
+
+
+function saveWeights() {
+    return replaceStoreContents("weights", weights);
+}
+
+
+function changeDiaryDate() {
+
+    selectedDiaryDate =
+        document.getElementById("diaryDate").value;
+
+    renderDiary();
+}
+
+
+function openDiaryDate(date) {
+
+    selectedDiaryDate = date;
+
+    document.getElementById("diaryDate").value = date;
+
+    showPage("diary");
+
+    renderDiary();
+}
+
+
+function openEntryModal() {
+
+    editingEntryId = null;
+
+    document.getElementById("entryModalTitle").textContent =
+        "⋆｡°✩ Add entry ✩°｡⋆";
+
+    clearEntryForm();
+
+    document.getElementById("entryDate").value =
+        selectedDiaryDate;
+
+    document.getElementById("entryModal")
+        .classList.add("open");
+}
+
+
+function closeEntryModal() {
+
+    document.getElementById("entryModal")
+        .classList.remove("open");
+
+    clearEntryForm();
+}
+
+
+function setEntryType(type) {
+
+    entryType = type;
+
+    const food =
+        document.getElementById("foodFields");
+
+    const activity =
+        document.getElementById("activityFields");
+
+    const foodButton =
+        document.getElementById("foodTypeButton");
+
+    const activityButton =
+        document.getElementById("activityTypeButton");
+
+    if (type === "food") {
+
+        food.classList.remove("hidden");
+        activity.classList.add("hidden");
+
+        foodButton.classList.add("selected");
+        activityButton.classList.remove("selected");
+
+    } else {
+
+        food.classList.add("hidden");
+        activity.classList.remove("hidden");
+
+        foodButton.classList.remove("selected");
+        activityButton.classList.add("selected");
+    }
+}
+
+
+function clearEntryForm() {
+
+    document.getElementById("foodName").value = "";
+    document.getElementById("foodCalories").value = "";
+    document.getElementById("activityMinutes").value = "";
+    document.getElementById("activityCalories").value = "";
+
+    setEntryType("food");
+}
+
+
+function saveEntry() {
+
+    const entryDate =
+        document.getElementById("entryDate").value;
+
+    if (!entryDate) {
+        alert("Please choose a date.");
+        return;
+    }
+
+    let name;
+    let calories;
+    let minutes = null;
+
+    if (entryType === "food") {
+
+        name =
+            document.getElementById("foodName")
+                .value
+                .trim();
+
+        calories =
+            Number(
+                document.getElementById("foodCalories").value
+            );
+
+        if (!name || calories <= 0) {
+
+            alert("Please enter the food and calories.");
+            return;
+        }
+
+    } else {
+
+        name =
+            document.getElementById("activityName").value;
+
+        minutes =
+            Number(
+                document.getElementById("activityMinutes").value
+            );
+
+        calories =
+            Number(
+                document.getElementById("activityCalories").value
+            );
+
+        if (minutes <= 0 || calories <= 0) {
+
+            alert(
+                "Please enter the activity time and calories burned."
+            );
+
+            return;
+        }
+    }
+
+    if (editingEntryId) {
+
+        const entry =
+            entries.find(
+                function(item) {
+                    return item.id === editingEntryId;
+                }
+            );
+
+        if (entry) {
+
+            entry.type = entryType;
+            entry.name = name;
+            entry.calories = calories;
+            entry.minutes = minutes;
+            entry.date = entryDate;
+            entry.updatedAt = new Date().toISOString();
+        }
+
+    } else {
+
+        entries.push({
+
+            id:
+                Date.now() +
+                "-" +
+                Math.random()
+                    .toString(16)
+                    .slice(2),
+
+            type: entryType,
+            name: name,
+            calories: calories,
+            minutes: minutes,
+            date: entryDate,
+            createdAt: new Date().toISOString()
+        });
+    }
+
+    selectedDiaryDate = entryDate;
+
+    document.getElementById("diaryDate").value =
+        entryDate;
+
+    saveEntries();
+
+    closeEntryModal();
+
+    renderAll();
+}
+
+
+function editEntry(id) {
+
+    const entry =
+        entries.find(
+            function(item) {
+                return item.id === id;
+            }
+        );
+
+    if (!entry) {
+        return;
+    }
+
+    editingEntryId = id;
+
+    document.getElementById("entryModalTitle").textContent =
+        "✧ Edit entry ✧";
+
+    setEntryType(entry.type);
+
+    document.getElementById("entryDate").value =
+        entry.date;
+
+    if (entry.type === "food") {
+
+        document.getElementById("foodName").value =
+            entry.name;
+
+        document.getElementById("foodCalories").value =
+            entry.calories;
+
+    } else {
+
+        document.getElementById("activityName").value =
+            entry.name;
+
+        document.getElementById("activityMinutes").value =
+            entry.minutes || "";
+
+        document.getElementById("activityCalories").value =
+            entry.calories;
+    }
+
+    document.getElementById("entryModal")
+        .classList.add("open");
+}
+
+
+function deleteEntry(id) {
+
+    const entry =
+        entries.find(
+            function(item) {
+                return item.id === id;
+            }
+        );
+
+    if (!entry) {
+        return;
+    }
+
+    const confirmed =
+        confirm(
+            "Delete " +
+            entry.name +
+            "?"
+        );
+
+    if (!confirmed) {
+        return;
+    }
+
+    entries =
+        entries.filter(
+            function(item) {
+                return item.id !== id;
+            }
+        );
+
+    saveEntries();
+
+    renderAll();
+}
+
+
+function getEntriesForDate(date) {
+
+    return entries.filter(
+        function(entry) {
+            return entry.date === date;
+        }
+    );
+}
+
+
+function getTotals(dayEntries) {
+
+    const eaten =
+        dayEntries
+            .filter(
+                function(entry) {
+                    return entry.type === "food";
+                }
+            )
+            .reduce(
+                function(sum,entry) {
+                    return sum + Number(entry.calories);
+                },
+                0
+            );
+
+    const burned =
+        dayEntries
+            .filter(
+                function(entry) {
+                    return entry.type === "activity";
+                }
+            )
+            .reduce(
+                function(sum,entry) {
+                    return sum + Number(entry.calories);
+                },
+                0
+            );
+
+    return {
+        eaten: eaten,
+        burned: burned,
+        net: eaten - burned
+    };
+}
+
+
+function renderDiary() {
+
+    const dayEntries =
+        getEntriesForDate(selectedDiaryDate);
+
+    const totals =
+        getTotals(dayEntries);
+
+    document.getElementById("selectedDateName").textContent =
+        formatDateKey(selectedDiaryDate);
+
+    document.getElementById("eatenCalories").textContent =
+        totals.eaten;
+
+    document.getElementById("burnedCalories").textContent =
+        totals.burned;
+
+    document.getElementById("netCalories").textContent =
+        totals.net;
+
+    renderStatus(totals.net);
+
+    const container =
+        document.getElementById("entries");
+
+    if (dayEntries.length === 0) {
+
+        container.innerHTML =
+            '<div class="empty">' +
+            '˚₊‧ ୨୧ ‧₊˚' +
+            '<br>' +
+            'No entries for this date.' +
+            '<br>' +
+            'Tap + to add food or activity.' +
+            '</div>';
+
+        return;
+    }
+
+    const sorted =
+        dayEntries
+            .slice()
+            .sort(
+                function(a,b) {
+                    return (
+                        new Date(b.createdAt) -
+                        new Date(a.createdAt)
+                    );
+                }
+            );
+
+    container.innerHTML =
+        sorted.map(
+            function(entry) {
+
+                const isFood =
+                    entry.type === "food";
+
+                let name =
+                    escapeHTML(entry.name);
+
+                if (!isFood && entry.minutes) {
+
+                    name +=
+                        " · " +
+                        entry.minutes +
+                        "min";
+                }
+
+                return (
+                    '<div class="entry">' +
+
+                        '<div class="entry-left">' +
+
+                            '<div class="entry-name">' +
+                                (isFood ? "♡ " : "✦ ") +
+                                name +
+                            '</div>' +
+
+                            '<div class="entry-time">' +
+                                formatTime(entry.createdAt) +
+                            '</div>' +
+
+                        '</div>' +
+
+                        '<div class="entry-right">' +
+
+                            '<div class="entry-calories ' +
+                                (isFood ? "food-calories" : "burned-calories") +
+                            '">' +
+
+                                (isFood ? "+" : "−") +
+                                entry.calories +
+                                "kcal" +
+
+                            '</div>' +
+
+                            '<div class="entry-actions">' +
+
+                                '<button class="mini-button" onclick="editEntry(\'' +
+                                    entry.id +
+                                '\')">Edit</button>' +
+
+                                '<button class="mini-button delete" onclick="deleteEntry(\'' +
+                                    entry.id +
+                                '\')">Delete</button>' +
+
+                            '</div>' +
+
+                        '</div>' +
+
+                    '</div>'
+                );
+            }
+        ).join("");
+}
+
+
+function renderStatus(net) {
+
+    const status =
+        document.getElementById("status");
+
+    status.className = "status";
+
+    if (net < 1800) {
+
+        status.textContent =
+            "Within daily range ♡";
+
+        status.classList.add("good");
+
+    } else {
+
+        status.textContent =
+            "Over daily range";
+
+        status.classList.add("over");
+    }
+}
+
+
+function renderHistory() {
+
+    const container =
+        document.getElementById("historyList");
+
+    if (entries.length === 0) {
+
+        container.innerHTML =
+            '<div class="empty">' +
+            '✧ ⋆｡°✩' +
+            '<br>' +
+            'Your diary days will appear here.' +
+            '</div>';
+
+        return;
+    }
+
+    const days = {};
+
+    entries.forEach(
+        function(entry) {
+
+            if (!days[entry.date]) {
+                days[entry.date] = [];
+            }
+
+            days[entry.date].push(entry);
+        }
+    );
+
+    const dates =
+        Object.keys(days)
+            .sort()
+            .reverse();
+
+    container.innerHTML =
+        dates.map(
+            function(date) {
+
+                const totals =
+                    getTotals(days[date]);
+
+                const statusText =
+                    totals.net < 1800
+                        ? "Within range ♡"
+                        : "Over range";
+
+                return (
+                    '<div class="history-day">' +
+
+                        '<div class="history-date">' +
+                            '♡ ' +
+                            formatDateKey(date) +
+                        '</div>' +
+
+                        '<div class="history-summary">' +
+                            '<span>Eaten</span>' +
+                            '<span class="food-calories">' +
+                                totals.eaten +
+                                'kcal' +
+                            '</span>' +
+                        '</div>' +
+
+                        '<div class="history-summary">' +
+                            '<span>Burned</span>' +
+                            '<span class="burned-calories">' +
+                                totals.burned +
+                                'kcal' +
+                            '</span>' +
+                        '</div>' +
+
+                        '<div class="history-summary history-net">' +
+                            '<span>Net</span>' +
+                            '<span>' +
+                                totals.net +
+                                'kcal' +
+                            '</span>' +
+                        '</div>' +
+
+                        '<div class="history-summary">' +
+                            '<span>Status</span>' +
+                            '<span>' +
+                                statusText +
+                            '</span>' +
+                        '</div>' +
+
+                        '<button class="open-day-button" onclick="openDiaryDate(\'' +
+                            date +
+                        '\')">' +
+                            'View / edit this day ✧' +
+                        '</button>' +
+
+                    '</div>'
+                );
+            }
+        ).join("");
+}
+
+
+function saveWeight() {
+
+    const date =
+        document.getElementById("weightDate").value;
+
+    const amount =
+        Number(
+            document.getElementById("weightAmount").value
+        );
+
+    if (!date || amount <= 0) {
+
+        alert("Please enter a date and weight.");
+        return;
+    }
+
+    const existing =
+        weights.find(
+            function(weight) {
+                return weight.date === date;
+            }
+        );
+
+    if (existing) {
+
+        const replace =
+            confirm(
+                "You already have a weight recorded for this date. Replace it?"
+            );
+
+        if (!replace) {
+            return;
+        }
+
+        existing.amount = amount;
+        existing.updatedAt =
+            new Date().toISOString();
+
+    } else {
+
+        weights.push({
+
+            id:
+                Date.now() +
+                "-" +
+                Math.random()
+                    .toString(16)
+                    .slice(2),
+
+            date: date,
+            amount: amount,
+            createdAt: new Date().toISOString()
+        });
+    }
+
+    saveWeights();
+
+    document.getElementById("weightAmount").value =
+        "";
+
+    renderWeights();
+}
+
+
+function deleteWeight(id) {
+
+    const confirmed =
+        confirm("Delete this weight entry?");
+
+    if (!confirmed) {
+        return;
+    }
+
+    weights =
+        weights.filter(
+            function(weight) {
+                return weight.id !== id;
+            }
+        );
+
+    saveWeights();
+
+    renderWeights();
+}
+
+
+function editWeight(id) {
+
+    const weight =
+        weights.find(
+            function(item) {
+                return item.id === id;
+            }
+        );
+
+    if (!weight) {
+        return;
+    }
+
+    document.getElementById("weightDate").value =
+        weight.date;
+
+    document.getElementById("weightAmount").value =
+        weight.amount;
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+function compareWeights() {
+
+    const fromId =
+        document.getElementById("compareFrom").value;
+
+    const toId =
+        document.getElementById("compareTo").value;
+
+    const result =
+        document.getElementById("compareResult");
+
+    if (!fromId || !toId) {
+
+        result.textContent =
+            "Choose two weight entries ♡";
+
+        return;
+    }
+
+    const from =
+        weights.find(
+            function(weight) {
+                return weight.id === fromId;
+            }
+        );
+
+    const to =
+        weights.find(
+            function(weight) {
+                return weight.id === toId;
+            }
+        );
+
+    if (!from || !to) {
+        return;
+    }
+
+    let earlier = from;
+    let later = to;
+
+    if (from.date > to.date) {
+        earlier = to;
+        later = from;
+    }
+
+    const difference =
+        Number(
+            (
+                later.amount -
+                earlier.amount
+            ).toFixed(1)
+        );
+
+    if (difference < 0) {
+
+        result.innerHTML =
+            "♡ You lost <strong>" +
+            Math.abs(difference).toFixed(1) +
+            " kg</strong>" +
+            "<br>" +
+            formatDateKey(earlier.date) +
+            " → " +
+            formatDateKey(later.date);
+
+    } else if (difference > 0) {
+
+        result.innerHTML =
+            "✦ You gained <strong>" +
+            difference.toFixed(1) +
+            " kg</strong>" +
+            "<br>" +
+            formatDateKey(earlier.date) +
+            " → " +
+            formatDateKey(later.date);
+
+    } else {
+
+        result.innerHTML =
+            "♡ Your weight stayed the same" +
+            "<br>" +
+            formatDateKey(earlier.date) +
+            " → " +
+            formatDateKey(later.date);
+    }
+}
+
+
+function renderWeights() {
+
+    const history =
+        document.getElementById("weightHistory");
+
+    const from =
+        document.getElementById("compareFrom");
+
+    const to =
+        document.getElementById("compareTo");
+
+    const sorted =
+        weights
+            .slice()
+            .sort(
+                function(a,b) {
+                    return b.date.localeCompare(a.date);
+                }
+            );
+
+    if (sorted.length === 0) {
+
+        history.innerHTML =
+            '<div class="empty">' +
+            '♡ No weight entries yet.' +
+            '</div>';
+
+        from.innerHTML =
+            '<option value="">No entries</option>';
+
+        to.innerHTML =
+            '<option value="">No entries</option>';
+
+        document.getElementById("compareResult").textContent =
+            "";
+
+        return;
+    }
+
+    history.innerHTML =
+        sorted.map(
+            function(weight) {
+
+                return (
+                    '<div class="weight-card">' +
+
+                        '<div class="weight-number">' +
+                            weight.amount +
+                            ' kg' +
+                        '</div>' +
+
+                        '<div class="weight-date">' +
+                            formatDateKey(weight.date) +
+                        '</div>' +
+
+                        '<div class="weight-actions">' +
+
+                            '<button class="mini-button" onclick="editWeight(\'' +
+                                weight.id +
+                            '\')">Edit</button>' +
+
+                            '<button class="mini-button delete" onclick="deleteWeight(\'' +
+                                weight.id +
+                            '\')">Delete</button>' +
+
+                        '</div>' +
+
+                    '</div>'
+                );
+            }
+        ).join("");
+
+    const chronological =
+        weights
+            .slice()
+            .sort(
+                function(a,b) {
+                    return a.date.localeCompare(b.date);
+                }
+            );
+
+    const options =
+        chronological.map(
+            function(weight) {
+
+                return (
+                    '<option value="' +
+                    weight.id +
+                    '">' +
+                    formatDateKey(weight.date) +
+                    " · " +
+                    weight.amount +
+                    " kg" +
+                    '</option>'
+                );
+            }
+        ).join("");
+
+    from.innerHTML = options;
+    to.innerHTML = options;
+
+    if (chronological.length >= 2) {
+
+        from.value =
+            chronological[0].id;
+
+        to.value =
+            chronological[
+                chronological.length - 1
+            ].id;
+    }
+}
+
+
+function showPage(page) {
+
+    const pages = [
+        "diary",
+        "history",
+        "weight"
+    ];
+
+    pages.forEach(
+        function(name) {
+
+            document.getElementById(name + "Page")
+                .classList
+                .toggle(
+                    "hidden",
+                    name !== page
+                );
+
+            document.getElementById(name + "Nav")
+                .classList
+                .toggle(
+                    "active",
+                    name === page
+                );
+        }
+    );
+
+    document.getElementById("addButton")
+        .classList
+        .toggle(
+            "hidden",
+            page !== "diary"
+        );
+
+    if (page === "history") {
+        renderHistory();
+    }
+
+    if (page === "weight") {
+        renderWeights();
+    }
+}
+
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+}
+
+
+function renderAll() {
+
+    document.getElementById("todayHeaderDate").textContent =
+        formatDate(new Date());
+
+    document.getElementById("diaryDate").value =
+        selectedDiaryDate;
+
+    renderDiary();
+    renderHistory();
+    renderWeights();
+}
+
+
+async function startApp() {
+    try {
+        await openDatabase();
+        await migrateLocalStorageOnce();
+
+        entries = await getAllFromStore("entries");
+        weights = await getAllFromStore("weights");
+
+        document.getElementById("weightDate").value =
+            getDateKey();
+
+        document.getElementById("diaryDate").value =
+            selectedDiaryDate;
+
+        renderAll();
+    } catch (error) {
+        console.error(error);
+        alert("The local database could not be opened. Please reload the app.");
+    }
+}
+
+startApp();
+
+</script>
+
+<script>
+if ("serviceWorker" in navigator) {
+   window.addEventListener("load", function() {
+       navigator.serviceWorker
+           .register("./sw.js")
+           .catch(function(error) {
+               console.error("Service worker registration failed:", error);
+           });
+   });
+}
+</script>
+
+</body>
+</html>
