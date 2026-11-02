@@ -34,9 +34,7 @@
     --over-text: #a84f77;
 }
 
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 html {
     width: 100%;
@@ -59,9 +57,7 @@ body {
     background-attachment: fixed;
 }
 
-button, input, select {
-    font-family: inherit;
-}
+button, input, select { font-family: inherit; }
 
 header {
     padding: calc(27px + env(safe-area-inset-top)) 20px 12px;
@@ -75,9 +71,7 @@ header h1 {
     color: var(--purple-dark);
 }
 
-.title-pink {
-    color: var(--pink-dark);
-}
+.title-pink { color: var(--pink-dark); }
 
 .date {
     margin-top: 7px;
@@ -92,9 +86,7 @@ header h1 {
     min-width: 0;
 }
 
-.hidden {
-    display: none !important;
-}
+.hidden { display: none !important; }
 
 .summary,
 .history-day,
@@ -148,15 +140,8 @@ header h1 {
     font-weight: 700;
 }
 
-.good {
-    background: var(--good-bg);
-    color: var(--good-text);
-}
-
-.over {
-    background: var(--over-bg);
-    color: var(--over-text);
-}
+.good { background: var(--good-bg); color: var(--good-text); }
+.over { background: var(--over-bg); color: var(--over-text); }
 
 .limit {
     background: linear-gradient(145deg,#f4e4f5,#fbe2ed);
@@ -177,26 +162,12 @@ header h1 {
     padding: 13px;
 }
 
-.stat-name {
-    font-size: 13px;
-    color: var(--muted);
-}
+.stat-name { font-size: 13px; color: var(--muted); }
+.stat-number { font-size: 21px; font-weight: 760; margin-top: 4px; }
+.eaten-number { color: var(--pink-dark); }
+.burned-number { color: var(--purple-dark); }
 
-.stat-number {
-    font-size: 21px;
-    font-weight: 760;
-    margin-top: 4px;
-}
-
-.eaten-number {
-    color: var(--pink-dark);
-}
-
-.burned-number {
-    color: var(--purple-dark);
-}
-
-/* Fixes iOS/Safari/Brave date field overflowing its container */
+/* iPhone / Safari / Brave date-input fix */
 .date-chooser {
     background: rgba(255,252,255,.86);
     border: 1px solid var(--border);
@@ -208,10 +179,17 @@ header h1 {
     overflow: hidden;
 }
 
-.date-chooser label {
-    margin-top: 0;
+.date-chooser label { margin-top: 0; }
+
+.date-input-wrapper {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
 }
 
+input[type="date"],
+.date-input-wrapper input[type="date"],
 .date-chooser input[type="date"] {
     display: block;
     width: 100%;
@@ -219,11 +197,6 @@ header h1 {
     min-width: 0;
     -webkit-appearance: none;
     appearance: none;
-}
-
-input[type="date"] {
-    max-width: 100%;
-    min-width: 0;
 }
 
 .selected-date-name {
@@ -241,9 +214,7 @@ input[type="date"] {
     color: var(--purple-dark);
 }
 
-.section-title .pink {
-    color: var(--pink-dark);
-}
+.section-title .pink { color: var(--pink-dark); }
 
 .entry {
     background: var(--card);
@@ -258,9 +229,7 @@ input[type="date"] {
     box-shadow: 0 4px 15px rgba(125,84,145,.07);
 }
 
-.entry-left {
-    min-width: 0;
-}
+.entry-left { min-width: 0; }
 
 .entry-name {
     font-weight: 680;
@@ -284,13 +253,8 @@ input[type="date"] {
     white-space: nowrap;
 }
 
-.food-calories {
-    color: var(--pink-dark);
-}
-
-.burned-calories {
-    color: var(--purple-dark);
-}
+.food-calories { color: var(--pink-dark); }
+.burned-calories { color: var(--purple-dark); }
 
 .entry-actions {
     display: flex;
@@ -366,15 +330,8 @@ input[type="date"] {
     padding-top: 8px;
 }
 
-.nav-symbol {
-    display: block;
-    font-size: 20px;
-    margin-bottom: 3px;
-}
-
-.nav-button.active {
-    color: var(--pink-dark);
-}
+.nav-symbol { display: block; font-size: 20px; margin-bottom: 3px; }
+.nav-button.active { color: var(--pink-dark); }
 
 .modal {
     display: none;
@@ -386,9 +343,7 @@ input[type="date"] {
     backdrop-filter: blur(3px);
 }
 
-.modal.open {
-    display: flex;
-}
+.modal.open { display: flex; }
 
 .modal-box {
     background: linear-gradient(160deg,#fffaff,#fbf1f8);
@@ -399,6 +354,7 @@ input[type="date"] {
     border-radius: 27px 27px 0 0;
     max-height: 92vh;
     overflow-y: auto;
+    overflow-x: hidden;
     box-shadow: 0 -8px 30px rgba(95,60,110,.14);
 }
 
@@ -538,13 +494,8 @@ select:focus {
     margin-bottom: 12px;
 }
 
-.search-wrapper {
-    position: relative;
-}
-
-.search-wrapper input {
-    padding-right: 45px;
-}
+.search-wrapper { position: relative; }
+.search-wrapper input { padding-right: 45px; }
 
 .clear-search {
     position: absolute;
@@ -599,6 +550,7 @@ select:focus {
     border-radius: 22px;
     padding: 18px;
     margin-bottom: 13px;
+    overflow: hidden;
 }
 
 .weight-card-title,
@@ -627,9 +579,7 @@ select:focus {
     margin-top: 12px;
 }
 
-.weight-actions button {
-    flex: 1;
-}
+.weight-actions button { flex: 1; }
 
 .compare-result {
     margin-top: 13px;
@@ -645,6 +595,19 @@ select:focus {
     gap: 10px;
 }
 
+.walking-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.walking-hint {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.45;
+    margin-top: 7px;
+}
+
 .edit-history-button {
     width: 100%;
     margin-top: 12px;
@@ -656,9 +619,7 @@ select:focus {
     font-weight: 700;
 }
 
-.edit-history-list {
-    margin-top: 10px;
-}
+.edit-history-list { margin-top: 10px; }
 
 .edit-history-item {
     background: white;
@@ -715,9 +676,7 @@ select:focus {
     margin: 0 0 18px;
 }
 
-.reminder-box .save-button {
-    margin-top: 8px;
-}
+.reminder-box .save-button { margin-top: 8px; }
 
 .history-current {
     background: var(--soft-purple);
@@ -729,17 +688,16 @@ select:focus {
 }
 
 @media (max-width: 400px) {
-    header h1 {
-        font-size: 24px;
-    }
-
-    .container {
-        width: 94%;
-    }
+    header h1 { font-size: 24px; }
+    .container { width: 94%; }
 
     .date-chooser {
         padding-left: 12px;
         padding-right: 12px;
+    }
+
+    .walking-fields {
+        grid-template-columns: 1fr 1fr;
     }
 }
 </style>
@@ -758,7 +716,9 @@ select:focus {
 
     <div class="date-chooser">
         <label>✧ Choose diary date</label>
-        <input type="date" id="diaryDate" onchange="changeDiaryDate()">
+        <div class="date-input-wrapper">
+            <input type="date" id="diaryDate" onchange="changeDiaryDate()">
+        </div>
         <div class="selected-date-name" id="selectedDateName"></div>
     </div>
 
@@ -783,21 +743,11 @@ select:focus {
         </div>
     </div>
 
-    <div class="settings-card">
-        <div class="settings-title">♡ Daily calorie goal</div>
-
-        <label>Your daily limit (kcal)</label>
-        <input type="number" id="calorieGoalInput" min="1" step="1" inputmode="numeric">
-
-        <button class="open-day-button" onclick="saveCalorieGoal()">
-            Save calorie goal ♡
-        </button>
-    </div>
-
     <div class="section-title">୨୧ <span class="pink">Entries</span></div>
     <div id="entries"></div>
 
 </div>
+
 
 <div id="historyPage" class="hidden">
 
@@ -828,6 +778,7 @@ select:focus {
 
 </div>
 
+
 <div id="weightPage" class="hidden">
 
     <div class="section-title">୨୧ <span class="pink">Weight tracker</span></div>
@@ -836,7 +787,10 @@ select:focus {
         <div class="weight-card-title">♡ Add your weight</div>
 
         <label>Date</label>
-        <input type="date" id="weightDate">
+
+        <div class="date-input-wrapper">
+            <input type="date" id="weightDate">
+        </div>
 
         <label>Weight (kg)</label>
         <input type="number" id="weightAmount" min="1" step="0.1" inputmode="decimal">
@@ -886,6 +840,27 @@ select:focus {
         >
     </div>
 
+    <div class="settings-card">
+        <div class="settings-title">♡ Set calorie limit</div>
+
+        <p style="margin:0 0 12px;color:var(--muted);font-size:13px;line-height:1.5;">
+            Choose the daily net calorie limit used by your diary.
+        </p>
+
+        <label>Daily calorie limit (kcal)</label>
+        <input
+            type="number"
+            id="calorieGoalInput"
+            min="1"
+            step="1"
+            inputmode="numeric"
+        >
+
+        <button class="open-day-button" onclick="saveCalorieGoal()">
+            Save calorie limit ♡
+        </button>
+    </div>
+
     <div class="section-title">♡ <span class="pink">Weight history</span></div>
     <div id="weightHistory"></div>
 
@@ -893,7 +868,9 @@ select:focus {
 
 </div>
 
+
 <button class="add-button" id="addButton" onclick="openEntryModal()">+</button>
+
 
 <nav class="bottom-nav">
 
@@ -934,7 +911,10 @@ select:focus {
     </div>
 
     <label>Date</label>
-    <input type="date" id="entryDate">
+
+    <div class="date-input-wrapper">
+        <input type="date" id="entryDate">
+    </div>
 
     <div id="foodFields">
 
@@ -950,15 +930,39 @@ select:focus {
 
         <label>Activity</label>
 
-        <select id="activityName">
+        <select id="activityName" onchange="activityChanged()">
             <option value="Dancing">Dancing</option>
             <option value="Walking">Walking</option>
             <option value="Swimming">Swimming</option>
             <option value="Exercising">Exercising</option>
         </select>
 
-        <label>Time (minutes)</label>
-        <input type="number" id="activityMinutes" min="1" inputmode="numeric">
+        <div id="normalActivityTime">
+            <label>Time (minutes)</label>
+            <input type="number" id="activityMinutes" min="1" inputmode="numeric">
+        </div>
+
+        <div id="walkingFields" class="hidden">
+
+            <div class="walking-fields">
+
+                <div>
+                    <label>Time (minutes)</label>
+                    <input type="number" id="walkingMinutes" min="1" inputmode="numeric">
+                </div>
+
+                <div>
+                    <label>Steps</label>
+                    <input type="number" id="walkingSteps" min="1" step="1" inputmode="numeric">
+                </div>
+
+            </div>
+
+            <div class="walking-hint">
+                Enter minutes, steps, or both ♡
+            </div>
+
+        </div>
 
         <label>Calories burned</label>
         <input type="number" id="activityCalories" min="1" inputmode="numeric">
@@ -1033,7 +1037,6 @@ select:focus {
 
 let entries = [];
 let weights = [];
-
 let calorieGoal = 1800;
 
 const DB_NAME = "calorie_tracker_database";
@@ -1059,58 +1062,40 @@ function openDatabase() {
             return;
         }
 
-        const request =
-            indexedDB.open(DB_NAME, DB_VERSION);
+        const request = indexedDB.open(DB_NAME, DB_VERSION);
 
-        request.onupgradeneeded =
-            function(event) {
+        request.onupgradeneeded = function(event) {
 
-                const database =
-                    event.target.result;
+            const database = event.target.result;
 
-                if (!database.objectStoreNames.contains("entries")) {
+            if (!database.objectStoreNames.contains("entries")) {
+                database.createObjectStore("entries", { keyPath: "id" });
+            }
 
-                    database.createObjectStore(
-                        "entries",
-                        { keyPath: "id" }
-                    );
-                }
+            if (!database.objectStoreNames.contains("weights")) {
+                database.createObjectStore("weights", { keyPath: "id" });
+            }
 
-                if (!database.objectStoreNames.contains("weights")) {
+            if (!database.objectStoreNames.contains("settings")) {
+                database.createObjectStore("settings", { keyPath: "key" });
+            }
+        };
 
-                    database.createObjectStore(
-                        "weights",
-                        { keyPath: "id" }
-                    );
-                }
+        request.onsuccess = function(event) {
 
-                if (!database.objectStoreNames.contains("settings")) {
+            db = event.target.result;
 
-                    database.createObjectStore(
-                        "settings",
-                        { keyPath: "key" }
-                    );
-                }
+            db.onversionchange = function() {
+                db.close();
+                db = null;
             };
 
-        request.onsuccess =
-            function(event) {
+            resolve(db);
+        };
 
-                db = event.target.result;
-
-                db.onversionchange =
-                    function() {
-                        db.close();
-                        db = null;
-                    };
-
-                resolve(db);
-            };
-
-        request.onerror =
-            function() {
-                reject(request.error);
-            };
+        request.onerror = function() {
+            reject(request.error);
+        };
     });
 }
 
@@ -1119,24 +1104,17 @@ function getAllFromStore(storeName) {
 
     return new Promise(function(resolve, reject) {
 
-        const transaction =
-            db.transaction(storeName, "readonly");
+        const transaction = db.transaction(storeName, "readonly");
+        const store = transaction.objectStore(storeName);
+        const request = store.getAll();
 
-        const store =
-            transaction.objectStore(storeName);
+        request.onsuccess = function() {
+            resolve(request.result || []);
+        };
 
-        const request =
-            store.getAll();
-
-        request.onsuccess =
-            function() {
-                resolve(request.result || []);
-            };
-
-        request.onerror =
-            function() {
-                reject(request.error);
-            };
+        request.onerror = function() {
+            reject(request.error);
+        };
     });
 }
 
@@ -1145,26 +1123,16 @@ function getSetting(key) {
 
     return new Promise(function(resolve, reject) {
 
-        const transaction =
-            db.transaction("settings", "readonly");
+        const transaction = db.transaction("settings", "readonly");
+        const request = transaction.objectStore("settings").get(key);
 
-        const request =
-            transaction.objectStore("settings").get(key);
+        request.onsuccess = function() {
+            resolve(request.result ? request.result.value : null);
+        };
 
-        request.onsuccess =
-            function() {
-
-                resolve(
-                    request.result
-                        ? request.result.value
-                        : null
-                );
-            };
-
-        request.onerror =
-            function() {
-                reject(request.error);
-            };
+        request.onerror = function() {
+            reject(request.error);
+        };
     });
 }
 
@@ -1173,23 +1141,20 @@ function setSetting(key, value) {
 
     return new Promise(function(resolve, reject) {
 
-        const transaction =
-            db.transaction("settings", "readwrite");
+        const transaction = db.transaction("settings", "readwrite");
 
         transaction.objectStore("settings").put({
             key: key,
             value: value
         });
 
-        transaction.oncomplete =
-            function() {
-                resolve();
-            };
+        transaction.oncomplete = function() {
+            resolve();
+        };
 
-        transaction.onerror =
-            function() {
-                reject(transaction.error);
-            };
+        transaction.onerror = function() {
+            reject(transaction.error);
+        };
     });
 }
 
@@ -1198,30 +1163,23 @@ function getAllSettings() {
 
     return new Promise(function(resolve, reject) {
 
-        const transaction =
-            db.transaction("settings", "readonly");
+        const transaction = db.transaction("settings", "readonly");
+        const request = transaction.objectStore("settings").getAll();
 
-        const request =
-            transaction.objectStore("settings").getAll();
+        request.onsuccess = function() {
 
-        request.onsuccess =
-            function() {
+            const result = {};
 
-                const result = {};
+            (request.result || []).forEach(function(item) {
+                result[item.key] = item.value;
+            });
 
-                (request.result || []).forEach(
-                    function(item) {
-                        result[item.key] = item.value;
-                    }
-                );
+            resolve(result);
+        };
 
-                resolve(result);
-            };
-
-        request.onerror =
-            function() {
-                reject(request.error);
-            };
+        request.onerror = function() {
+            reject(request.error);
+        };
     });
 }
 
@@ -1230,34 +1188,26 @@ function replaceStoreContents(storeName, items) {
 
     return new Promise(function(resolve, reject) {
 
-        const transaction =
-            db.transaction(storeName, "readwrite");
-
-        const store =
-            transaction.objectStore(storeName);
+        const transaction = db.transaction(storeName, "readwrite");
+        const store = transaction.objectStore(storeName);
 
         store.clear();
 
-        items.forEach(
-            function(item) {
-                store.put(item);
-            }
-        );
+        items.forEach(function(item) {
+            store.put(item);
+        });
 
-        transaction.oncomplete =
-            function() {
-                resolve();
-            };
+        transaction.oncomplete = function() {
+            resolve();
+        };
 
-        transaction.onerror =
-            function() {
-                reject(transaction.error);
-            };
+        transaction.onerror = function() {
+            reject(transaction.error);
+        };
 
-        transaction.onabort =
-            function() {
-                reject(transaction.error);
-            };
+        transaction.onabort = function() {
+            reject(transaction.error);
+        };
     });
 }
 
@@ -1268,27 +1218,21 @@ async function restoreSettings(settings) {
         return;
     }
 
-    const keys =
-        Object.keys(settings);
+    const keys = Object.keys(settings);
 
     for (const key of keys) {
-
-        await setSetting(
-            key,
-            settings[key]
-        );
+        await setSetting(key, settings[key]);
     }
 }
 
 
 /* =========================================================
-   OLD LOCALSTORAGE MIGRATION
+   MIGRATION
 ========================================================= */
 
 async function migrateLocalStorageOnce() {
 
-    const alreadyMigrated =
-        await getSetting("localStorageMigrated");
+    const alreadyMigrated = await getSetting("localStorageMigrated");
 
     if (alreadyMigrated) {
         return;
@@ -1300,74 +1244,42 @@ async function migrateLocalStorageOnce() {
     try {
 
         oldEntries =
-            JSON.parse(
-                localStorage.getItem("calorie_entries_v2")
-            ) || [];
+            JSON.parse(localStorage.getItem("calorie_entries_v2")) || [];
 
         if (oldEntries.length === 0) {
 
             oldEntries =
-                JSON.parse(
-                    localStorage.getItem("calorie_entries_v1")
-                ) || [];
+                JSON.parse(localStorage.getItem("calorie_entries_v1")) || [];
 
-            oldEntries =
-                oldEntries.map(
-                    function(entry) {
-
-                        return {
-                            ...entry,
-                            minutes: entry.minutes || null
-                        };
-                    }
-                );
+            oldEntries = oldEntries.map(function(entry) {
+                return {
+                    ...entry,
+                    minutes: entry.minutes || null,
+                    steps: entry.steps || null
+                };
+            });
         }
 
         oldWeights =
-            JSON.parse(
-                localStorage.getItem("weight_entries_v1")
-            ) || [];
+            JSON.parse(localStorage.getItem("weight_entries_v1")) || [];
 
     } catch (error) {
 
-        console.warn(
-            "Old localStorage data could not be read.",
-            error
-        );
+        console.warn("Old localStorage data could not be read.", error);
     }
 
-    const existingEntries =
-        await getAllFromStore("entries");
+    const existingEntries = await getAllFromStore("entries");
+    const existingWeights = await getAllFromStore("weights");
 
-    const existingWeights =
-        await getAllFromStore("weights");
-
-    if (
-        existingEntries.length === 0 &&
-        oldEntries.length > 0
-    ) {
-
-        await replaceStoreContents(
-            "entries",
-            oldEntries
-        );
+    if (existingEntries.length === 0 && oldEntries.length > 0) {
+        await replaceStoreContents("entries", oldEntries);
     }
 
-    if (
-        existingWeights.length === 0 &&
-        oldWeights.length > 0
-    ) {
-
-        await replaceStoreContents(
-            "weights",
-            oldWeights
-        );
+    if (existingWeights.length === 0 && oldWeights.length > 0) {
+        await replaceStoreContents("weights", oldWeights);
     }
 
-    await setSetting(
-        "localStorageMigrated",
-        true
-    );
+    await setSetting("localStorageMigrated", true);
 }
 
 
@@ -1377,81 +1289,44 @@ async function migrateLocalStorageOnce() {
 
 async function backupData() {
 
-    const settings =
-        await getAllSettings();
+    const settings = await getAllSettings();
 
     const backup = {
-
         app: "Calorie Tracker",
-
-        version: 2,
-
-        createdAt:
-            new Date().toISOString(),
-
+        version: 3,
+        createdAt: new Date().toISOString(),
         entries: entries,
-
         weights: weights,
-
         settings: settings
     };
 
-    const blob =
-        new Blob(
-            [
-                JSON.stringify(
-                    backup,
-                    null,
-                    2
-                )
-            ],
-            {
-                type: "application/json"
-            }
-        );
+    const blob = new Blob(
+        [JSON.stringify(backup, null, 2)],
+        { type: "application/json" }
+    );
 
-    const url =
-        URL.createObjectURL(blob);
-
-    const link =
-        document.createElement("a");
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
 
     link.href = url;
-
-    link.download =
-        "calorie-tracker-backup-" +
-        getDateKey() +
-        ".json";
+    link.download = "calorie-tracker-backup-" + getDateKey() + ".json";
 
     document.body.appendChild(link);
-
     link.click();
-
     link.remove();
 
-    await setSetting(
-        "lastBackupAt",
-        new Date().toISOString()
-    );
+    await setSetting("lastBackupAt", new Date().toISOString());
+    await setSetting("lastBackupReminderAt", new Date().toISOString());
 
-    await setSetting(
-        "lastBackupReminderAt",
-        new Date().toISOString()
-    );
-
-    setTimeout(
-        function() {
-            URL.revokeObjectURL(url);
-        },
-        1000
-    );
+    setTimeout(function() {
+        URL.revokeObjectURL(url);
+    }, 1000);
 }
 
 
 async function restoreData(event) {
 
-    const file =
-        event.target.files[0];
+    const file = event.target.files[0];
 
     if (!file) {
         return;
@@ -1459,90 +1334,59 @@ async function restoreData(event) {
 
     try {
 
-        const text =
-            await file.text();
-
-        const backup =
-            JSON.parse(text);
+        const text = await file.text();
+        const backup = JSON.parse(text);
 
         if (
             !backup ||
             !Array.isArray(backup.entries) ||
             !Array.isArray(backup.weights)
         ) {
-
-            throw new Error(
-                "Invalid backup"
-            );
+            throw new Error("Invalid backup");
         }
 
-        const confirmed =
-            confirm(
-                "Restore this backup? This will replace the calorie and weight data currently stored in the app."
-            );
+        const confirmed = confirm(
+            "Restore this backup? This will replace the calorie and weight data currently stored in the app."
+        );
 
         if (!confirmed) {
-
             event.target.value = "";
-
             return;
         }
 
-        entries =
-            backup.entries.map(
-                function(entry) {
+        entries = backup.entries.map(function(entry) {
 
-                    return {
-                        ...entry,
-                        editHistory:
-                            Array.isArray(entry.editHistory)
-                                ? entry.editHistory
-                                : []
-                    };
-                }
-            );
+            return {
+                ...entry,
+                steps: entry.steps || null,
+                editHistory:
+                    Array.isArray(entry.editHistory)
+                        ? entry.editHistory
+                        : []
+            };
+        });
 
-        weights =
-            backup.weights;
+        weights = backup.weights;
 
-        await replaceStoreContents(
-            "entries",
-            entries
-        );
+        await replaceStoreContents("entries", entries);
+        await replaceStoreContents("weights", weights);
 
-        await replaceStoreContents(
-            "weights",
-            weights
-        );
-
-        if (
-            backup.settings &&
-            typeof backup.settings === "object"
-        ) {
-
-            await restoreSettings(
-                backup.settings
-            );
+        if (backup.settings && typeof backup.settings === "object") {
+            await restoreSettings(backup.settings);
         }
 
-        const restoredGoal =
-            await getSetting("calorieGoal");
+        const restoredGoal = await getSetting("calorieGoal");
 
         calorieGoal =
             Number(restoredGoal) > 0
                 ? Number(restoredGoal)
                 : 1800;
 
-        document.getElementById(
-            "calorieGoalInput"
-        ).value =
-            calorieGoal;
+        document.getElementById("calorieGoalInput").value = calorieGoal;
 
         renderAll();
 
-        alert(
-            "Backup restored successfully ♡"
-        );
+        alert("Backup restored successfully ♡");
 
     } catch (error) {
 
@@ -1563,17 +1407,9 @@ async function restoreData(event) {
 
 async function checkBackupReminder() {
 
-    const lastReminder =
-        await getSetting(
-            "lastBackupReminderAt"
-        );
+    const lastReminder = await getSetting("lastBackupReminderAt");
 
     if (!lastReminder) {
-
-        /*
-        Start the 2-day countdown now rather than
-        immediately showing a reminder to existing users.
-        */
 
         await setSetting(
             "lastBackupReminderAt",
@@ -1583,31 +1419,20 @@ async function checkBackupReminder() {
         return;
     }
 
-    const last =
-        new Date(lastReminder);
+    const last = new Date(lastReminder);
 
     if (isNaN(last.getTime())) {
         return;
     }
 
-    const now =
-        new Date();
+    const now = new Date();
+    const twoDays = 2 * 24 * 60 * 60 * 1000;
 
-    const twoDays =
-        2 * 24 * 60 * 60 * 1000;
-
-    if (
-        now.getTime() -
-        last.getTime() >=
-        twoDays
-    ) {
+    if (now.getTime() - last.getTime() >= twoDays) {
 
         document
-            .getElementById(
-                "backupReminderModal"
-            )
-            .classList
-            .add("open");
+            .getElementById("backupReminderModal")
+            .classList.add("open");
     }
 }
 
@@ -1620,22 +1445,16 @@ async function dismissBackupReminder() {
     );
 
     document
-        .getElementById(
-            "backupReminderModal"
-        )
-        .classList
-        .remove("open");
+        .getElementById("backupReminderModal")
+        .classList.remove("open");
 }
 
 
 async function backupFromReminder() {
 
     document
-        .getElementById(
-            "backupReminderModal"
-        )
-        .classList
-        .remove("open");
+        .getElementById("backupReminderModal")
+        .classList.remove("open");
 
     await backupData();
 }
@@ -1647,18 +1466,11 @@ async function backupFromReminder() {
 
 async function loadCalorieGoal() {
 
-    const saved =
-        await getSetting(
-            "calorieGoal"
-        );
+    const saved = await getSetting("calorieGoal");
 
-    if (
-        saved !== null &&
-        Number(saved) > 0
-    ) {
+    if (saved !== null && Number(saved) > 0) {
 
-        calorieGoal =
-            Number(saved);
+        calorieGoal = Number(saved);
 
     } else {
 
@@ -1670,10 +1482,7 @@ async function loadCalorieGoal() {
         );
     }
 
-    document.getElementById(
-        "calorieGoalInput"
-    ).value =
-        calorieGoal;
+    document.getElementById("calorieGoalInput").value = calorieGoal;
 }
 
 
@@ -1681,42 +1490,25 @@ async function saveCalorieGoal() {
 
     const value =
         Number(
-            document.getElementById(
-                "calorieGoalInput"
-            ).value
+            document.getElementById("calorieGoalInput").value
         );
 
-    if (
-        !Number.isFinite(value) ||
-        value <= 0
-    ) {
+    if (!Number.isFinite(value) || value <= 0) {
 
-        alert(
-            "Please enter a valid calorie goal."
-        );
-
+        alert("Please enter a valid calorie limit.");
         return;
     }
 
-    calorieGoal =
-        Math.round(value);
+    calorieGoal = Math.round(value);
 
-    document.getElementById(
-        "calorieGoalInput"
-    ).value =
-        calorieGoal;
+    document.getElementById("calorieGoalInput").value = calorieGoal;
 
-    await setSetting(
-        "calorieGoal",
-        calorieGoal
-    );
+    await setSetting("calorieGoal", calorieGoal);
 
     renderDiary();
     renderHistory();
 
-    alert(
-        "Daily calorie goal saved ♡"
-    );
+    alert("Daily calorie limit saved ♡");
 }
 
 
@@ -1726,26 +1518,52 @@ async function saveCalorieGoal() {
 
 function getDateKey(date = new Date()) {
 
-    const year =
-        date.getFullYear();
+    const year = date.getFullYear();
 
     const month =
-        String(
-            date.getMonth() + 1
-        ).padStart(2,"0");
+        String(date.getMonth() + 1).padStart(2,"0");
 
     const day =
-        String(
-            date.getDate()
-        ).padStart(2,"0");
+        String(date.getDate()).padStart(2,"0");
 
-    return (
-        year +
-        "-" +
-        month +
-        "-" +
-        day
+    return year + "-" + month + "-" + day;
+}
+
+
+function getTomorrowKey() {
+
+    const tomorrow = new Date();
+
+    tomorrow.setDate(
+        tomorrow.getDate() + 1
     );
+
+    return getDateKey(tomorrow);
+}
+
+
+function applyDateLimits() {
+
+    /*
+    Tomorrow is the furthest selectable date.
+    Past dates remain unrestricted.
+    */
+
+    const maxDate = getTomorrowKey();
+
+    document.getElementById("diaryDate").max = maxDate;
+    document.getElementById("entryDate").max = maxDate;
+    document.getElementById("weightDate").max = maxDate;
+}
+
+
+function isAllowedDate(dateKey) {
+
+    if (!dateKey) {
+        return false;
+    }
+
+    return dateKey <= getTomorrowKey();
 }
 
 
@@ -1823,20 +1641,11 @@ function formatDateTime(timestamp) {
 ========================================================= */
 
 function saveEntries() {
-
-    return replaceStoreContents(
-        "entries",
-        entries
-    );
+    return replaceStoreContents("entries", entries);
 }
 
-
 function saveWeights() {
-
-    return replaceStoreContents(
-        "weights",
-        weights
-    );
+    return replaceStoreContents("weights", weights);
 }
 
 
@@ -1846,10 +1655,20 @@ function saveWeights() {
 
 function changeDiaryDate() {
 
-    selectedDiaryDate =
-        document.getElementById(
-            "diaryDate"
-        ).value;
+    const value =
+        document.getElementById("diaryDate").value;
+
+    if (!isAllowedDate(value)) {
+
+        alert("You can only choose up to tomorrow ♡");
+
+        document.getElementById("diaryDate").value =
+            selectedDiaryDate;
+
+        return;
+    }
+
+    selectedDiaryDate = value;
 
     renderDiary();
 }
@@ -1857,13 +1676,13 @@ function changeDiaryDate() {
 
 function openDiaryDate(date) {
 
-    selectedDiaryDate =
-        date;
+    if (!isAllowedDate(date)) {
+        return;
+    }
 
-    document.getElementById(
-        "diaryDate"
-    ).value =
-        date;
+    selectedDiaryDate = date;
+
+    document.getElementById("diaryDate").value = date;
 
     showPage("diary");
 
@@ -1879,39 +1698,29 @@ function openEntryModal() {
 
     editingEntryId = null;
 
-    document.getElementById(
-        "entryModalTitle"
-    ).textContent =
+    document.getElementById("entryModalTitle").textContent =
         "⋆｡°✩ Add entry ✩°｡⋆";
 
-    document.getElementById(
-        "viewEditHistoryButton"
-    ).classList.add(
-        "hidden"
-    );
+    document
+        .getElementById("viewEditHistoryButton")
+        .classList.add("hidden");
 
     clearEntryForm();
 
-    document.getElementById(
-        "entryDate"
-    ).value =
+    document.getElementById("entryDate").value =
         selectedDiaryDate;
 
-    document.getElementById(
-        "entryModal"
-    ).classList.add(
-        "open"
-    );
+    document
+        .getElementById("entryModal")
+        .classList.add("open");
 }
 
 
 function closeEntryModal() {
 
-    document.getElementById(
-        "entryModal"
-    ).classList.remove(
-        "open"
-    );
+    document
+        .getElementById("entryModal")
+        .classList.remove("open");
 
     editingEntryId = null;
 
@@ -1923,84 +1732,74 @@ function setEntryType(type) {
 
     entryType = type;
 
-    const food =
-        document.getElementById(
-            "foodFields"
-        );
-
-    const activity =
-        document.getElementById(
-            "activityFields"
-        );
+    const food = document.getElementById("foodFields");
+    const activity = document.getElementById("activityFields");
 
     const foodButton =
-        document.getElementById(
-            "foodTypeButton"
-        );
+        document.getElementById("foodTypeButton");
 
     const activityButton =
-        document.getElementById(
-            "activityTypeButton"
-        );
+        document.getElementById("activityTypeButton");
 
     if (type === "food") {
 
-        food.classList.remove(
-            "hidden"
-        );
+        food.classList.remove("hidden");
+        activity.classList.add("hidden");
 
-        activity.classList.add(
-            "hidden"
-        );
-
-        foodButton.classList.add(
-            "selected"
-        );
-
-        activityButton.classList.remove(
-            "selected"
-        );
+        foodButton.classList.add("selected");
+        activityButton.classList.remove("selected");
 
     } else {
 
-        food.classList.add(
-            "hidden"
-        );
+        food.classList.add("hidden");
+        activity.classList.remove("hidden");
 
-        activity.classList.remove(
-            "hidden"
-        );
+        foodButton.classList.remove("selected");
+        activityButton.classList.add("selected");
 
-        foodButton.classList.remove(
-            "selected"
-        );
+        activityChanged();
+    }
+}
 
-        activityButton.classList.add(
-            "selected"
-        );
+
+function activityChanged() {
+
+    const activity =
+        document.getElementById("activityName").value;
+
+    const normal =
+        document.getElementById("normalActivityTime");
+
+    const walking =
+        document.getElementById("walkingFields");
+
+    if (activity === "Walking") {
+
+        normal.classList.add("hidden");
+        walking.classList.remove("hidden");
+
+    } else {
+
+        normal.classList.remove("hidden");
+        walking.classList.add("hidden");
     }
 }
 
 
 function clearEntryForm() {
 
-    document.getElementById(
-        "foodName"
-    ).value = "";
+    document.getElementById("foodName").value = "";
+    document.getElementById("foodCalories").value = "";
 
-    document.getElementById(
-        "foodCalories"
-    ).value = "";
+    document.getElementById("activityName").value = "Dancing";
 
-    document.getElementById(
-        "activityMinutes"
-    ).value = "";
-
-    document.getElementById(
-        "activityCalories"
-    ).value = "";
+    document.getElementById("activityMinutes").value = "";
+    document.getElementById("walkingMinutes").value = "";
+    document.getElementById("walkingSteps").value = "";
+    document.getElementById("activityCalories").value = "";
 
     setEntryType("food");
+    activityChanged();
 }
 
 
@@ -2011,14 +1810,18 @@ function clearEntryForm() {
 async function saveEntry() {
 
     const entryDate =
-        document.getElementById(
-            "entryDate"
-        ).value;
+        document.getElementById("entryDate").value;
 
     if (!entryDate) {
 
+        alert("Please choose a date.");
+        return;
+    }
+
+    if (!isAllowedDate(entryDate)) {
+
         alert(
-            "Please choose a date."
+            "You can only add entries up to tomorrow ♡"
         );
 
         return;
@@ -2027,27 +1830,21 @@ async function saveEntry() {
     let name;
     let calories;
     let minutes = null;
+    let steps = null;
 
     if (entryType === "food") {
 
         name =
-            document.getElementById(
-                "foodName"
-            )
-            .value
-            .trim();
+            document.getElementById("foodName")
+                .value
+                .trim();
 
         calories =
             Number(
-                document.getElementById(
-                    "foodCalories"
-                ).value
+                document.getElementById("foodCalories").value
             );
 
-        if (
-            !name ||
-            calories <= 0
-        ) {
+        if (!name || calories <= 0) {
 
             alert(
                 "Please enter the food and calories."
@@ -2059,45 +1856,106 @@ async function saveEntry() {
     } else {
 
         name =
-            document.getElementById(
-                "activityName"
-            ).value;
-
-        minutes =
-            Number(
-                document.getElementById(
-                    "activityMinutes"
-                ).value
-            );
+            document.getElementById("activityName").value;
 
         calories =
             Number(
-                document.getElementById(
-                    "activityCalories"
-                ).value
+                document.getElementById("activityCalories").value
             );
 
-        if (
-            minutes <= 0 ||
-            calories <= 0
-        ) {
+        if (calories <= 0) {
 
             alert(
-                "Please enter the activity time and calories burned."
+                "Please enter the calories burned."
             );
 
             return;
+        }
+
+        if (name === "Walking") {
+
+            const minutesValue =
+                document.getElementById("walkingMinutes").value;
+
+            const stepsValue =
+                document.getElementById("walkingSteps").value;
+
+            minutes =
+                minutesValue === ""
+                    ? null
+                    : Number(minutesValue);
+
+            steps =
+                stepsValue === ""
+                    ? null
+                    : Number(stepsValue);
+
+            if (
+                (minutes === null || minutes <= 0) &&
+                (steps === null || steps <= 0)
+            ) {
+
+                alert(
+                    "For walking, enter the time, steps, or both."
+                );
+
+                return;
+            }
+
+            if (
+                minutes !== null &&
+                minutes <= 0
+            ) {
+
+                alert(
+                    "Walking time must be greater than 0."
+                );
+
+                return;
+            }
+
+            if (
+                steps !== null &&
+                steps <= 0
+            ) {
+
+                alert(
+                    "Steps must be greater than 0."
+                );
+
+                return;
+            }
+
+            if (steps !== null) {
+                steps = Math.round(steps);
+            }
+
+        } else {
+
+            minutes =
+                Number(
+                    document.getElementById("activityMinutes").value
+                );
+
+            if (minutes <= 0) {
+
+                alert(
+                    "Please enter the activity time."
+                );
+
+                return;
+            }
+
+            steps = null;
         }
     }
 
     if (editingEntryId) {
 
         const entry =
-            entries.find(
-                function(item) {
-                    return item.id === editingEntryId;
-                }
-            );
+            entries.find(function(item) {
+                return item.id === editingEntryId;
+            });
 
         if (entry) {
 
@@ -2110,14 +1968,10 @@ async function saveEntry() {
                 entry.name !== name ||
                 Number(entry.calories) !== calories ||
                 Number(entry.minutes || 0) !== Number(minutes || 0) ||
+                Number(entry.steps || 0) !== Number(steps || 0) ||
                 entry.date !== entryDate;
 
             if (changed) {
-
-                /*
-                Store a complete snapshot of what the
-                entry looked like BEFORE this edit.
-                */
 
                 entry.editHistory.push({
 
@@ -2129,6 +1983,7 @@ async function saveEntry() {
                         name: entry.name,
                         calories: entry.calories,
                         minutes: entry.minutes || null,
+                        steps: entry.steps || null,
                         date: entry.date
                     },
 
@@ -2137,30 +1992,21 @@ async function saveEntry() {
                         name: name,
                         calories: calories,
                         minutes: minutes,
+                        steps: steps,
                         date: entryDate
                     }
                 });
             }
 
-            entry.type =
-                entryType;
-
-            entry.name =
-                name;
-
-            entry.calories =
-                calories;
-
-            entry.minutes =
-                minutes;
-
-            entry.date =
-                entryDate;
+            entry.type = entryType;
+            entry.name = name;
+            entry.calories = calories;
+            entry.minutes = minutes;
+            entry.steps = steps;
+            entry.date = entryDate;
 
             if (changed) {
-
-                entry.updatedAt =
-                    new Date().toISOString();
+                entry.updatedAt = new Date().toISOString();
             }
         }
 
@@ -2175,20 +2021,12 @@ async function saveEntry() {
                     .toString(16)
                     .slice(2),
 
-            type:
-                entryType,
-
-            name:
-                name,
-
-            calories:
-                calories,
-
-            minutes:
-                minutes,
-
-            date:
-                entryDate,
+            type: entryType,
+            name: name,
+            calories: calories,
+            minutes: minutes,
+            steps: steps,
+            date: entryDate,
 
             createdAt:
                 new Date().toISOString(),
@@ -2197,12 +2035,9 @@ async function saveEntry() {
         });
     }
 
-    selectedDiaryDate =
-        entryDate;
+    selectedDiaryDate = entryDate;
 
-    document.getElementById(
-        "diaryDate"
-    ).value =
+    document.getElementById("diaryDate").value =
         entryDate;
 
     await saveEntries();
@@ -2216,79 +2051,69 @@ async function saveEntry() {
 function editEntry(id) {
 
     const entry =
-        entries.find(
-            function(item) {
-                return item.id === id;
-            }
-        );
+        entries.find(function(item) {
+            return item.id === id;
+        });
 
     if (!entry) {
         return;
     }
 
-    editingEntryId =
-        id;
+    editingEntryId = id;
 
-    document.getElementById(
-        "entryModalTitle"
-    ).textContent =
+    document.getElementById("entryModalTitle").textContent =
         "✧ Edit entry ✧";
 
-    setEntryType(
-        entry.type
-    );
+    setEntryType(entry.type);
 
-    document.getElementById(
-        "entryDate"
-    ).value =
+    document.getElementById("entryDate").value =
         entry.date;
 
     if (entry.type === "food") {
 
-        document.getElementById(
-            "foodName"
-        ).value =
+        document.getElementById("foodName").value =
             entry.name;
 
-        document.getElementById(
-            "foodCalories"
-        ).value =
+        document.getElementById("foodCalories").value =
             entry.calories;
 
     } else {
 
-        document.getElementById(
-            "activityName"
-        ).value =
+        document.getElementById("activityName").value =
             entry.name;
 
-        document.getElementById(
-            "activityMinutes"
-        ).value =
-            entry.minutes || "";
+        activityChanged();
 
-        document.getElementById(
-            "activityCalories"
-        ).value =
+        if (entry.name === "Walking") {
+
+            document.getElementById("walkingMinutes").value =
+                entry.minutes || "";
+
+            document.getElementById("walkingSteps").value =
+                entry.steps || "";
+
+        } else {
+
+            document.getElementById("activityMinutes").value =
+                entry.minutes || "";
+        }
+
+        document.getElementById("activityCalories").value =
             entry.calories;
     }
 
-    document.getElementById(
-        "viewEditHistoryButton"
-    ).classList.remove(
-        "hidden"
-    );
+    document
+        .getElementById("viewEditHistoryButton")
+        .classList.remove("hidden");
 
-    document.getElementById(
-        "entryModal"
-    ).classList.add(
-        "open"
-    );
+    document
+        .getElementById("entryModal")
+        .classList.add("open");
 }
 
 
 /* =========================================================
-   ENTRY EDIT HISTORY
+   EDIT HISTORY
 ========================================================= */
 
 function openEditHistory() {
@@ -2298,40 +2123,21 @@ function openEditHistory() {
     }
 
     const entry =
-        entries.find(
-            function(item) {
-                return item.id === editingEntryId;
-            }
-        );
+        entries.find(function(item) {
+            return item.id === editingEntryId;
+        });
 
     if (!entry) {
         return;
     }
 
     const container =
-        document.getElementById(
-            "editHistoryContent"
-        );
+        document.getElementById("editHistoryContent");
 
     let html =
         '<div class="history-current">' +
             '<strong>Current version</strong><br>' +
-            escapeHTML(entry.name) +
-            ' · ' +
-            entry.calories +
-            ' kcal' +
-            (
-                entry.type === "activity" &&
-                entry.minutes
-                    ? ' · ' +
-                      entry.minutes +
-                      ' min'
-                    : ''
-            ) +
-            '<br>' +
-            escapeHTML(
-                formatDateKey(entry.date)
-            ) +
+            describeEntrySnapshot(entry) +
         '</div>';
 
     const history =
@@ -2348,65 +2154,54 @@ function openEditHistory() {
 
     } else {
 
-        html +=
-            '<div class="edit-history-list">';
+        html += '<div class="edit-history-list">';
 
         history
             .slice()
             .reverse()
-            .forEach(
-                function(change) {
+            .forEach(function(change) {
 
-                    const oldValue =
-                        change.previous || {};
+                const oldValue =
+                    change.previous || {};
 
-                    const newValue =
-                        change.changedTo || {};
+                const newValue =
+                    change.changedTo || {};
 
-                    html +=
-                        '<div class="edit-history-item">' +
+                html +=
+                    '<div class="edit-history-item">' +
 
-                            '<div class="edit-history-time">' +
-                                '✧ Changed ' +
-                                escapeHTML(
-                                    formatDateTime(
-                                        change.changedAt
-                                    )
-                                ) +
-                            '</div>' +
+                        '<div class="edit-history-time">' +
+                            '✧ Changed ' +
+                            escapeHTML(
+                                formatDateTime(
+                                    change.changedAt
+                                )
+                            ) +
+                        '</div>' +
 
-                            '<div class="edit-history-change">' +
+                        '<div class="edit-history-change">' +
 
-                                '<strong>Before:</strong><br>' +
-                                describeEntrySnapshot(
-                                    oldValue
-                                ) +
+                            '<strong>Before:</strong><br>' +
+                            describeEntrySnapshot(oldValue) +
 
-                                '<br><br>' +
+                            '<br><br>' +
 
-                                '<strong>Changed to:</strong><br>' +
-                                describeEntrySnapshot(
-                                    newValue
-                                ) +
+                            '<strong>Changed to:</strong><br>' +
+                            describeEntrySnapshot(newValue) +
 
-                            '</div>' +
+                        '</div>' +
 
-                        '</div>';
-                }
-            );
+                    '</div>';
+            });
 
-        html +=
-            '</div>';
+        html += '</div>';
     }
 
-    container.innerHTML =
-        html;
+    container.innerHTML = html;
 
-    document.getElementById(
-        "editHistoryModal"
-    ).classList.add(
-        "open"
-    );
+    document
+        .getElementById("editHistoryModal")
+        .classList.add("open");
 }
 
 
@@ -2417,9 +2212,7 @@ function describeEntrySnapshot(snapshot) {
     }
 
     let text =
-        escapeHTML(
-            snapshot.name || ""
-        );
+        escapeHTML(snapshot.name || "");
 
     text +=
         " · " +
@@ -2437,14 +2230,23 @@ function describeEntrySnapshot(snapshot) {
             " min";
     }
 
+    if (
+        snapshot.type === "activity" &&
+        snapshot.steps
+    ) {
+
+        text +=
+            " · " +
+            Number(snapshot.steps).toLocaleString("en-GB") +
+            " steps";
+    }
+
     if (snapshot.date) {
 
         text +=
             "<br>Date: " +
             escapeHTML(
-                formatDateKey(
-                    snapshot.date
-                )
+                formatDateKey(snapshot.date)
             );
     }
 
@@ -2462,11 +2264,9 @@ function describeEntrySnapshot(snapshot) {
 
 function closeEditHistory() {
 
-    document.getElementById(
-        "editHistoryModal"
-    ).classList.remove(
-        "open"
-    );
+    document
+        .getElementById("editHistoryModal")
+        .classList.remove("open");
 }
 
 
@@ -2477,11 +2277,9 @@ function closeEditHistory() {
 async function deleteEntry(id) {
 
     const entry =
-        entries.find(
-            function(item) {
-                return item.id === id;
-            }
-        );
+        entries.find(function(item) {
+            return item.id === id;
+        });
 
     if (!entry) {
         return;
@@ -2499,11 +2297,9 @@ async function deleteEntry(id) {
     }
 
     entries =
-        entries.filter(
-            function(item) {
-                return item.id !== id;
-            }
-        );
+        entries.filter(function(item) {
+            return item.id !== id;
+        });
 
     await saveEntries();
 
@@ -2517,11 +2313,9 @@ async function deleteEntry(id) {
 
 function getEntriesForDate(date) {
 
-    return entries.filter(
-        function(entry) {
-            return entry.date === date;
-        }
-    );
+    return entries.filter(function(entry) {
+        return entry.date === date;
+    });
 }
 
 
@@ -2529,39 +2323,21 @@ function getTotals(dayEntries) {
 
     const eaten =
         dayEntries
-            .filter(
-                function(entry) {
-                    return entry.type === "food";
-                }
-            )
-            .reduce(
-                function(sum,entry) {
-
-                    return (
-                        sum +
-                        Number(entry.calories)
-                    );
-                },
-                0
-            );
+            .filter(function(entry) {
+                return entry.type === "food";
+            })
+            .reduce(function(sum,entry) {
+                return sum + Number(entry.calories);
+            },0);
 
     const burned =
         dayEntries
-            .filter(
-                function(entry) {
-                    return entry.type === "activity";
-                }
-            )
-            .reduce(
-                function(sum,entry) {
-
-                    return (
-                        sum +
-                        Number(entry.calories)
-                    );
-                },
-                0
-            );
+            .filter(function(entry) {
+                return entry.type === "activity";
+            })
+            .reduce(function(sum,entry) {
+                return sum + Number(entry.calories);
+            },0);
 
     return {
         eaten: eaten,
@@ -2578,52 +2354,32 @@ function getTotals(dayEntries) {
 function renderDiary() {
 
     const dayEntries =
-        getEntriesForDate(
-            selectedDiaryDate
-        );
+        getEntriesForDate(selectedDiaryDate);
 
     const totals =
-        getTotals(
-            dayEntries
-        );
+        getTotals(dayEntries);
 
-    document.getElementById(
-        "selectedDateName"
-    ).textContent =
-        formatDateKey(
-            selectedDiaryDate
-        );
+    document.getElementById("selectedDateName").textContent =
+        formatDateKey(selectedDiaryDate);
 
-    document.getElementById(
-        "eatenCalories"
-    ).textContent =
+    document.getElementById("eatenCalories").textContent =
         totals.eaten;
 
-    document.getElementById(
-        "burnedCalories"
-    ).textContent =
+    document.getElementById("burnedCalories").textContent =
         totals.burned;
 
-    document.getElementById(
-        "netCalories"
-    ).textContent =
+    document.getElementById("netCalories").textContent =
         totals.net;
 
-    document.getElementById(
-        "goalDisplay"
-    ).textContent =
+    document.getElementById("goalDisplay").textContent =
         "Daily goal: " +
         calorieGoal +
         " kcal";
 
-    renderStatus(
-        totals.net
-    );
+    renderStatus(totals.net);
 
     const container =
-        document.getElementById(
-            "entries"
-        );
+        document.getElementById("entries");
 
     if (dayEntries.length === 0) {
 
@@ -2642,104 +2398,109 @@ function renderDiary() {
     const sorted =
         dayEntries
             .slice()
-            .sort(
-                function(a,b) {
-
-                    return (
-                        new Date(b.createdAt) -
-                        new Date(a.createdAt)
-                    );
-                }
-            );
+            .sort(function(a,b) {
+                return (
+                    new Date(b.createdAt) -
+                    new Date(a.createdAt)
+                );
+            });
 
     container.innerHTML =
-        sorted.map(
-            function(entry) {
+        sorted.map(function(entry) {
 
-                const isFood =
-                    entry.type === "food";
+            const isFood =
+                entry.type === "food";
 
-                let name =
-                    escapeHTML(
-                        entry.name
+            let name =
+                escapeHTML(entry.name);
+
+            if (!isFood) {
+
+                const details = [];
+
+                if (entry.minutes) {
+                    details.push(
+                        entry.minutes + " min"
                     );
+                }
 
-                if (
-                    !isFood &&
-                    entry.minutes
-                ) {
+                if (entry.steps) {
+                    details.push(
+                        Number(entry.steps)
+                            .toLocaleString("en-GB") +
+                        " steps"
+                    );
+                }
+
+                if (details.length > 0) {
 
                     name +=
                         " · " +
-                        entry.minutes +
-                        "min";
+                        details.join(" · ");
                 }
-
-                return (
-                    '<div class="entry">' +
-
-                        '<div class="entry-left">' +
-
-                            '<div class="entry-name">' +
-
-                                (
-                                    isFood
-                                        ? "♡ "
-                                        : "✦ "
-                                ) +
-
-                                name +
-
-                            '</div>' +
-
-                            '<div class="entry-time">' +
-                                formatTime(
-                                    entry.createdAt
-                                ) +
-                            '</div>' +
-
-                        '</div>' +
-
-                        '<div class="entry-right">' +
-
-                            '<div class="entry-calories ' +
-                                (
-                                    isFood
-                                        ? "food-calories"
-                                        : "burned-calories"
-                                ) +
-                            '">' +
-
-                                (
-                                    isFood
-                                        ? "+"
-                                        : "−"
-                                ) +
-
-                                entry.calories +
-                                "kcal" +
-
-                            '</div>' +
-
-                            '<div class="entry-actions">' +
-
-                                '<button class="mini-button" onclick="editEntry(\'' +
-                                    entry.id +
-                                '\')">Edit</button>' +
-
-                                '<button class="mini-button delete" onclick="deleteEntry(\'' +
-                                    entry.id +
-                                '\')">Delete</button>' +
-
-                            '</div>' +
-
-                        '</div>' +
-
-                    '</div>'
-                );
             }
-        )
-        .join("");
+
+            return (
+                '<div class="entry">' +
+
+                    '<div class="entry-left">' +
+
+                        '<div class="entry-name">' +
+
+                            (
+                                isFood
+                                    ? "♡ "
+                                    : "✦ "
+                            ) +
+
+                            name +
+
+                        '</div>' +
+
+                        '<div class="entry-time">' +
+                            formatTime(entry.createdAt) +
+                        '</div>' +
+
+                    '</div>' +
+
+                    '<div class="entry-right">' +
+
+                        '<div class="entry-calories ' +
+                            (
+                                isFood
+                                    ? "food-calories"
+                                    : "burned-calories"
+                            ) +
+                        '">' +
+
+                            (
+                                isFood
+                                    ? "+"
+                                    : "−"
+                            ) +
+
+                            entry.calories +
+                            "kcal" +
+
+                        '</div>' +
+
+                        '<div class="entry-actions">' +
+
+                            '<button class="mini-button" onclick="editEntry(\'' +
+                                entry.id +
+                            '\')">Edit</button>' +
+
+                            '<button class="mini-button delete" onclick="deleteEntry(\'' +
+                                entry.id +
+                            '\')">Delete</button>' +
+
+                        '</div>' +
+
+                    '</div>' +
+
+                '</div>'
+            );
+        }).join("");
 }
 
 
@@ -2750,39 +2511,30 @@ function renderDiary() {
 function renderStatus(net) {
 
     const status =
-        document.getElementById(
-            "status"
-        );
+        document.getElementById("status");
 
-    status.className =
-        "status";
+    status.className = "status";
 
     if (net < calorieGoal) {
 
         status.textContent =
             "Within daily range ♡";
 
-        status.classList.add(
-            "good"
-        );
+        status.classList.add("good");
 
     } else if (net === calorieGoal) {
 
         status.textContent =
             "Right at your limit ♡";
 
-        status.classList.add(
-            "limit"
-        );
+        status.classList.add("limit");
 
     } else {
 
         status.textContent =
             "Over daily range";
 
-        status.classList.add(
-            "over"
-        );
+        status.classList.add("over");
     }
 }
 
@@ -2790,12 +2542,10 @@ function renderStatus(net) {
 function getStatusText(net) {
 
     if (net < calorieGoal) {
-
         return "Within range ♡";
     }
 
     if (net === calorieGoal) {
-
         return "Right at your limit ♡";
     }
 
@@ -2810,53 +2560,39 @@ function getStatusText(net) {
 function searchHistory() {
 
     const query =
-        document.getElementById(
-            "historySearch"
-        )
-        .value
-        .trim()
-        .toLowerCase();
+        document.getElementById("historySearch")
+            .value
+            .trim()
+            .toLowerCase();
 
     const container =
-        document.getElementById(
-            "searchResults"
-        );
+        document.getElementById("searchResults");
 
     if (!query) {
 
         container.innerHTML = "";
-
         return;
     }
 
     const results =
         entries
-            .filter(
-                function(entry) {
+            .filter(function(entry) {
 
-                    return String(
-                        entry.name || ""
-                    )
+                return String(entry.name || "")
                     .toLowerCase()
                     .includes(query);
+            })
+            .sort(function(a,b) {
+
+                if (a.date !== b.date) {
+                    return b.date.localeCompare(a.date);
                 }
-            )
-            .sort(
-                function(a,b) {
 
-                    if (a.date !== b.date) {
-
-                        return b.date.localeCompare(
-                            a.date
-                        );
-                    }
-
-                    return (
-                        new Date(b.createdAt) -
-                        new Date(a.createdAt)
-                    );
-                }
-            );
+                return (
+                    new Date(b.createdAt) -
+                    new Date(a.createdAt)
+                );
+            });
 
     if (results.length === 0) {
 
@@ -2878,96 +2614,103 @@ function searchHistory() {
             ) +
         '</div>' +
 
-        results.map(
-            function(entry) {
+        results.map(function(entry) {
 
-                const isFood =
-                    entry.type === "food";
+            const isFood =
+                entry.type === "food";
 
-                return (
-                    '<div class="search-result" onclick="openDiaryDate(\'' +
-                        entry.date +
-                    '\')">' +
+            let details = "";
 
-                        '<div class="search-result-top">' +
+            if (!isFood) {
 
-                            '<div class="search-result-name">' +
+                const detailParts = [];
 
-                                (
-                                    isFood
-                                        ? "♡ "
-                                        : "✦ "
-                                ) +
+                if (entry.minutes) {
+                    detailParts.push(
+                        entry.minutes + " min"
+                    );
+                }
 
-                                escapeHTML(
-                                    entry.name
-                                ) +
+                if (entry.steps) {
+                    detailParts.push(
+                        Number(entry.steps)
+                            .toLocaleString("en-GB") +
+                        " steps"
+                    );
+                }
 
-                                (
-                                    !isFood &&
-                                    entry.minutes
-                                        ? " · " +
-                                          entry.minutes +
-                                          " min"
-                                        : ""
-                                ) +
+                if (detailParts.length > 0) {
+                    details =
+                        " · " +
+                        detailParts.join(" · ");
+                }
+            }
 
-                            '</div>' +
+            return (
+                '<div class="search-result" onclick="openDiaryDate(\'' +
+                    entry.date +
+                '\')">' +
 
-                            '<div class="search-result-calories ' +
-                                (
-                                    isFood
-                                        ? "food-calories"
-                                        : "burned-calories"
-                                ) +
-                            '">' +
+                    '<div class="search-result-top">' +
 
-                                (
-                                    isFood
-                                        ? "+"
-                                        : "−"
-                                ) +
-
-                                entry.calories +
-                                " kcal" +
-
-                            '</div>' +
-
-                        '</div>' +
-
-                        '<div class="search-result-date">' +
-
-                            formatDateKey(
-                                entry.date
-                            ) +
-
-                            " · " +
+                        '<div class="search-result-name">' +
 
                             (
                                 isFood
-                                    ? "Food"
-                                    : "Activity"
+                                    ? "♡ "
+                                    : "✦ "
                             ) +
+
+                            escapeHTML(entry.name) +
+                            details +
 
                         '</div>' +
 
-                    '</div>'
-                );
-            }
-        )
-        .join("");
+                        '<div class="search-result-calories ' +
+                            (
+                                isFood
+                                    ? "food-calories"
+                                    : "burned-calories"
+                            ) +
+                        '">' +
+
+                            (
+                                isFood
+                                    ? "+"
+                                    : "−"
+                            ) +
+
+                            entry.calories +
+                            " kcal" +
+
+                        '</div>' +
+
+                    '</div>' +
+
+                    '<div class="search-result-date">' +
+
+                        formatDateKey(entry.date) +
+
+                        " · " +
+
+                        (
+                            isFood
+                                ? "Food"
+                                : "Activity"
+                        ) +
+
+                    '</div>' +
+
+                '</div>'
+            );
+        }).join("");
 }
 
 
 function clearHistorySearch() {
 
-    document.getElementById(
-        "historySearch"
-    ).value = "";
-
-    document.getElementById(
-        "searchResults"
-    ).innerHTML = "";
+    document.getElementById("historySearch").value = "";
+    document.getElementById("searchResults").innerHTML = "";
 }
 
 
@@ -2978,9 +2721,7 @@ function clearHistorySearch() {
 function renderHistory() {
 
     const container =
-        document.getElementById(
-            "historyList"
-        );
+        document.getElementById("historyList");
 
     if (entries.length === 0) {
 
@@ -2996,19 +2737,14 @@ function renderHistory() {
 
     const days = {};
 
-    entries.forEach(
-        function(entry) {
+    entries.forEach(function(entry) {
 
-            if (!days[entry.date]) {
-
-                days[entry.date] = [];
-            }
-
-            days[entry.date].push(
-                entry
-            );
+        if (!days[entry.date]) {
+            days[entry.date] = [];
         }
-    );
+
+        days[entry.date].push(entry);
+    });
 
     const dates =
         Object.keys(days)
@@ -3016,87 +2752,62 @@ function renderHistory() {
             .reverse();
 
     container.innerHTML =
-        dates.map(
-            function(date) {
+        dates.map(function(date) {
 
-                const totals =
-                    getTotals(
-                        days[date]
-                    );
+            const totals =
+                getTotals(days[date]);
 
-                const statusText =
-                    getStatusText(
-                        totals.net
-                    );
+            const statusText =
+                getStatusText(totals.net);
 
-                return (
-                    '<div class="history-day">' +
+            return (
+                '<div class="history-day">' +
 
-                        '<div class="history-date">' +
+                    '<div class="history-date">' +
+                        '♡ ' +
+                        formatDateKey(date) +
+                    '</div>' +
 
-                            '♡ ' +
-                            formatDateKey(
-                                date
-                            ) +
+                    '<div class="history-summary">' +
+                        '<span>Eaten</span>' +
+                        '<span class="food-calories">' +
+                            totals.eaten +
+                            'kcal' +
+                        '</span>' +
+                    '</div>' +
 
-                        '</div>' +
+                    '<div class="history-summary">' +
+                        '<span>Burned</span>' +
+                        '<span class="burned-calories">' +
+                            totals.burned +
+                            'kcal' +
+                        '</span>' +
+                    '</div>' +
 
-                        '<div class="history-summary">' +
+                    '<div class="history-summary history-net">' +
+                        '<span>Net</span>' +
+                        '<span>' +
+                            totals.net +
+                            'kcal' +
+                        '</span>' +
+                    '</div>' +
 
-                            '<span>Eaten</span>' +
+                    '<div class="history-summary">' +
+                        '<span>Status</span>' +
+                        '<span>' +
+                            statusText +
+                        '</span>' +
+                    '</div>' +
 
-                            '<span class="food-calories">' +
-                                totals.eaten +
-                                'kcal' +
-                            '</span>' +
+                    '<button class="open-day-button" onclick="openDiaryDate(\'' +
+                        date +
+                    '\')">' +
+                        'View / edit this day ✧' +
+                    '</button>' +
 
-                        '</div>' +
-
-                        '<div class="history-summary">' +
-
-                            '<span>Burned</span>' +
-
-                            '<span class="burned-calories">' +
-                                totals.burned +
-                                'kcal' +
-                            '</span>' +
-
-                        '</div>' +
-
-                        '<div class="history-summary history-net">' +
-
-                            '<span>Net</span>' +
-
-                            '<span>' +
-                                totals.net +
-                                'kcal' +
-                            '</span>' +
-
-                        '</div>' +
-
-                        '<div class="history-summary">' +
-
-                            '<span>Status</span>' +
-
-                            '<span>' +
-                                statusText +
-                            '</span>' +
-
-                        '</div>' +
-
-                        '<button class="open-day-button" onclick="openDiaryDate(\'' +
-                            date +
-                        '\')">' +
-
-                            'View / edit this day ✧' +
-
-                        '</button>' +
-
-                    '</div>'
-                );
-            }
-        )
-        .join("");
+                '</div>'
+            );
+        }).join("");
 
     searchHistory();
 }
@@ -3109,21 +2820,14 @@ function renderHistory() {
 async function saveWeight() {
 
     const date =
-        document.getElementById(
-            "weightDate"
-        ).value;
+        document.getElementById("weightDate").value;
 
     const amount =
         Number(
-            document.getElementById(
-                "weightAmount"
-            ).value
+            document.getElementById("weightAmount").value
         );
 
-    if (
-        !date ||
-        amount <= 0
-    ) {
+    if (!date || amount <= 0) {
 
         alert(
             "Please enter a date and weight."
@@ -3132,12 +2836,19 @@ async function saveWeight() {
         return;
     }
 
-    const existing =
-        weights.find(
-            function(weight) {
-                return weight.date === date;
-            }
+    if (!isAllowedDate(date)) {
+
+        alert(
+            "You can only choose up to tomorrow ♡"
         );
+
+        return;
+    }
+
+    const existing =
+        weights.find(function(weight) {
+            return weight.date === date;
+        });
 
     if (existing) {
 
@@ -3150,9 +2861,7 @@ async function saveWeight() {
             return;
         }
 
-        existing.amount =
-            amount;
-
+        existing.amount = amount;
         existing.updatedAt =
             new Date().toISOString();
 
@@ -3167,11 +2876,8 @@ async function saveWeight() {
                     .toString(16)
                     .slice(2),
 
-            date:
-                date,
-
-            amount:
-                amount,
+            date: date,
+            amount: amount,
 
             createdAt:
                 new Date().toISOString()
@@ -3180,9 +2886,7 @@ async function saveWeight() {
 
     await saveWeights();
 
-    document.getElementById(
-        "weightAmount"
-    ).value = "";
+    document.getElementById("weightAmount").value = "";
 
     renderWeights();
 }
@@ -3200,11 +2904,9 @@ async function deleteWeight(id) {
     }
 
     weights =
-        weights.filter(
-            function(weight) {
-                return weight.id !== id;
-            }
-        );
+        weights.filter(function(weight) {
+            return weight.id !== id;
+        });
 
     await saveWeights();
 
@@ -3215,24 +2917,18 @@ async function deleteWeight(id) {
 function editWeight(id) {
 
     const weight =
-        weights.find(
-            function(item) {
-                return item.id === id;
-            }
-        );
+        weights.find(function(item) {
+            return item.id === id;
+        });
 
     if (!weight) {
         return;
     }
 
-    document.getElementById(
-        "weightDate"
-    ).value =
+    document.getElementById("weightDate").value =
         weight.date;
 
-    document.getElementById(
-        "weightAmount"
-    ).value =
+    document.getElementById("weightAmount").value =
         weight.amount;
 
     window.scrollTo({
@@ -3245,24 +2941,15 @@ function editWeight(id) {
 function compareWeights() {
 
     const fromId =
-        document.getElementById(
-            "compareFrom"
-        ).value;
+        document.getElementById("compareFrom").value;
 
     const toId =
-        document.getElementById(
-            "compareTo"
-        ).value;
+        document.getElementById("compareTo").value;
 
     const result =
-        document.getElementById(
-            "compareResult"
-        );
+        document.getElementById("compareResult");
 
-    if (
-        !fromId ||
-        !toId
-    ) {
+    if (!fromId || !toId) {
 
         result.textContent =
             "Choose two weight entries ♡";
@@ -3271,31 +2958,23 @@ function compareWeights() {
     }
 
     const from =
-        weights.find(
-            function(weight) {
-                return weight.id === fromId;
-            }
-        );
+        weights.find(function(weight) {
+            return weight.id === fromId;
+        });
 
     const to =
-        weights.find(
-            function(weight) {
-                return weight.id === toId;
-            }
-        );
+        weights.find(function(weight) {
+            return weight.id === toId;
+        });
 
     if (!from || !to) {
         return;
     }
 
-    let earlier =
-        from;
-
-    let later =
-        to;
+    let earlier = from;
+    let later = to;
 
     if (from.date > to.date) {
-
         earlier = to;
         later = from;
     }
@@ -3312,18 +2991,12 @@ function compareWeights() {
 
         result.innerHTML =
             "♡ You lost <strong>" +
-            Math.abs(
-                difference
-            ).toFixed(1) +
+            Math.abs(difference).toFixed(1) +
             " kg</strong>" +
             "<br>" +
-            formatDateKey(
-                earlier.date
-            ) +
+            formatDateKey(earlier.date) +
             " → " +
-            formatDateKey(
-                later.date
-            );
+            formatDateKey(later.date);
 
     } else if (difference > 0) {
 
@@ -3332,26 +3005,18 @@ function compareWeights() {
             difference.toFixed(1) +
             " kg</strong>" +
             "<br>" +
-            formatDateKey(
-                earlier.date
-            ) +
+            formatDateKey(earlier.date) +
             " → " +
-            formatDateKey(
-                later.date
-            );
+            formatDateKey(later.date);
 
     } else {
 
         result.innerHTML =
             "♡ Your weight stayed the same" +
             "<br>" +
-            formatDateKey(
-                earlier.date
-            ) +
+            formatDateKey(earlier.date) +
             " → " +
-            formatDateKey(
-                later.date
-            );
+            formatDateKey(later.date);
     }
 }
 
@@ -3359,31 +3024,20 @@ function compareWeights() {
 function renderWeights() {
 
     const history =
-        document.getElementById(
-            "weightHistory"
-        );
+        document.getElementById("weightHistory");
 
     const from =
-        document.getElementById(
-            "compareFrom"
-        );
+        document.getElementById("compareFrom");
 
     const to =
-        document.getElementById(
-            "compareTo"
-        );
+        document.getElementById("compareTo");
 
     const sorted =
         weights
             .slice()
-            .sort(
-                function(a,b) {
-
-                    return b.date.localeCompare(
-                        a.date
-                    );
-                }
-            );
+            .sort(function(a,b) {
+                return b.date.localeCompare(a.date);
+            });
 
     if (sorted.length === 0) {
 
@@ -3398,94 +3052,70 @@ function renderWeights() {
         to.innerHTML =
             '<option value="">No entries</option>';
 
-        document.getElementById(
-            "compareResult"
-        ).textContent = "";
+        document.getElementById("compareResult").textContent = "";
 
         return;
     }
 
     history.innerHTML =
-        sorted.map(
-            function(weight) {
+        sorted.map(function(weight) {
 
-                return (
-                    '<div class="weight-card">' +
+            return (
+                '<div class="weight-card">' +
 
-                        '<div class="weight-number">' +
-                            weight.amount +
-                            ' kg' +
-                        '</div>' +
+                    '<div class="weight-number">' +
+                        weight.amount +
+                        ' kg' +
+                    '</div>' +
 
-                        '<div class="weight-date">' +
-                            formatDateKey(
-                                weight.date
-                            ) +
-                        '</div>' +
+                    '<div class="weight-date">' +
+                        formatDateKey(weight.date) +
+                    '</div>' +
 
-                        '<div class="weight-actions">' +
+                    '<div class="weight-actions">' +
 
-                            '<button class="mini-button" onclick="editWeight(\'' +
-                                weight.id +
-                            '\')">Edit</button>' +
+                        '<button class="mini-button" onclick="editWeight(\'' +
+                            weight.id +
+                        '\')">Edit</button>' +
 
-                            '<button class="mini-button delete" onclick="deleteWeight(\'' +
-                                weight.id +
-                            '\')">Delete</button>' +
+                        '<button class="mini-button delete" onclick="deleteWeight(\'' +
+                            weight.id +
+                        '\')">Delete</button>' +
 
-                        '</div>' +
+                    '</div>' +
 
-                    '</div>'
-                );
-            }
-        )
-        .join("");
+                '</div>'
+            );
+        }).join("");
 
     const chronological =
         weights
             .slice()
-            .sort(
-                function(a,b) {
-
-                    return a.date.localeCompare(
-                        b.date
-                    );
-                }
-            );
+            .sort(function(a,b) {
+                return a.date.localeCompare(b.date);
+            });
 
     const options =
-        chronological.map(
-            function(weight) {
+        chronological.map(function(weight) {
 
-                return (
-                    '<option value="' +
-                        weight.id +
-                    '">' +
+            return (
+                '<option value="' +
+                    weight.id +
+                '">' +
 
-                        formatDateKey(
-                            weight.date
-                        ) +
+                    formatDateKey(weight.date) +
+                    " · " +
+                    weight.amount +
+                    " kg" +
 
-                        " · " +
+                '</option>'
+            );
+        }).join("");
 
-                        weight.amount +
-                        " kg" +
+    from.innerHTML = options;
+    to.innerHTML = options;
 
-                    '</option>'
-                );
-            }
-        )
-        .join("");
-
-    from.innerHTML =
-        options;
-
-    to.innerHTML =
-        options;
-
-    if (
-        chronological.length >= 2
-    ) {
+    if (chronological.length >= 2) {
 
         from.value =
             chronological[0].id;
@@ -3510,45 +3140,38 @@ function showPage(page) {
         "weight"
     ];
 
-    pages.forEach(
-        function(name) {
+    pages.forEach(function(name) {
 
-            document.getElementById(
-                name + "Page"
-            )
+        document
+            .getElementById(name + "Page")
             .classList
             .toggle(
                 "hidden",
                 name !== page
             );
 
-            document.getElementById(
-                name + "Nav"
-            )
+        document
+            .getElementById(name + "Nav")
             .classList
             .toggle(
                 "active",
                 name === page
             );
-        }
-    );
+    });
 
-    document.getElementById(
-        "addButton"
-    )
-    .classList
-    .toggle(
-        "hidden",
-        page !== "diary"
-    );
+    document
+        .getElementById("addButton")
+        .classList
+        .toggle(
+            "hidden",
+            page !== "diary"
+        );
 
     if (page === "history") {
-
         renderHistory();
     }
 
     if (page === "weight") {
-
         renderWeights();
     }
 
@@ -3566,41 +3189,31 @@ function showPage(page) {
 function escapeHTML(text) {
 
     const div =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     div.textContent =
-        String(
-            text ?? ""
-        );
+        String(text ?? "");
 
     return div.innerHTML;
 }
 
 
 /* =========================================================
-   RENDER EVERYTHING
+   RENDER ALL
 ========================================================= */
 
 function renderAll() {
 
-    document.getElementById(
-        "todayHeaderDate"
-    ).textContent =
-        formatDate(
-            new Date()
-        );
+    document.getElementById("todayHeaderDate").textContent =
+        formatDate(new Date());
 
-    document.getElementById(
-        "diaryDate"
-    ).value =
+    document.getElementById("diaryDate").value =
         selectedDiaryDate;
 
-    document.getElementById(
-        "calorieGoalInput"
-    ).value =
+    document.getElementById("calorieGoalInput").value =
         calorieGoal;
+
+    applyDateLimits();
 
     renderDiary();
     renderHistory();
@@ -3621,81 +3234,69 @@ async function startApp() {
         await migrateLocalStorageOnce();
 
         entries =
-            await getAllFromStore(
-                "entries"
-            );
-
-        /*
-        Add editHistory to old entries without
-        deleting or changing their existing data.
-        */
+            await getAllFromStore("entries");
 
         let entriesNeedSaving = false;
 
         entries =
-            entries.map(
-                function(entry) {
+            entries.map(function(entry) {
 
-                    if (
-                        !Array.isArray(
-                            entry.editHistory
-                        )
-                    ) {
+                let updated = entry;
 
-                        entriesNeedSaving =
-                            true;
+                if (!Array.isArray(entry.editHistory)) {
 
-                        return {
-                            ...entry,
-                            editHistory: []
-                        };
-                    }
+                    updated = {
+                        ...updated,
+                        editHistory: []
+                    };
 
-                    return entry;
+                    entriesNeedSaving = true;
                 }
-            );
+
+                if (
+                    !Object.prototype.hasOwnProperty.call(
+                        updated,
+                        "steps"
+                    )
+                ) {
+
+                    updated = {
+                        ...updated,
+                        steps: null
+                    };
+
+                    entriesNeedSaving = true;
+                }
+
+                return updated;
+            });
 
         if (entriesNeedSaving) {
-
             await saveEntries();
         }
 
         weights =
-            await getAllFromStore(
-                "weights"
-            );
+            await getAllFromStore("weights");
 
         await loadCalorieGoal();
 
-        document.getElementById(
-            "weightDate"
-        ).value =
+        document.getElementById("weightDate").value =
             getDateKey();
 
-        document.getElementById(
-            "diaryDate"
-        ).value =
+        document.getElementById("diaryDate").value =
             selectedDiaryDate;
+
+        applyDateLimits();
 
         renderAll();
 
-        /*
-        Check after rendering so the normal app
-        appears behind the reminder popup.
-        */
-
-        setTimeout(
-            function() {
-                checkBackupReminder();
-            },
-            500
-        );
+        setTimeout(function() {
+            checkBackupReminder();
+        },500);
 
     } catch (error) {
 
-        console.error(
-            error
-        );
+        console.error(error);
 
         alert(
             "The local database could not be opened. Please reload the app."
@@ -3718,15 +3319,13 @@ if ("serviceWorker" in navigator) {
 
             navigator.serviceWorker
                 .register("./sw.js")
-                .catch(
-                    function(error) {
+                .catch(function(error) {
 
-                        console.error(
-                            "Service worker registration failed:",
-                            error
-                        );
-                    }
-                );
+                    console.error(
+                        "Service worker registration failed:",
+                        error
+                    );
+                });
         }
     );
 }
