@@ -92,7 +92,9 @@ header h1 {
 .history-day,
 .weight-card,
 .settings-card,
-.search-card {
+.search-card,
+.history-summary-card,
+.diary-overview {
     background: var(--card);
     border: 1px solid rgba(255,255,255,.8);
     box-shadow: 0 6px 22px rgba(125,84,145,.08);
@@ -162,12 +164,23 @@ header h1 {
     padding: 13px;
 }
 
-.stat-name { font-size: 13px; color: var(--muted); }
-.stat-number { font-size: 21px; font-weight: 760; margin-top: 4px; }
+.stat-name {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.stat-number {
+    font-size: 21px;
+    font-weight: 760;
+    margin-top: 4px;
+}
+
 .eaten-number { color: var(--pink-dark); }
 .burned-number { color: var(--purple-dark); }
 
-/* iPhone / Safari / Brave date-input fix */
+
+/* DATE INPUTS */
+
 .date-chooser {
     background: rgba(255,252,255,.86);
     border: 1px solid var(--border);
@@ -207,6 +220,7 @@ input[type="date"],
     color: var(--pink-dark);
 }
 
+
 .section-title {
     margin: 24px 4px 11px;
     font-size: 18px;
@@ -215,6 +229,9 @@ input[type="date"],
 }
 
 .section-title .pink { color: var(--pink-dark); }
+
+
+/* ENTRIES */
 
 .entry {
     background: var(--card);
@@ -285,6 +302,9 @@ input[type="date"],
     line-height: 1.7;
 }
 
+
+/* ADD BUTTON */
+
 .add-button {
     position: fixed;
     right: 22px;
@@ -306,6 +326,9 @@ input[type="date"],
     box-shadow: 0 8px 22px rgba(150,100,170,.30);
 }
 
+
+/* NAVIGATION */
+
 .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -325,13 +348,21 @@ input[type="date"],
     border: none;
     background: transparent;
     color: var(--muted);
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 650;
-    padding-top: 8px;
+    padding: 8px 2px 0;
 }
 
-.nav-symbol { display: block; font-size: 20px; margin-bottom: 3px; }
+.nav-symbol {
+    display: block;
+    font-size: 19px;
+    margin-bottom: 3px;
+}
+
 .nav-button.active { color: var(--pink-dark); }
+
+
+/* MODALS */
 
 .modal {
     display: none;
@@ -364,6 +395,9 @@ input[type="date"],
     text-align: center;
 }
 
+
+/* INPUTS */
+
 label {
     display: block;
     margin: 14px 0 6px;
@@ -392,6 +426,14 @@ select:focus {
     box-shadow: 0 0 0 3px rgba(218,190,234,.25);
 }
 
+#historySearch::placeholder {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+
+/* ENTRY TYPE */
+
 .type-selector {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -414,6 +456,9 @@ select:focus {
     color: white;
     border-color: transparent;
 }
+
+
+/* BUTTONS */
 
 .save-button {
     width: 100%;
@@ -438,32 +483,6 @@ select:focus {
     font-size: 15px;
 }
 
-.history-day {
-    border-radius: 20px;
-    padding: 17px;
-    margin-bottom: 11px;
-}
-
-.history-date {
-    font-weight: 760;
-    color: var(--pink-dark);
-    margin-bottom: 10px;
-}
-
-.history-summary {
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-    margin-top: 7px;
-}
-
-.history-net {
-    font-weight: 760;
-    padding-top: 6px;
-    margin-top: 8px;
-    border-top: 1px solid var(--border);
-}
-
 .open-day-button {
     width: 100%;
     margin-top: 13px;
@@ -474,6 +493,9 @@ select:focus {
     color: var(--purple-dark);
     font-weight: 650;
 }
+
+
+/* HISTORY SEARCH */
 
 .search-card {
     border-radius: 20px;
@@ -495,7 +517,10 @@ select:focus {
 }
 
 .search-wrapper { position: relative; }
-.search-wrapper input { padding-right: 45px; }
+
+.search-wrapper input {
+    padding-right: 45px;
+}
 
 .clear-search {
     position: absolute;
@@ -544,6 +569,199 @@ select:focus {
     color: var(--muted);
     font-size: 12px;
 }
+
+
+/* HISTORY SELECTED DAY */
+
+.history-summary-card {
+    border-radius: 22px;
+    padding: 18px;
+    margin-bottom: 16px;
+}
+
+.history-date {
+    font-weight: 760;
+    color: var(--pink-dark);
+    margin-bottom: 10px;
+}
+
+.history-summary {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+.history-summary span:last-child {
+    text-align: right;
+}
+
+.history-net {
+    font-weight: 760;
+    padding-top: 8px;
+    margin-top: 9px;
+    border-top: 1px solid var(--border);
+}
+
+
+/* DIARY OVERVIEW */
+
+.diary-overview {
+    border-radius: 24px;
+    padding: 18px;
+    margin-bottom: 18px;
+}
+
+.overview-title {
+    color: var(--pink-dark);
+    font-weight: 760;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.overview-subtitle {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.period-selector {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 7px;
+    margin-bottom: 17px;
+}
+
+.period-button {
+    border: 1px solid var(--border);
+    background: white;
+    color: var(--purple-dark);
+    border-radius: 13px;
+    padding: 9px 5px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.period-button.selected {
+    border-color: transparent;
+    background: linear-gradient(145deg,var(--pink),var(--lavender));
+    color: white;
+}
+
+.overview-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 8px;
+}
+
+.overview-stat {
+    background: linear-gradient(145deg,#fff9fc,#f7eef9);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 12px 6px;
+    text-align: center;
+    min-width: 0;
+}
+
+.overview-stat-name {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.3;
+}
+
+.overview-stat-number {
+    color: var(--purple-dark);
+    font-size: 21px;
+    font-weight: 780;
+    margin-top: 5px;
+}
+
+.overview-stat-detail {
+    color: var(--pink-dark);
+    font-size: 11px;
+    font-weight: 650;
+    margin-top: 3px;
+}
+
+.overview-extra-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+    margin-top: 9px;
+}
+
+.overview-extra {
+    background: linear-gradient(145deg,#fff9fc,#f7eef9);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 13px;
+    text-align: center;
+}
+
+.overview-extra-name {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.overview-extra-number {
+    color: var(--purple-dark);
+    font-size: 19px;
+    font-weight: 780;
+    margin-top: 5px;
+}
+
+.overview-message {
+    margin-top: 15px;
+    background: var(--soft-purple);
+    color: var(--purple-dark);
+    border-radius: 15px;
+    padding: 12px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 650;
+    line-height: 1.5;
+}
+
+.activity-days-title {
+    color: var(--purple-dark);
+    font-weight: 760;
+    margin-top: 20px;
+    margin-bottom: 9px;
+}
+
+.activity-day-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 9px 3px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+}
+
+.activity-day-row:last-child {
+    border-bottom: none;
+}
+
+.activity-day-date {
+    color: var(--text);
+}
+
+.activity-day-calories {
+    color: var(--purple-dark);
+    font-weight: 760;
+    white-space: nowrap;
+}
+
+.no-activity {
+    color: var(--muted);
+    font-size: 13px;
+    padding: 8px 2px 2px;
+}
+
+
+/* WEIGHT / SETTINGS */
 
 .weight-card,
 .settings-card {
@@ -595,6 +813,9 @@ select:focus {
     gap: 10px;
 }
 
+
+/* WALKING */
+
 .walking-fields {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -607,6 +828,9 @@ select:focus {
     line-height: 1.45;
     margin-top: 7px;
 }
+
+
+/* EDIT HISTORY */
 
 .edit-history-button {
     width: 100%;
@@ -641,6 +865,18 @@ select:focus {
     line-height: 1.55;
     color: var(--text);
 }
+
+.history-current {
+    background: var(--soft-purple);
+    border-radius: 15px;
+    padding: 13px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* BACKUP REMINDER */
 
 .reminder-modal {
     align-items: center;
@@ -678,17 +914,11 @@ select:focus {
 
 .reminder-box .save-button { margin-top: 8px; }
 
-.history-current {
-    background: var(--soft-purple);
-    border-radius: 15px;
-    padding: 13px;
-    margin-bottom: 14px;
-    font-size: 13px;
-    line-height: 1.6;
-}
 
 @media (max-width: 400px) {
+
     header h1 { font-size: 24px; }
+
     .container { width: 94%; }
 
     .date-chooser {
@@ -699,9 +929,22 @@ select:focus {
     .walking-fields {
         grid-template-columns: 1fr 1fr;
     }
+
+    .overview-stat-number {
+        font-size: 19px;
+    }
+
+    .overview-stat-name {
+        font-size: 10px;
+    }
+
+    .nav-button {
+        font-size: 10px;
+    }
 }
 </style>
 </head>
+
 
 <body>
 
@@ -710,124 +953,363 @@ select:focus {
     <div class="date" id="todayHeaderDate"></div>
 </header>
 
+
 <div class="container">
+
+
+<!-- DIARY -->
 
 <div id="diaryPage">
 
     <div class="date-chooser">
+
         <label>✧ Choose diary date</label>
+
         <div class="date-input-wrapper">
-            <input type="date" id="diaryDate" onchange="changeDiaryDate()">
+            <input
+                type="date"
+                id="diaryDate"
+                onchange="changeDiaryDate()"
+            >
         </div>
-        <div class="selected-date-name" id="selectedDateName"></div>
+
+        <div
+            class="selected-date-name"
+            id="selectedDateName"
+        ></div>
+
     </div>
+
 
     <div class="summary">
-        <div class="summary-title">Net calories</div>
-        <div class="net-calories" id="netCalories">0</div>
-        <div class="kcal-label">kcal</div>
-        <div class="goal-small" id="goalDisplay">Daily goal: 1800 kcal</div>
 
-        <div class="status good" id="status">Within daily range ♡</div>
+        <div class="summary-title">
+            Net calories
+        </div>
+
+        <div
+            class="net-calories"
+            id="netCalories"
+        >
+            0
+        </div>
+
+        <div class="kcal-label">
+            kcal
+        </div>
+
+        <div
+            class="goal-small"
+            id="goalDisplay"
+        >
+            Daily goal: 1800 kcal
+        </div>
+
+        <div
+            class="status good"
+            id="status"
+        >
+            Within daily range ♡
+        </div>
+
 
         <div class="stats">
-            <div class="stat">
-                <div class="stat-name">♡ Eaten</div>
-                <div class="stat-number eaten-number" id="eatenCalories">0</div>
-            </div>
 
             <div class="stat">
-                <div class="stat-name">✦ Burned</div>
-                <div class="stat-number burned-number" id="burnedCalories">0</div>
+                <div class="stat-name">
+                    ♡ Eaten
+                </div>
+
+                <div
+                    class="stat-number eaten-number"
+                    id="eatenCalories"
+                >
+                    0
+                </div>
             </div>
+
+
+            <div class="stat">
+                <div class="stat-name">
+                    ✦ Burned
+                </div>
+
+                <div
+                    class="stat-number burned-number"
+                    id="burnedCalories"
+                >
+                    0
+                </div>
+            </div>
+
         </div>
+
     </div>
 
-    <div class="section-title">୨୧ <span class="pink">Entries</span></div>
+
+    <div class="section-title">
+        ୨୧ <span class="pink">Entries</span>
+    </div>
+
     <div id="entries"></div>
 
 </div>
 
 
-<div id="historyPage" class="hidden">
+<!-- HISTORY -->
 
-    <div class="section-title">✧ <span class="pink">Diary history</span></div>
+<div
+    id="historyPage"
+    class="hidden"
+>
+
+    <div class="section-title">
+        ✧ <span class="pink">Diary history</span>
+    </div>
+
 
     <div class="search-card">
-        <div class="search-title">♡ Find a previous entry</div>
+
+        <div class="search-title">
+            ♡ Find a previous entry
+        </div>
 
         <div class="search-description">
             Search for any food or activity you've entered before.
         </div>
 
         <div class="search-wrapper">
+
             <input
                 type="search"
                 id="historySearch"
-                placeholder="e.g. chicken, pizza, walking..."
+                placeholder="e.g. ravioli, chicken, walking…"
                 autocomplete="off"
                 oninput="searchHistory()"
             >
-            <button class="clear-search" onclick="clearHistorySearch()" aria-label="Clear search">×</button>
+
+            <button
+                class="clear-search"
+                onclick="clearHistorySearch()"
+                aria-label="Clear search"
+            >
+                ×
+            </button>
+
         </div>
 
         <div id="searchResults"></div>
+
     </div>
 
-    <div id="historyList"></div>
 
-</div>
+    <div class="history-summary-card">
 
+        <div class="search-title">
+            ♡ View a specific day
+        </div>
 
-<div id="weightPage" class="hidden">
-
-    <div class="section-title">୨୧ <span class="pink">Weight tracker</span></div>
-
-    <div class="weight-card">
-        <div class="weight-card-title">♡ Add your weight</div>
+        <div class="search-description">
+            Pick a diary date to see that day's summary.
+        </div>
 
         <label>Date</label>
 
         <div class="date-input-wrapper">
-            <input type="date" id="weightDate">
+            <input
+                type="date"
+                id="historyDate"
+                onchange="changeHistoryDate()"
+            >
+        </div>
+
+        <div id="selectedHistoryDay"></div>
+
+    </div>
+
+
+    <div class="diary-overview">
+
+        <div class="overview-title">
+            ୨୧ Your Diary Summary
+        </div>
+
+        <div class="overview-subtitle">
+            A little overview of your tracked diary days ♡
+        </div>
+
+
+        <div class="period-selector">
+
+            <button
+                class="period-button selected"
+                id="period7"
+                onclick="setSummaryPeriod('7')"
+            >
+                7 days
+            </button>
+
+            <button
+                class="period-button"
+                id="period30"
+                onclick="setSummaryPeriod('30')"
+            >
+                30 days
+            </button>
+
+            <button
+                class="period-button"
+                id="periodAll"
+                onclick="setSummaryPeriod('all')"
+            >
+                All time
+            </button>
+
+        </div>
+
+
+        <div id="diaryOverviewContent"></div>
+
+    </div>
+
+</div>
+
+
+<!-- WEIGHT -->
+
+<div
+    id="weightPage"
+    class="hidden"
+>
+
+    <div class="section-title">
+        ୨୧ <span class="pink">Weight tracker</span>
+    </div>
+
+
+    <div class="weight-card">
+
+        <div class="weight-card-title">
+            ♡ Add your weight
+        </div>
+
+        <label>Date</label>
+
+        <div class="date-input-wrapper">
+            <input
+                type="date"
+                id="weightDate"
+            >
         </div>
 
         <label>Weight (kg)</label>
-        <input type="number" id="weightAmount" min="1" step="0.1" inputmode="decimal">
 
-        <button class="save-button" onclick="saveWeight()">Save weight ♡</button>
+        <input
+            type="number"
+            id="weightAmount"
+            min="1"
+            step="0.1"
+            inputmode="decimal"
+        >
+
+        <button
+            class="save-button"
+            onclick="saveWeight()"
+        >
+            Save weight ♡
+        </button>
+
     </div>
 
+
     <div class="weight-card">
-        <div class="weight-card-title">✦ Compare weights</div>
 
-        <div class="two-columns">
-            <div>
-                <label>Earlier date</label>
-                <select id="compareFrom"></select>
-            </div>
-
-            <div>
-                <label>Later date</label>
-                <select id="compareTo"></select>
-            </div>
+        <div class="weight-card-title">
+            ✦ Compare weights
         </div>
 
-        <button class="save-button" onclick="compareWeights()">Compare ✧</button>
-        <div class="compare-result" id="compareResult"></div>
+        <div class="two-columns">
+
+            <div>
+
+                <label>
+                    Earlier date
+                </label>
+
+                <select id="compareFrom"></select>
+
+            </div>
+
+            <div>
+
+                <label>
+                    Later date
+                </label>
+
+                <select id="compareTo"></select>
+
+            </div>
+
+        </div>
+
+        <button
+            class="save-button"
+            onclick="compareWeights()"
+        >
+            Compare ✧
+        </button>
+
+        <div
+            class="compare-result"
+            id="compareResult"
+        ></div>
+
     </div>
 
-    <div class="weight-card">
-        <div class="weight-card-title">✧ Data safety</div>
+
+    <div class="section-title">
+        ♡ <span class="pink">Weight history</span>
+    </div>
+
+    <div id="weightHistory"></div>
+
+</div>
+
+
+<!-- SETTINGS -->
+
+<div
+    id="settingsPage"
+    class="hidden"
+>
+
+    <div class="section-title">
+        ⚙︎ <span class="pink">Settings</span>
+    </div>
+
+
+    <div class="settings-card">
+
+        <div class="settings-title">
+            ✧ Data safety
+        </div>
 
         <p style="margin:0;color:var(--muted);font-size:14px;line-height:1.55;">
             Your diary, edit history, calorie goal and weight data are stored locally on this device using IndexedDB.
             You can also save a backup file and restore it later.
         </p>
 
-        <button class="save-button" onclick="backupData()">Backup data ✧</button>
+        <button
+            class="save-button"
+            onclick="backupData()"
+        >
+            Backup data ✧
+        </button>
 
-        <button class="open-day-button" onclick="document.getElementById('restoreFile').click()">
+        <button
+            class="open-day-button"
+            onclick="document.getElementById('restoreFile').click()"
+        >
             Restore backup ♡
         </button>
 
@@ -838,16 +1320,24 @@ select:focus {
             class="hidden"
             onchange="restoreData(event)"
         >
+
     </div>
 
+
     <div class="settings-card">
-        <div class="settings-title">♡ Set calorie limit</div>
+
+        <div class="settings-title">
+            ♡ Set calorie limit
+        </div>
 
         <p style="margin:0 0 12px;color:var(--muted);font-size:13px;line-height:1.5;">
             Choose the daily net calorie limit used by your diary.
         </p>
 
-        <label>Daily calorie limit (kcal)</label>
+        <label>
+            Daily calorie limit (kcal)
+        </label>
+
         <input
             type="number"
             id="calorieGoalInput"
@@ -856,37 +1346,72 @@ select:focus {
             inputmode="numeric"
         >
 
-        <button class="open-day-button" onclick="saveCalorieGoal()">
+        <button
+            class="open-day-button"
+            onclick="saveCalorieGoal()"
+        >
             Save calorie limit ♡
         </button>
+
     </div>
 
-    <div class="section-title">♡ <span class="pink">Weight history</span></div>
-    <div id="weightHistory"></div>
-
 </div>
 
 </div>
 
 
-<button class="add-button" id="addButton" onclick="openEntryModal()">+</button>
+<!-- ADD BUTTON -->
 
+<button
+    class="add-button"
+    id="addButton"
+    onclick="openEntryModal()"
+>
+    +
+</button>
+
+
+<!-- NAVIGATION -->
 
 <nav class="bottom-nav">
 
-    <button class="nav-button active" id="diaryNav" onclick="showPage('diary')">
+    <button
+        class="nav-button active"
+        id="diaryNav"
+        onclick="showPage('diary')"
+    >
         <span class="nav-symbol">♡</span>
         Diary
     </button>
 
-    <button class="nav-button" id="historyNav" onclick="showPage('history')">
+
+    <button
+        class="nav-button"
+        id="historyNav"
+        onclick="showPage('history')"
+    >
         <span class="nav-symbol">✧</span>
         History
     </button>
 
-    <button class="nav-button" id="weightNav" onclick="showPage('weight')">
+
+    <button
+        class="nav-button"
+        id="weightNav"
+        onclick="showPage('weight')"
+    >
         <span class="nav-symbol">୨୧</span>
         Weight
+    </button>
+
+
+    <button
+        class="nav-button"
+        id="settingsNav"
+        onclick="showPage('settings')"
+    >
+        <span class="nav-symbol">⚙︎</span>
+        Settings
     </button>
 
 </nav>
@@ -894,69 +1419,165 @@ select:focus {
 
 <!-- ENTRY MODAL -->
 
-<div class="modal" id="entryModal">
+<div
+    class="modal"
+    id="entryModal"
+>
 
 <div class="modal-box">
 
-    <h2 id="entryModalTitle">⋆｡°✩ Add entry ✩°｡⋆</h2>
+    <h2 id="entryModalTitle">
+        ⋆｡°✩ Add entry ✩°｡⋆
+    </h2>
+
 
     <div class="type-selector">
-        <button class="type-button selected" id="foodTypeButton" onclick="setEntryType('food')">
+
+        <button
+            class="type-button selected"
+            id="foodTypeButton"
+            onclick="setEntryType('food')"
+        >
             ♡ Food
         </button>
 
-        <button class="type-button" id="activityTypeButton" onclick="setEntryType('activity')">
+        <button
+            class="type-button"
+            id="activityTypeButton"
+            onclick="setEntryType('activity')"
+        >
             ✦ Activity
         </button>
+
     </div>
+
 
     <label>Date</label>
 
     <div class="date-input-wrapper">
-        <input type="date" id="entryDate">
+
+        <input
+            type="date"
+            id="entryDate"
+        >
+
     </div>
+
 
     <div id="foodFields">
 
-        <label>What did you eat?</label>
-        <input type="text" id="foodName">
+        <label>
+            What did you eat?
+        </label>
 
-        <label>Calories</label>
-        <input type="number" id="foodCalories" min="1" inputmode="numeric">
+        <input
+            type="text"
+            id="foodName"
+        >
+
+
+        <label>
+            Calories
+        </label>
+
+        <input
+            type="number"
+            id="foodCalories"
+            min="1"
+            inputmode="numeric"
+        >
 
     </div>
 
-    <div id="activityFields" class="hidden">
 
-        <label>Activity</label>
+    <div
+        id="activityFields"
+        class="hidden"
+    >
 
-        <select id="activityName" onchange="activityChanged()">
-            <option value="Dancing">Dancing</option>
-            <option value="Walking">Walking</option>
-            <option value="Swimming">Swimming</option>
-            <option value="Exercising">Exercising</option>
+        <label>
+            Activity
+        </label>
+
+        <select
+            id="activityName"
+            onchange="activityChanged()"
+        >
+            <option value="Dancing">
+                Dancing
+            </option>
+
+            <option value="Walking">
+                Walking
+            </option>
+
+            <option value="Swimming">
+                Swimming
+            </option>
+
+            <option value="Exercising">
+                Exercising
+            </option>
         </select>
 
+
         <div id="normalActivityTime">
-            <label>Time (minutes)</label>
-            <input type="number" id="activityMinutes" min="1" inputmode="numeric">
+
+            <label>
+                Time (minutes)
+            </label>
+
+            <input
+                type="number"
+                id="activityMinutes"
+                min="1"
+                inputmode="numeric"
+            >
+
         </div>
 
-        <div id="walkingFields" class="hidden">
+
+        <div
+            id="walkingFields"
+            class="hidden"
+        >
 
             <div class="walking-fields">
 
                 <div>
-                    <label>Time (minutes)</label>
-                    <input type="number" id="walkingMinutes" min="1" inputmode="numeric">
+
+                    <label>
+                        Time (minutes)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="walkingMinutes"
+                        min="1"
+                        inputmode="numeric"
+                    >
+
                 </div>
 
+
                 <div>
-                    <label>Steps</label>
-                    <input type="number" id="walkingSteps" min="1" step="1" inputmode="numeric">
+
+                    <label>
+                        Steps
+                    </label>
+
+                    <input
+                        type="number"
+                        id="walkingSteps"
+                        min="1"
+                        step="1"
+                        inputmode="numeric"
+                    >
+
                 </div>
 
             </div>
+
 
             <div class="walking-hint">
                 Enter minutes, steps, or both ♡
@@ -964,10 +1585,20 @@ select:focus {
 
         </div>
 
-        <label>Calories burned</label>
-        <input type="number" id="activityCalories" min="1" inputmode="numeric">
+
+        <label>
+            Calories burned
+        </label>
+
+        <input
+            type="number"
+            id="activityCalories"
+            min="1"
+            inputmode="numeric"
+        >
 
     </div>
+
 
     <button
         class="edit-history-button hidden"
@@ -977,8 +1608,21 @@ select:focus {
         ✧ View edit history
     </button>
 
-    <button class="save-button" onclick="saveEntry()">Save entry ♡</button>
-    <button class="cancel-button" onclick="closeEntryModal()">Cancel</button>
+
+    <button
+        class="save-button"
+        onclick="saveEntry()"
+    >
+        Save entry ♡
+    </button>
+
+
+    <button
+        class="cancel-button"
+        onclick="closeEntryModal()"
+    >
+        Cancel
+    </button>
 
 </div>
 
@@ -987,15 +1631,23 @@ select:focus {
 
 <!-- EDIT HISTORY MODAL -->
 
-<div class="modal" id="editHistoryModal">
+<div
+    class="modal"
+    id="editHistoryModal"
+>
 
 <div class="modal-box">
 
-    <h2>✧ Entry history ✧</h2>
+    <h2>
+        ✧ Entry history ✧
+    </h2>
 
     <div id="editHistoryContent"></div>
 
-    <button class="cancel-button" onclick="closeEditHistory()">
+    <button
+        class="cancel-button"
+        onclick="closeEditHistory()"
+    >
         Close
     </button>
 
@@ -1006,13 +1658,20 @@ select:focus {
 
 <!-- BACKUP REMINDER -->
 
-<div class="modal reminder-modal" id="backupReminderModal">
+<div
+    class="modal reminder-modal"
+    id="backupReminderModal"
+>
 
     <div class="reminder-box">
 
-        <div class="reminder-decoration">˚₊‧ ♡ ✧ ♡ ‧₊˚</div>
+        <div class="reminder-decoration">
+            ˚₊‧ ♡ ✧ ♡ ‧₊˚
+        </div>
 
-        <h2>Backup reminder</h2>
+        <h2>
+            Backup reminder
+        </h2>
 
         <p>
             Just a little reminder to keep your diary safe ♡
@@ -1020,11 +1679,17 @@ select:focus {
             It's been a couple of days since your last backup reminder.
         </p>
 
-        <button class="save-button" onclick="backupFromReminder()">
+        <button
+            class="save-button"
+            onclick="backupFromReminder()"
+        >
             Backup now ♡
         </button>
 
-        <button class="cancel-button" onclick="dismissBackupReminder()">
+        <button
+            class="cancel-button"
+            onclick="dismissBackupReminder()"
+        >
             Remind me in 2 days
         </button>
 
@@ -1046,7 +1711,11 @@ let db = null;
 
 let entryType = "food";
 let editingEntryId = null;
+
 let selectedDiaryDate = getDateKey();
+let selectedHistoryDate = getDateKey();
+
+let summaryPeriod = "7";
 
 
 /* =========================================================
@@ -1062,40 +1731,90 @@ function openDatabase() {
             return;
         }
 
-        const request = indexedDB.open(DB_NAME, DB_VERSION);
+        const request =
+            indexedDB.open(
+                DB_NAME,
+                DB_VERSION
+            );
 
-        request.onupgradeneeded = function(event) {
 
-            const database = event.target.result;
+        request.onupgradeneeded =
+            function(event) {
 
-            if (!database.objectStoreNames.contains("entries")) {
-                database.createObjectStore("entries", { keyPath: "id" });
-            }
+                const database =
+                    event.target.result;
 
-            if (!database.objectStoreNames.contains("weights")) {
-                database.createObjectStore("weights", { keyPath: "id" });
-            }
 
-            if (!database.objectStoreNames.contains("settings")) {
-                database.createObjectStore("settings", { keyPath: "key" });
-            }
-        };
+                if (
+                    !database.objectStoreNames
+                        .contains("entries")
+                ) {
 
-        request.onsuccess = function(event) {
+                    database.createObjectStore(
+                        "entries",
+                        {
+                            keyPath: "id"
+                        }
+                    );
+                }
 
-            db = event.target.result;
 
-            db.onversionchange = function() {
-                db.close();
-                db = null;
+                if (
+                    !database.objectStoreNames
+                        .contains("weights")
+                ) {
+
+                    database.createObjectStore(
+                        "weights",
+                        {
+                            keyPath: "id"
+                        }
+                    );
+                }
+
+
+                if (
+                    !database.objectStoreNames
+                        .contains("settings")
+                ) {
+
+                    database.createObjectStore(
+                        "settings",
+                        {
+                            keyPath: "key"
+                        }
+                    );
+                }
             };
 
-            resolve(db);
-        };
 
-        request.onerror = function() {
-            reject(request.error);
-        };
+        request.onsuccess =
+            function(event) {
+
+                db =
+                    event.target.result;
+
+
+                db.onversionchange =
+                    function() {
+
+                        db.close();
+
+                        db = null;
+                    };
+
+
+                resolve(db);
+            };
+
+
+        request.onerror =
+            function() {
+
+                reject(
+                    request.error
+                );
+            };
     });
 }
 
@@ -1104,17 +1823,37 @@ function getAllFromStore(storeName) {
 
     return new Promise(function(resolve, reject) {
 
-        const transaction = db.transaction(storeName, "readonly");
-        const store = transaction.objectStore(storeName);
-        const request = store.getAll();
+        const transaction =
+            db.transaction(
+                storeName,
+                "readonly"
+            );
 
-        request.onsuccess = function() {
-            resolve(request.result || []);
-        };
+        const store =
+            transaction.objectStore(
+                storeName
+            );
 
-        request.onerror = function() {
-            reject(request.error);
-        };
+        const request =
+            store.getAll();
+
+
+        request.onsuccess =
+            function() {
+
+                resolve(
+                    request.result || []
+                );
+            };
+
+
+        request.onerror =
+            function() {
+
+                reject(
+                    request.error
+                );
+            };
     });
 }
 
@@ -1123,16 +1862,36 @@ function getSetting(key) {
 
     return new Promise(function(resolve, reject) {
 
-        const transaction = db.transaction("settings", "readonly");
-        const request = transaction.objectStore("settings").get(key);
+        const transaction =
+            db.transaction(
+                "settings",
+                "readonly"
+            );
 
-        request.onsuccess = function() {
-            resolve(request.result ? request.result.value : null);
-        };
+        const request =
+            transaction
+                .objectStore("settings")
+                .get(key);
 
-        request.onerror = function() {
-            reject(request.error);
-        };
+
+        request.onsuccess =
+            function() {
+
+                resolve(
+                    request.result
+                        ? request.result.value
+                        : null
+                );
+            };
+
+
+        request.onerror =
+            function() {
+
+                reject(
+                    request.error
+                );
+            };
     });
 }
 
@@ -1141,20 +1900,35 @@ function setSetting(key, value) {
 
     return new Promise(function(resolve, reject) {
 
-        const transaction = db.transaction("settings", "readwrite");
+        const transaction =
+            db.transaction(
+                "settings",
+                "readwrite"
+            );
 
-        transaction.objectStore("settings").put({
-            key: key,
-            value: value
-        });
 
-        transaction.oncomplete = function() {
-            resolve();
-        };
+        transaction
+            .objectStore("settings")
+            .put({
+                key: key,
+                value: value
+            });
 
-        transaction.onerror = function() {
-            reject(transaction.error);
-        };
+
+        transaction.oncomplete =
+            function() {
+
+                resolve();
+            };
+
+
+        transaction.onerror =
+            function() {
+
+                reject(
+                    transaction.error
+                );
+            };
     });
 }
 
@@ -1163,65 +1937,123 @@ function getAllSettings() {
 
     return new Promise(function(resolve, reject) {
 
-        const transaction = db.transaction("settings", "readonly");
-        const request = transaction.objectStore("settings").getAll();
+        const transaction =
+            db.transaction(
+                "settings",
+                "readonly"
+            );
 
-        request.onsuccess = function() {
+        const request =
+            transaction
+                .objectStore("settings")
+                .getAll();
 
-            const result = {};
 
-            (request.result || []).forEach(function(item) {
-                result[item.key] = item.value;
-            });
+        request.onsuccess =
+            function() {
 
-            resolve(result);
-        };
+                const result = {};
 
-        request.onerror = function() {
-            reject(request.error);
-        };
+
+                (request.result || [])
+                    .forEach(function(item) {
+
+                        result[item.key] =
+                            item.value;
+                    });
+
+
+                resolve(result);
+            };
+
+
+        request.onerror =
+            function() {
+
+                reject(
+                    request.error
+                );
+            };
     });
 }
 
 
-function replaceStoreContents(storeName, items) {
+function replaceStoreContents(
+    storeName,
+    items
+) {
 
     return new Promise(function(resolve, reject) {
 
-        const transaction = db.transaction(storeName, "readwrite");
-        const store = transaction.objectStore(storeName);
+        const transaction =
+            db.transaction(
+                storeName,
+                "readwrite"
+            );
+
+        const store =
+            transaction.objectStore(
+                storeName
+            );
+
 
         store.clear();
 
+
         items.forEach(function(item) {
+
             store.put(item);
         });
 
-        transaction.oncomplete = function() {
-            resolve();
-        };
 
-        transaction.onerror = function() {
-            reject(transaction.error);
-        };
+        transaction.oncomplete =
+            function() {
 
-        transaction.onabort = function() {
-            reject(transaction.error);
-        };
+                resolve();
+            };
+
+
+        transaction.onerror =
+            function() {
+
+                reject(
+                    transaction.error
+                );
+            };
+
+
+        transaction.onabort =
+            function() {
+
+                reject(
+                    transaction.error
+                );
+            };
     });
 }
 
 
 async function restoreSettings(settings) {
 
-    if (!settings || typeof settings !== "object") {
+    if (
+        !settings ||
+        typeof settings !== "object"
+    ) {
+
         return;
     }
 
-    const keys = Object.keys(settings);
+
+    const keys =
+        Object.keys(settings);
+
 
     for (const key of keys) {
-        await setSetting(key, settings[key]);
+
+        await setSetting(
+            key,
+            settings[key]
+        );
     }
 }
 
@@ -1232,54 +2064,113 @@ async function restoreSettings(settings) {
 
 async function migrateLocalStorageOnce() {
 
-    const alreadyMigrated = await getSetting("localStorageMigrated");
+    const alreadyMigrated =
+        await getSetting(
+            "localStorageMigrated"
+        );
+
 
     if (alreadyMigrated) {
         return;
     }
 
+
     let oldEntries = [];
     let oldWeights = [];
+
 
     try {
 
         oldEntries =
-            JSON.parse(localStorage.getItem("calorie_entries_v2")) || [];
+            JSON.parse(
+                localStorage.getItem(
+                    "calorie_entries_v2"
+                )
+            ) || [];
+
 
         if (oldEntries.length === 0) {
 
             oldEntries =
-                JSON.parse(localStorage.getItem("calorie_entries_v1")) || [];
+                JSON.parse(
+                    localStorage.getItem(
+                        "calorie_entries_v1"
+                    )
+                ) || [];
 
-            oldEntries = oldEntries.map(function(entry) {
-                return {
-                    ...entry,
-                    minutes: entry.minutes || null,
-                    steps: entry.steps || null
-                };
-            });
+
+            oldEntries =
+                oldEntries.map(
+                    function(entry) {
+
+                        return {
+                            ...entry,
+                            minutes:
+                                entry.minutes || null,
+                            steps:
+                                entry.steps || null
+                        };
+                    }
+                );
         }
 
+
         oldWeights =
-            JSON.parse(localStorage.getItem("weight_entries_v1")) || [];
+            JSON.parse(
+                localStorage.getItem(
+                    "weight_entries_v1"
+                )
+            ) || [];
+
 
     } catch (error) {
 
-        console.warn("Old localStorage data could not be read.", error);
+        console.warn(
+            "Old localStorage data could not be read.",
+            error
+        );
     }
 
-    const existingEntries = await getAllFromStore("entries");
-    const existingWeights = await getAllFromStore("weights");
 
-    if (existingEntries.length === 0 && oldEntries.length > 0) {
-        await replaceStoreContents("entries", oldEntries);
+    const existingEntries =
+        await getAllFromStore(
+            "entries"
+        );
+
+    const existingWeights =
+        await getAllFromStore(
+            "weights"
+        );
+
+
+    if (
+        existingEntries.length === 0 &&
+        oldEntries.length > 0
+    ) {
+
+        await replaceStoreContents(
+            "entries",
+            oldEntries
+        );
     }
 
-    if (existingWeights.length === 0 && oldWeights.length > 0) {
-        await replaceStoreContents("weights", oldWeights);
+
+    if (
+        existingWeights.length === 0 &&
+        oldWeights.length > 0
+    ) {
+
+        await replaceStoreContents(
+            "weights",
+            oldWeights
+        );
     }
 
-    await setSetting("localStorageMigrated", true);
+
+    await setSetting(
+        "localStorageMigrated",
+        true
+    );
 }
 
 
@@ -1289,113 +2180,226 @@ async function migrateLocalStorageOnce() {
 
 async function backupData() {
 
-    const settings = await getAllSettings();
+    const settings =
+        await getAllSettings();
+
 
     const backup = {
+
         app: "Calorie Tracker",
-        version: 3,
-        createdAt: new Date().toISOString(),
+
+        version: 4,
+
+        createdAt:
+            new Date().toISOString(),
+
         entries: entries,
+
         weights: weights,
+
         settings: settings
     };
 
-    const blob = new Blob(
-        [JSON.stringify(backup, null, 2)],
-        { type: "application/json" }
-    );
 
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
+    const blob =
+        new Blob(
+            [
+                JSON.stringify(
+                    backup,
+                    null,
+                    2
+                )
+            ],
+            {
+                type:
+                    "application/json"
+            }
+        );
+
+
+    const url =
+        URL.createObjectURL(blob);
+
+
+    const link =
+        document.createElement("a");
+
 
     link.href = url;
-    link.download = "calorie-tracker-backup-" + getDateKey() + ".json";
+
+    link.download =
+        "calorie-tracker-backup-" +
+        getDateKey() +
+        ".json";
+
 
     document.body.appendChild(link);
+
     link.click();
+
     link.remove();
 
-    await setSetting("lastBackupAt", new Date().toISOString());
-    await setSetting("lastBackupReminderAt", new Date().toISOString());
 
-    setTimeout(function() {
-        URL.revokeObjectURL(url);
-    }, 1000);
+    await setSetting(
+        "lastBackupAt",
+        new Date().toISOString()
+    );
+
+
+    await setSetting(
+        "lastBackupReminderAt",
+        new Date().toISOString()
+    );
+
+
+    setTimeout(
+        function() {
+
+            URL.revokeObjectURL(url);
+        },
+        1000
+    );
 }
 
 
 async function restoreData(event) {
 
-    const file = event.target.files[0];
+    const file =
+        event.target.files[0];
+
 
     if (!file) {
         return;
     }
 
+
     try {
 
-        const text = await file.text();
-        const backup = JSON.parse(text);
+        const text =
+            await file.text();
+
+
+        const backup =
+            JSON.parse(text);
+
 
         if (
             !backup ||
-            !Array.isArray(backup.entries) ||
-            !Array.isArray(backup.weights)
+            !Array.isArray(
+                backup.entries
+            ) ||
+            !Array.isArray(
+                backup.weights
+            )
         ) {
-            throw new Error("Invalid backup");
+
+            throw new Error(
+                "Invalid backup"
+            );
         }
 
-        const confirmed = confirm(
-            "Restore this backup? This will replace the calorie and weight data currently stored in the app."
-        );
+
+        const confirmed =
+            confirm(
+                "Restore this backup? This will replace the calorie and weight data currently stored in the app."
+            );
+
 
         if (!confirmed) {
+
             event.target.value = "";
+
             return;
         }
 
-        entries = backup.entries.map(function(entry) {
 
-            return {
-                ...entry,
-                steps: entry.steps || null,
-                editHistory:
-                    Array.isArray(entry.editHistory)
-                        ? entry.editHistory
-                        : []
-            };
-        });
+        entries =
+            backup.entries.map(
+                function(entry) {
 
-        weights = backup.weights;
+                    return {
+                        ...entry,
 
-        await replaceStoreContents("entries", entries);
-        await replaceStoreContents("weights", weights);
+                        steps:
+                            entry.steps || null,
 
-        if (backup.settings && typeof backup.settings === "object") {
-            await restoreSettings(backup.settings);
+                        editHistory:
+                            Array.isArray(
+                                entry.editHistory
+                            )
+                                ? entry.editHistory
+                                : []
+                    };
+                }
+            );
+
+
+        weights =
+            backup.weights;
+
+
+        await replaceStoreContents(
+            "entries",
+            entries
+        );
+
+
+        await replaceStoreContents(
+            "weights",
+            weights
+        );
+
+
+        if (
+            backup.settings &&
+            typeof backup.settings ===
+                "object"
+        ) {
+
+            await restoreSettings(
+                backup.settings
+            );
         }
 
-        const restoredGoal = await getSetting("calorieGoal");
+
+        const restoredGoal =
+            await getSetting(
+                "calorieGoal"
+            );
+
 
         calorieGoal =
             Number(restoredGoal) > 0
                 ? Number(restoredGoal)
                 : 1800;
 
-        document.getElementById("calorieGoalInput").value = calorieGoal;
+
+        document
+            .getElementById(
+                "calorieGoalInput"
+            )
+            .value =
+                calorieGoal;
+
 
         renderAll();
 
-        alert("Backup restored successfully ♡");
+
+        alert(
+            "Backup restored successfully ♡"
+        );
+
 
     } catch (error) {
 
         console.error(error);
 
+
         alert(
             "This file could not be restored. Please choose a valid Calorie Tracker backup."
         );
     }
+
 
     event.target.value = "";
 }
@@ -1407,7 +2411,11 @@ async function restoreData(event) {
 
 async function checkBackupReminder() {
 
-    const lastReminder = await getSetting("lastBackupReminderAt");
+    const lastReminder =
+        await getSetting(
+            "lastBackupReminderAt"
+        );
+
 
     if (!lastReminder) {
 
@@ -1419,20 +2427,45 @@ async function checkBackupReminder() {
         return;
     }
 
-    const last = new Date(lastReminder);
 
-    if (isNaN(last.getTime())) {
+    const last =
+        new Date(lastReminder);
+
+
+    if (
+        isNaN(
+            last.getTime()
+        )
+    ) {
+
         return;
     }
 
-    const now = new Date();
-    const twoDays = 2 * 24 * 60 * 60 * 1000;
 
-    if (now.getTime() - last.getTime() >= twoDays) {
+    const now =
+        new Date();
+
+
+    const twoDays =
+        2 *
+        24 *
+        60 *
+        60 *
+        1000;
+
+
+    if (
+        now.getTime() -
+        last.getTime()
+        >= twoDays
+    ) {
 
         document
-            .getElementById("backupReminderModal")
-            .classList.add("open");
+            .getElementById(
+                "backupReminderModal"
+            )
+            .classList
+            .add("open");
     }
 }
 
@@ -1444,17 +2477,25 @@ async function dismissBackupReminder() {
         new Date().toISOString()
     );
 
+
     document
-        .getElementById("backupReminderModal")
-        .classList.remove("open");
+        .getElementById(
+            "backupReminderModal"
+        )
+        .classList
+        .remove("open");
 }
 
 
 async function backupFromReminder() {
 
     document
-        .getElementById("backupReminderModal")
-        .classList.remove("open");
+        .getElementById(
+            "backupReminderModal"
+        )
+        .classList
+        .remove("open");
+
 
     await backupData();
 }
@@ -1466,15 +2507,24 @@ async function backupFromReminder() {
 
 async function loadCalorieGoal() {
 
-    const saved = await getSetting("calorieGoal");
+    const saved =
+        await getSetting(
+            "calorieGoal"
+        );
 
-    if (saved !== null && Number(saved) > 0) {
 
-        calorieGoal = Number(saved);
+    if (
+        saved !== null &&
+        Number(saved) > 0
+    ) {
+
+        calorieGoal =
+            Number(saved);
 
     } else {
 
         calorieGoal = 1800;
+
 
         await setSetting(
             "calorieGoal",
@@ -1482,7 +2532,13 @@ async function loadCalorieGoal() {
         );
     }
 
-    document.getElementById("calorieGoalInput").value = calorieGoal;
+
+    document
+        .getElementById(
+            "calorieGoalInput"
+        )
+        .value =
+            calorieGoal;
 }
 
 
@@ -1490,25 +2546,52 @@ async function saveCalorieGoal() {
 
     const value =
         Number(
-            document.getElementById("calorieGoalInput").value
+            document
+                .getElementById(
+                    "calorieGoalInput"
+                )
+                .value
         );
 
-    if (!Number.isFinite(value) || value <= 0) {
 
-        alert("Please enter a valid calorie limit.");
+    if (
+        !Number.isFinite(value) ||
+        value <= 0
+    ) {
+
+        alert(
+            "Please enter a valid calorie limit."
+        );
+
         return;
     }
 
-    calorieGoal = Math.round(value);
 
-    document.getElementById("calorieGoalInput").value = calorieGoal;
+    calorieGoal =
+        Math.round(value);
 
-    await setSetting("calorieGoal", calorieGoal);
+
+    document
+        .getElementById(
+            "calorieGoalInput"
+        )
+        .value =
+            calorieGoal;
+
+
+    await setSetting(
+        "calorieGoal",
+        calorieGoal
+    );
+
 
     renderDiary();
     renderHistory();
 
-    alert("Daily calorie limit saved ♡");
+
+    alert(
+        "Daily calorie limit saved ♡"
+    );
 }
 
 
@@ -1516,44 +2599,100 @@ async function saveCalorieGoal() {
    DATE FUNCTIONS
 ========================================================= */
 
-function getDateKey(date = new Date()) {
+function getDateKey(
+    date = new Date()
+) {
 
-    const year = date.getFullYear();
+    const year =
+        date.getFullYear();
+
 
     const month =
-        String(date.getMonth() + 1).padStart(2,"0");
+        String(
+            date.getMonth() + 1
+        ).padStart(
+            2,
+            "0"
+        );
+
 
     const day =
-        String(date.getDate()).padStart(2,"0");
+        String(
+            date.getDate()
+        ).padStart(
+            2,
+            "0"
+        );
 
-    return year + "-" + month + "-" + day;
+
+    return (
+        year +
+        "-" +
+        month +
+        "-" +
+        day
+    );
 }
 
 
 function getTomorrowKey() {
 
-    const tomorrow = new Date();
+    const tomorrow =
+        new Date();
+
 
     tomorrow.setDate(
         tomorrow.getDate() + 1
     );
 
-    return getDateKey(tomorrow);
+
+    return getDateKey(
+        tomorrow
+    );
 }
 
 
 function applyDateLimits() {
 
     /*
-    Tomorrow is the furthest selectable date.
-    Past dates remain unrestricted.
+       Every calendar in the app has tomorrow
+       as its absolute maximum date.
+
+       Past dates remain available.
+       Today remains available.
+       Tomorrow remains available.
+       Dates two or more days into the future
+       are disabled by the native date picker.
     */
 
-    const maxDate = getTomorrowKey();
+    const maxDate =
+        getTomorrowKey();
 
-    document.getElementById("diaryDate").max = maxDate;
-    document.getElementById("entryDate").max = maxDate;
-    document.getElementById("weightDate").max = maxDate;
+
+    const calendarIds = [
+        "diaryDate",
+        "entryDate",
+        "weightDate",
+        "historyDate"
+    ];
+
+
+    calendarIds.forEach(
+        function(id) {
+
+            const input =
+                document.getElementById(id);
+
+
+            if (input) {
+
+                input.setAttribute(
+                    "max",
+                    maxDate
+                );
+            }
+        }
+    );
 }
 
 
@@ -1563,21 +2702,26 @@ function isAllowedDate(dateKey) {
         return false;
     }
 
-    return dateKey <= getTomorrowKey();
+
+    return (
+        dateKey <=
+        getTomorrowKey()
+    );
 }
 
 
 function formatDate(date) {
 
-    return date.toLocaleDateString(
-        "en-GB",
-        {
-            weekday: "long",
-            day: "numeric",
-            month: "short",
-            year: "numeric"
-        }
-    );
+    return date
+        .toLocaleDateString(
+            "en-GB",
+            {
+                weekday: "long",
+                day: "numeric",
+                month: "short",
+                year: "numeric"
+            }
+        );
 }
 
 
@@ -1587,6 +2731,7 @@ function formatDateKey(dateKey) {
         dateKey
             .split("-")
             .map(Number);
+
 
     return formatDate(
         new Date(
@@ -1598,11 +2743,37 @@ function formatDateKey(dateKey) {
 }
 
 
+function formatShortDateKey(
+    dateKey
+) {
+
+    const parts =
+        dateKey
+            .split("-")
+            .map(Number);
+
+
+    return new Date(
+        parts[0],
+        parts[1] - 1,
+        parts[2]
+    )
+        .toLocaleDateString(
+            "en-GB",
+            {
+                day: "numeric",
+                month: "short"
+            }
+        );
+}
+
+
 function formatTime(timestamp) {
 
     if (!timestamp) {
         return "";
     }
+
 
     return new Date(timestamp)
         .toLocaleTimeString(
@@ -1620,6 +2791,7 @@ function formatDateTime(timestamp) {
     if (!timestamp) {
         return "";
     }
+
 
     return new Date(timestamp)
         .toLocaleString(
@@ -1641,11 +2813,20 @@ function formatDateTime(timestamp) {
 ========================================================= */
 
 function saveEntries() {
-    return replaceStoreContents("entries", entries);
+
+    return replaceStoreContents(
+        "entries",
+        entries
+    );
 }
 
+
 function saveWeights() {
-    return replaceStoreContents("weights", weights);
+
+    return replaceStoreContents(
+        "weights",
+        weights
+    );
 }
 
 
@@ -1655,20 +2836,44 @@ function saveWeights() {
 
 function changeDiaryDate() {
 
+    const input =
+        document.getElementById(
+            "diaryDate"
+        );
+
+
     const value =
-        document.getElementById("diaryDate").value;
+        input.value;
 
-    if (!isAllowedDate(value)) {
 
-        alert("You can only choose up to tomorrow ♡");
+    if (!value) {
+        return;
+    }
 
-        document.getElementById("diaryDate").value =
+
+    /*
+       The native calendar already disables
+       dates after tomorrow.
+
+       This check remains only as a safety
+       measure and does NOT try to force the
+       date picker backwards while it is open.
+    */
+
+    if (
+        !isAllowedDate(value)
+    ) {
+
+        input.value =
             selectedDiaryDate;
 
         return;
     }
 
-    selectedDiaryDate = value;
+
+    selectedDiaryDate =
+        value;
+
 
     renderDiary();
 }
@@ -1676,15 +2881,30 @@ function changeDiaryDate() {
 
 function openDiaryDate(date) {
 
-    if (!isAllowedDate(date)) {
+    if (
+        !isAllowedDate(date)
+    ) {
+
         return;
     }
 
-    selectedDiaryDate = date;
 
-    document.getElementById("diaryDate").value = date;
+    selectedDiaryDate =
+        date;
 
-    showPage("diary");
+
+    document
+        .getElementById(
+            "diaryDate"
+        )
+        .value =
+            date;
+
+
+    showPage(
+        "diary"
+    );
+
 
     renderDiary();
 }
@@ -1698,31 +2918,58 @@ function openEntryModal() {
 
     editingEntryId = null;
 
-    document.getElementById("entryModalTitle").textContent =
-        "⋆｡°✩ Add entry ✩°｡⋆";
 
     document
-        .getElementById("viewEditHistoryButton")
-        .classList.add("hidden");
+        .getElementById(
+            "entryModalTitle"
+        )
+        .textContent =
+            "⋆｡°✩ Add entry ✩°｡⋆";
+
+
+    document
+        .getElementById(
+            "viewEditHistoryButton"
+        )
+        .classList
+        .add("hidden");
+
 
     clearEntryForm();
 
-    document.getElementById("entryDate").value =
-        selectedDiaryDate;
 
     document
-        .getElementById("entryModal")
-        .classList.add("open");
+        .getElementById(
+            "entryDate"
+        )
+        .value =
+            selectedDiaryDate;
+
+
+    applyDateLimits();
+
+
+    document
+        .getElementById(
+            "entryModal"
+        )
+        .classList
+        .add("open");
 }
 
 
 function closeEntryModal() {
 
     document
-        .getElementById("entryModal")
-        .classList.remove("open");
+        .getElementById(
+            "entryModal"
+        )
+        .classList
+        .remove("open");
+
 
     editingEntryId = null;
+
 
     clearEntryForm();
 }
@@ -1732,30 +2979,76 @@ function setEntryType(type) {
 
     entryType = type;
 
-    const food = document.getElementById("foodFields");
-    const activity = document.getElementById("activityFields");
+
+    const food =
+        document.getElementById(
+            "foodFields"
+        );
+
+
+    const activity =
+        document.getElementById(
+            "activityFields"
+        );
+
 
     const foodButton =
-        document.getElementById("foodTypeButton");
+        document.getElementById(
+            "foodTypeButton"
+        );
+
 
     const activityButton =
-        document.getElementById("activityTypeButton");
+        document.getElementById(
+            "activityTypeButton"
+        );
 
-    if (type === "food") {
 
-        food.classList.remove("hidden");
-        activity.classList.add("hidden");
+    if (
+        type === "food"
+    ) {
 
-        foodButton.classList.add("selected");
-        activityButton.classList.remove("selected");
+        food
+            .classList
+            .remove("hidden");
+
+
+        activity
+            .classList
+            .add("hidden");
+
+
+        foodButton
+            .classList
+            .add("selected");
+
+
+        activityButton
+            .classList
+            .remove("selected");
+
 
     } else {
 
-        food.classList.add("hidden");
-        activity.classList.remove("hidden");
+        food
+            .classList
+            .add("hidden");
 
-        foodButton.classList.remove("selected");
-        activityButton.classList.add("selected");
+
+        activity
+            .classList
+            .remove("hidden");
+
+
+        foodButton
+            .classList
+            .remove("selected");
+
+
+        activityButton
+            .classList
+            .add("selected");
+
 
         activityChanged();
     }
@@ -1765,40 +3058,110 @@ function setEntryType(type) {
 function activityChanged() {
 
     const activity =
-        document.getElementById("activityName").value;
+        document
+            .getElementById(
+                "activityName"
+            )
+            .value;
+
 
     const normal =
-        document.getElementById("normalActivityTime");
+        document.getElementById(
+            "normalActivityTime"
+        );
+
 
     const walking =
-        document.getElementById("walkingFields");
+        document.getElementById(
+            "walkingFields"
+        );
 
-    if (activity === "Walking") {
 
-        normal.classList.add("hidden");
-        walking.classList.remove("hidden");
+    if (
+        activity === "Walking"
+    ) {
+
+        normal
+            .classList
+            .add("hidden");
+
+
+        walking
+            .classList
+            .remove("hidden");
+
 
     } else {
 
-        normal.classList.remove("hidden");
-        walking.classList.add("hidden");
+        normal
+            .classList
+            .remove("hidden");
+
+
+        walking
+            .classList
+            .add("hidden");
     }
 }
 
 
 function clearEntryForm() {
 
-    document.getElementById("foodName").value = "";
-    document.getElementById("foodCalories").value = "";
+    document
+        .getElementById(
+            "foodName"
+        )
+        .value = "";
 
-    document.getElementById("activityName").value = "Dancing";
 
-    document.getElementById("activityMinutes").value = "";
-    document.getElementById("walkingMinutes").value = "";
-    document.getElementById("walkingSteps").value = "";
-    document.getElementById("activityCalories").value = "";
+    document
+        .getElementById(
+            "foodCalories"
+        )
+        .value = "";
 
-    setEntryType("food");
+
+    document
+        .getElementById(
+            "activityName"
+        )
+        .value =
+            "Dancing";
+
+
+    document
+        .getElementById(
+            "activityMinutes"
+        )
+        .value = "";
+
+
+    document
+        .getElementById(
+            "walkingMinutes"
+        )
+        .value = "";
+
+
+    document
+        .getElementById(
+            "walkingSteps"
+        )
+        .value = "";
+
+
+    document
+        .getElementById(
+            "activityCalories"
+        )
+        .value = "";
+
+
+    setEntryType(
+        "food"
+    );
+
+
     activityChanged();
 }
 
@@ -1810,15 +3173,28 @@ function clearEntryForm() {
 async function saveEntry() {
 
     const entryDate =
-        document.getElementById("entryDate").value;
+        document
+            .getElementById(
+                "entryDate"
+            )
+            .value;
+
 
     if (!entryDate) {
 
-        alert("Please choose a date.");
+        alert(
+            "Please choose a date."
+        );
+
         return;
     }
 
-    if (!isAllowedDate(entryDate)) {
+
+    if (
+        !isAllowedDate(
+            entryDate
+        )
+    ) {
 
         alert(
             "You can only add entries up to tomorrow ♡"
@@ -1827,24 +3203,40 @@ async function saveEntry() {
         return;
     }
 
+
     let name;
     let calories;
     let minutes = null;
     let steps = null;
 
-    if (entryType === "food") {
+
+    if (
+        entryType === "food"
+    ) {
 
         name =
-            document.getElementById("foodName")
+            document
+                .getElementById(
+                    "foodName"
+                )
                 .value
                 .trim();
 
+
         calories =
             Number(
-                document.getElementById("foodCalories").value
+                document
+                    .getElementById(
+                        "foodCalories"
+                    )
+                    .value
             );
 
-        if (!name || calories <= 0) {
+
+        if (
+            !name ||
+            calories <= 0
+        ) {
 
             alert(
                 "Please enter the food and calories."
@@ -1853,17 +3245,30 @@ async function saveEntry() {
             return;
         }
 
+
     } else {
 
         name =
-            document.getElementById("activityName").value;
+            document
+                .getElementById(
+                    "activityName"
+                )
+                .value;
+
 
         calories =
             Number(
-                document.getElementById("activityCalories").value
+                document
+                    .getElementById(
+                        "activityCalories"
+                    )
+                    .value
             );
 
-        if (calories <= 0) {
+
+        if (
+            calories <= 0
+        ) {
 
             alert(
                 "Please enter the calories burned."
@@ -1872,27 +3277,52 @@ async function saveEntry() {
             return;
         }
 
-        if (name === "Walking") {
+
+        if (
+            name === "Walking"
+        ) {
 
             const minutesValue =
-                document.getElementById("walkingMinutes").value;
+                document
+                    .getElementById(
+                        "walkingMinutes"
+                    )
+                    .value;
+
 
             const stepsValue =
-                document.getElementById("walkingSteps").value;
+                document
+                    .getElementById(
+                        "walkingSteps"
+                    )
+                    .value;
+
 
             minutes =
                 minutesValue === ""
                     ? null
-                    : Number(minutesValue);
+                    : Number(
+                        minutesValue
+                    );
+
 
             steps =
                 stepsValue === ""
                     ? null
-                    : Number(stepsValue);
+                    : Number(
+                        stepsValue
+                    );
+
 
             if (
-                (minutes === null || minutes <= 0) &&
-                (steps === null || steps <= 0)
+                (
+                    minutes === null ||
+                    minutes <= 0
+                ) &&
+                (
+                    steps === null ||
+                    steps <= 0
+                )
             ) {
 
                 alert(
@@ -1901,6 +3331,7 @@ async function saveEntry() {
 
                 return;
             }
+
 
             if (
                 minutes !== null &&
@@ -1914,6 +3345,7 @@ async function saveEntry() {
                 return;
             }
 
+
             if (
                 steps !== null &&
                 steps <= 0
@@ -1926,18 +3358,33 @@ async function saveEntry() {
                 return;
             }
 
-            if (steps !== null) {
-                steps = Math.round(steps);
+
+            if (
+                steps !== null
+            ) {
+
+                steps =
+                    Math.round(
+                        steps
+                    );
             }
+
 
         } else {
 
             minutes =
                 Number(
-                    document.getElementById("activityMinutes").value
+                    document
+                        .getElementById(
+                            "activityMinutes"
+                        )
+                        .value
                 );
 
-            if (minutes <= 0) {
+
+            if (
+                minutes <= 0
+            ) {
 
                 alert(
                     "Please enter the activity time."
@@ -1946,69 +3393,160 @@ async function saveEntry() {
                 return;
             }
 
+
             steps = null;
         }
     }
 
-    if (editingEntryId) {
+
+    if (
+        editingEntryId
+    ) {
 
         const entry =
-            entries.find(function(item) {
-                return item.id === editingEntryId;
-            });
+            entries.find(
+                function(item) {
+
+                    return (
+                        item.id ===
+                        editingEntryId
+                    );
+                }
+            );
+
 
         if (entry) {
 
-            if (!Array.isArray(entry.editHistory)) {
+            if (
+                !Array.isArray(
+                    entry.editHistory
+                )
+            ) {
+
                 entry.editHistory = [];
             }
 
+
             const changed =
-                entry.type !== entryType ||
-                entry.name !== name ||
-                Number(entry.calories) !== calories ||
-                Number(entry.minutes || 0) !== Number(minutes || 0) ||
-                Number(entry.steps || 0) !== Number(steps || 0) ||
-                entry.date !== entryDate;
+
+                entry.type !==
+                    entryType ||
+
+                entry.name !==
+                    name ||
+
+                Number(
+                    entry.calories
+                ) !==
+                    calories ||
+
+                Number(
+                    entry.minutes || 0
+                ) !==
+                    Number(
+                        minutes || 0
+                    ) ||
+
+                Number(
+                    entry.steps || 0
+                ) !==
+                    Number(
+                        steps || 0
+                    ) ||
+
+                entry.date !==
+                    entryDate;
+
 
             if (changed) {
 
-                entry.editHistory.push({
+                entry
+                    .editHistory
+                    .push({
 
-                    changedAt:
-                        new Date().toISOString(),
+                        changedAt:
+                            new Date()
+                                .toISOString(),
 
-                    previous: {
-                        type: entry.type,
-                        name: entry.name,
-                        calories: entry.calories,
-                        minutes: entry.minutes || null,
-                        steps: entry.steps || null,
-                        date: entry.date
-                    },
+                        previous: {
 
-                    changedTo: {
-                        type: entryType,
-                        name: name,
-                        calories: calories,
-                        minutes: minutes,
-                        steps: steps,
-                        date: entryDate
-                    }
-                });
+                            type:
+                                entry.type,
+
+                            name:
+                                entry.name,
+
+                            calories:
+                                entry.calories,
+
+                            minutes:
+                                entry.minutes ||
+                                null,
+
+                            steps:
+                                entry.steps ||
+                                null,
+
+                            date:
+                                entry.date
+                        },
+
+                        changedTo: {
+
+                            type:
+                                entryType,
+
+                            name:
+                                name,
+
+                            calories:
+                                calories,
+
+                            minutes:
+                                minutes,
+
+                            steps:
+                                steps,
+
+                            date:
+                                entryDate
+                        }
+                    });
             }
 
-            entry.type = entryType;
-            entry.name = name;
-            entry.calories = calories;
-            entry.minutes = minutes;
-            entry.steps = steps;
-            entry.date = entryDate;
+
+            entry.type =
+                entryType;
+
+
+            entry.name =
+                name;
+
+
+            entry.calories =
+                calories;
+
+
+            entry.minutes =
+                minutes;
+
+
+            entry.steps =
+                steps;
+
+
+            entry.date =
+                entryDate;
+
 
             if (changed) {
-                entry.updatedAt = new Date().toISOString();
+
+                entry.updatedAt =
+                    new Date()
+                        .toISOString();
             }
         }
+
 
     } else {
 
@@ -2021,28 +3559,62 @@ async function saveEntry() {
                     .toString(16)
                     .slice(2),
 
-            type: entryType,
-            name: name,
-            calories: calories,
-            minutes: minutes,
-            steps: steps,
-            date: entryDate,
+            type:
+                entryType,
+
+            name:
+                name,
+
+            calories:
+                calories,
+
+            minutes:
+                minutes,
+
+            steps:
+                steps,
+
+            date:
+                entryDate,
 
             createdAt:
-                new Date().toISOString(),
+                new Date()
+                    .toISOString(),
 
             editHistory: []
         });
     }
 
-    selectedDiaryDate = entryDate;
 
-    document.getElementById("diaryDate").value =
+    selectedDiaryDate =
         entryDate;
+
+
+    selectedHistoryDate =
+        entryDate;
+
+
+    document
+        .getElementById(
+            "diaryDate"
+        )
+        .value =
+            entryDate;
+
+
+    document
+        .getElementById(
+            "historyDate"
+        )
+        .value =
+            entryDate;
+
 
     await saveEntries();
 
+
     closeEntryModal();
+
 
     renderAll();
 }
@@ -2051,64 +3623,140 @@ async function saveEntry() {
 function editEntry(id) {
 
     const entry =
-        entries.find(function(item) {
-            return item.id === id;
-        });
+        entries.find(
+            function(item) {
+
+                return (
+                    item.id === id
+                );
+            }
+        );
+
 
     if (!entry) {
         return;
     }
 
-    editingEntryId = id;
 
-    document.getElementById("entryModalTitle").textContent =
-        "✧ Edit entry ✧";
+    editingEntryId =
+        id;
 
-    setEntryType(entry.type);
 
-    document.getElementById("entryDate").value =
-        entry.date;
+    document
+        .getElementById(
+            "entryModalTitle"
+        )
+        .textContent =
+            "✧ Edit entry ✧";
 
-    if (entry.type === "food") {
 
-        document.getElementById("foodName").value =
-            entry.name;
+    setEntryType(
+        entry.type
+    );
 
-        document.getElementById("foodCalories").value =
-            entry.calories;
+
+    document
+        .getElementById(
+            "entryDate"
+        )
+        .value =
+            entry.date;
+
+
+    applyDateLimits();
+
+
+    if (
+        entry.type === "food"
+    ) {
+
+        document
+            .getElementById(
+                "foodName"
+            )
+            .value =
+                entry.name;
+
+
+        document
+            .getElementById(
+                "foodCalories"
+            )
+            .value =
+                entry.calories;
+
 
     } else {
 
-        document.getElementById("activityName").value =
-            entry.name;
+        document
+            .getElementById(
+                "activityName"
+            )
+            .value =
+                entry.name;
+
 
         activityChanged();
 
-        if (entry.name === "Walking") {
 
-            document.getElementById("walkingMinutes").value =
-                entry.minutes || "";
+        if (
+            entry.name ===
+            "Walking"
+        ) {
 
-            document.getElementById("walkingSteps").value =
-                entry.steps || "";
+            document
+                .getElementById(
+                    "walkingMinutes"
+                )
+                .value =
+                    entry.minutes ||
+                    "";
+
+
+            document
+                .getElementById(
+                    "walkingSteps"
+                )
+                .value =
+                    entry.steps ||
+                    "";
+
 
         } else {
 
-            document.getElementById("activityMinutes").value =
-                entry.minutes || "";
+            document
+                .getElementById(
+                    "activityMinutes"
+                )
+                .value =
+                    entry.minutes ||
+                    "";
         }
 
-        document.getElementById("activityCalories").value =
-            entry.calories;
+
+        document
+            .getElementById(
+                "activityCalories"
+            )
+            .value =
+                entry.calories;
     }
 
-    document
-        .getElementById("viewEditHistoryButton")
-        .classList.remove("hidden");
 
     document
-        .getElementById("entryModal")
-        .classList.add("open");
+        .getElementById(
+            "viewEditHistoryButton"
+        )
+        .classList
+        .remove("hidden");
+
+
+    document
+        .getElementById(
+            "entryModal"
+        )
+        .classList
+        .add("open");
 }
 
 
@@ -2118,145 +3766,227 @@ function editEntry(id) {
 
 function openEditHistory() {
 
-    if (!editingEntryId) {
+    if (
+        !editingEntryId
+    ) {
+
         return;
     }
 
+
     const entry =
-        entries.find(function(item) {
-            return item.id === editingEntryId;
-        });
+        entries.find(
+            function(item) {
+
+                return (
+                    item.id ===
+                    editingEntryId
+                );
+            }
+        );
+
 
     if (!entry) {
         return;
     }
 
+
     const container =
-        document.getElementById("editHistoryContent");
+        document.getElementById(
+            "editHistoryContent"
+        );
+
 
     let html =
+
         '<div class="history-current">' +
+
             '<strong>Current version</strong><br>' +
-            describeEntrySnapshot(entry) +
+
+            describeEntrySnapshot(
+                entry
+            ) +
+
         '</div>';
 
+
     const history =
-        Array.isArray(entry.editHistory)
+        Array.isArray(
+            entry.editHistory
+        )
             ? entry.editHistory
             : [];
 
-    if (history.length === 0) {
+
+    if (
+        history.length === 0
+    ) {
 
         html +=
             '<div class="empty">' +
                 '♡ This entry has not been edited yet.' +
             '</div>';
 
+
     } else {
 
-        html += '<div class="edit-history-list">';
+        html +=
+            '<div class="edit-history-list">';
+
 
         history
             .slice()
             .reverse()
-            .forEach(function(change) {
+            .forEach(
+                function(change) {
 
-                const oldValue =
-                    change.previous || {};
+                    const oldValue =
+                        change.previous ||
+                        {};
 
-                const newValue =
-                    change.changedTo || {};
 
-                html +=
-                    '<div class="edit-history-item">' +
+                    const newValue =
+                        change.changedTo ||
+                        {};
 
-                        '<div class="edit-history-time">' +
-                            '✧ Changed ' +
-                            escapeHTML(
-                                formatDateTime(
-                                    change.changedAt
-                                )
-                            ) +
-                        '</div>' +
 
-                        '<div class="edit-history-change">' +
+                    html +=
 
-                            '<strong>Before:</strong><br>' +
-                            describeEntrySnapshot(oldValue) +
+                        '<div class="edit-history-item">' +
 
-                            '<br><br>' +
+                            '<div class="edit-history-time">' +
 
-                            '<strong>Changed to:</strong><br>' +
-                            describeEntrySnapshot(newValue) +
+                                '✧ Changed ' +
 
-                        '</div>' +
+                                escapeHTML(
+                                    formatDateTime(
+                                        change.changedAt
+                                    )
+                                ) +
 
-                    '</div>';
-            });
+                            '</div>' +
 
-        html += '</div>';
+
+                            '<div class="edit-history-change">' +
+
+                                '<strong>Before:</strong><br>' +
+
+                                describeEntrySnapshot(
+                                    oldValue
+                                ) +
+
+                                '<br><br>' +
+
+                                '<strong>Changed to:</strong><br>' +
+
+                                describeEntrySnapshot(
+                                    newValue
+                                ) +
+
+                            '</div>' +
+
+                        '</div>';
+                }
+            );
+
+
+        html +=
+            '</div>';
     }
 
-    container.innerHTML = html;
+
+    container.innerHTML =
+        html;
+
 
     document
-        .getElementById("editHistoryModal")
-        .classList.add("open");
+        .getElementById(
+            "editHistoryModal"
+        )
+        .classList
+        .add("open");
 }
 
 
-function describeEntrySnapshot(snapshot) {
+function describeEntrySnapshot(
+    snapshot
+) {
 
     if (!snapshot) {
         return "";
     }
 
+
     let text =
-        escapeHTML(snapshot.name || "");
+        escapeHTML(
+            snapshot.name || ""
+        );
+
 
     text +=
         " · " +
-        Number(snapshot.calories || 0) +
+        Number(
+            snapshot.calories || 0
+        ) +
         " kcal";
 
+
     if (
-        snapshot.type === "activity" &&
+        snapshot.type ===
+            "activity" &&
         snapshot.minutes
     ) {
 
         text +=
             " · " +
-            Number(snapshot.minutes) +
+            Number(
+                snapshot.minutes
+            ) +
             " min";
     }
 
+
     if (
-        snapshot.type === "activity" &&
+        snapshot.type ===
+            "activity" &&
         snapshot.steps
     ) {
 
         text +=
             " · " +
-            Number(snapshot.steps).toLocaleString("en-GB") +
+            Number(
+                snapshot.steps
+            )
+                .toLocaleString(
+                    "en-GB"
+                ) +
             " steps";
     }
 
-    if (snapshot.date) {
+
+    if (
+        snapshot.date
+    ) {
 
         text +=
             "<br>Date: " +
             escapeHTML(
-                formatDateKey(snapshot.date)
+                formatDateKey(
+                    snapshot.date
+                )
             );
     }
+
 
     text +=
         "<br>Type: " +
         (
-            snapshot.type === "activity"
+            snapshot.type ===
+                "activity"
                 ? "Activity"
                 : "Food"
         );
+
 
     return text;
 }
@@ -2265,8 +3995,11 @@ function describeEntrySnapshot(snapshot) {
 function closeEditHistory() {
 
     document
-        .getElementById("editHistoryModal")
-        .classList.remove("open");
+        .getElementById(
+            "editHistoryModal"
+        )
+        .classList
+        .remove("open");
 }
 
 
@@ -2277,13 +4010,20 @@ function closeEditHistory() {
 async function deleteEntry(id) {
 
     const entry =
-        entries.find(function(item) {
-            return item.id === id;
-        });
+        entries.find(
+            function(item) {
+
+                return (
+                    item.id === id
+                );
+            }
+        );
+
 
     if (!entry) {
         return;
     }
+
 
     const confirmed =
         confirm(
@@ -2292,16 +4032,25 @@ async function deleteEntry(id) {
             "?"
         );
 
+
     if (!confirmed) {
         return;
     }
 
+
     entries =
-        entries.filter(function(item) {
-            return item.id !== id;
-        });
+        entries.filter(
+            function(item) {
+
+                return (
+                    item.id !== id
+                );
+            }
+        );
+
 
     await saveEntries();
+
 
     renderAll();
 }
@@ -2313,194 +4062,358 @@ async function deleteEntry(id) {
 
 function getEntriesForDate(date) {
 
-    return entries.filter(function(entry) {
-        return entry.date === date;
-    });
+    return entries.filter(
+        function(entry) {
+
+            return (
+                entry.date === date
+            );
+        }
+    );
 }
 
 
-function getTotals(dayEntries) {
+function getTotals(
+    dayEntries
+) {
 
     const eaten =
         dayEntries
-            .filter(function(entry) {
-                return entry.type === "food";
-            })
-            .reduce(function(sum,entry) {
-                return sum + Number(entry.calories);
-            },0);
+            .filter(
+                function(entry) {
+
+                    return (
+                        entry.type ===
+                        "food"
+                    );
+                }
+            )
+            .reduce(
+                function(
+                    sum,
+                    entry
+                ) {
+
+                    return (
+                        sum +
+                        Number(
+                            entry.calories
+                        )
+                    );
+                },
+                0
+            );
+
 
     const burned =
         dayEntries
-            .filter(function(entry) {
-                return entry.type === "activity";
-            })
-            .reduce(function(sum,entry) {
-                return sum + Number(entry.calories);
-            },0);
+            .filter(
+                function(entry) {
+
+                    return (
+                        entry.type ===
+                        "activity"
+                    );
+                }
+            )
+            .reduce(
+                function(
+                    sum,
+                    entry
+                ) {
+
+                    return (
+                        sum +
+                        Number(
+                            entry.calories
+                        )
+                    );
+                },
+                0
+            );
+
 
     return {
-        eaten: eaten,
-        burned: burned,
-        net: eaten - burned
+
+        eaten:
+            eaten,
+
+        burned:
+            burned,
+
+        net:
+            eaten -
+            burned
     };
 }
 
 
 /* =========================================================
-   DIARY RENDERING
+   DIARY
 ========================================================= */
 
 function renderDiary() {
 
     const dayEntries =
-        getEntriesForDate(selectedDiaryDate);
+        getEntriesForDate(
+            selectedDiaryDate
+        );
+
 
     const totals =
-        getTotals(dayEntries);
+        getTotals(
+            dayEntries
+        );
 
-    document.getElementById("selectedDateName").textContent =
-        formatDateKey(selectedDiaryDate);
 
-    document.getElementById("eatenCalories").textContent =
-        totals.eaten;
+    document
+        .getElementById(
+            "selectedDateName"
+        )
+        .textContent =
+            formatDateKey(
+                selectedDiaryDate
+            );
 
-    document.getElementById("burnedCalories").textContent =
-        totals.burned;
 
-    document.getElementById("netCalories").textContent =
-        totals.net;
+    document
+        .getElementById(
+            "eatenCalories"
+        )
+        .textContent =
+            totals.eaten;
 
-    document.getElementById("goalDisplay").textContent =
-        "Daily goal: " +
-        calorieGoal +
-        " kcal";
 
-    renderStatus(totals.net);
+    document
+        .getElementById(
+            "burnedCalories"
+        )
+        .textContent =
+            totals.burned;
+
+
+    document
+        .getElementById(
+            "netCalories"
+        )
+        .textContent =
+            totals.net;
+
+
+    document
+        .getElementById(
+            "goalDisplay"
+        )
+        .textContent =
+            "Daily goal: " +
+            calorieGoal +
+            " kcal";
+
+
+    renderStatus(
+        totals.net
+    );
+
 
     const container =
-        document.getElementById("entries");
+        document.getElementById(
+            "entries"
+        );
 
-    if (dayEntries.length === 0) {
+
+    if (
+        dayEntries.length === 0
+    ) {
 
         container.innerHTML =
+
             '<div class="empty">' +
+
                 '˚₊‧ ୨୧ ‧₊˚' +
+
                 '<br>' +
+
                 'No entries for this date.' +
+
                 '<br>' +
+
                 'Tap + to add food or activity.' +
+
             '</div>';
+
 
         return;
     }
 
+
     const sorted =
         dayEntries
             .slice()
-            .sort(function(a,b) {
-                return (
-                    new Date(b.createdAt) -
-                    new Date(a.createdAt)
-                );
-            });
+            .sort(
+                function(a,b) {
+
+                    return (
+                        new Date(
+                            b.createdAt
+                        ) -
+                        new Date(
+                            a.createdAt
+                        )
+                    );
+                }
+            );
+
 
     container.innerHTML =
-        sorted.map(function(entry) {
+        sorted
+            .map(
+                function(entry) {
 
-            const isFood =
-                entry.type === "food";
+                    const isFood =
+                        entry.type ===
+                        "food";
 
-            let name =
-                escapeHTML(entry.name);
 
-            if (!isFood) {
+                    let name =
+                        escapeHTML(
+                            entry.name
+                        );
 
-                const details = [];
 
-                if (entry.minutes) {
-                    details.push(
-                        entry.minutes + " min"
+                    if (!isFood) {
+
+                        const details = [];
+
+
+                        if (
+                            entry.minutes
+                        ) {
+
+                            details.push(
+                                entry.minutes +
+                                " min"
+                            );
+                        }
+
+
+                        if (
+                            entry.steps
+                        ) {
+
+                            details.push(
+
+                                Number(
+                                    entry.steps
+                                )
+                                    .toLocaleString(
+                                        "en-GB"
+                                    ) +
+
+                                " steps"
+                            );
+                        }
+
+
+                        if (
+                            details.length > 0
+                        ) {
+
+                            name +=
+                                " · " +
+                                details.join(
+                                    " · "
+                                );
+                        }
+                    }
+
+
+                    return (
+
+                        '<div class="entry">' +
+
+
+                            '<div class="entry-left">' +
+
+
+                                '<div class="entry-name">' +
+
+                                    (
+                                        isFood
+                                            ? "♡ "
+                                            : "✦ "
+                                    ) +
+
+                                    name +
+
+                                '</div>' +
+
+
+                                '<div class="entry-time">' +
+
+                                    formatTime(
+                                        entry.createdAt
+                                    ) +
+
+                                '</div>' +
+
+
+                            '</div>' +
+
+
+                            '<div class="entry-right">' +
+
+
+                                '<div class="entry-calories ' +
+
+                                    (
+                                        isFood
+                                            ? "food-calories"
+                                            : "burned-calories"
+                                    ) +
+
+                                '">' +
+
+                                    (
+                                        isFood
+                                            ? "+"
+                                            : "−"
+                                    ) +
+
+                                    entry.calories +
+
+                                    "kcal" +
+
+                                '</div>' +
+
+
+                                '<div class="entry-actions">' +
+
+
+                                    '<button class="mini-button" onclick="editEntry(\'' +
+
+                                        entry.id +
+
+                                    '\')">Edit</button>' +
+
+
+                                    '<button class="mini-button delete" onclick="deleteEntry(\'' +
+
+                                        entry.id +
+
+                                    '\')">Delete</button>' +
+
+
+                                '</div>' +
+
+
+                            '</div>' +
+
+
+                        '</div>'
                     );
                 }
-
-                if (entry.steps) {
-                    details.push(
-                        Number(entry.steps)
-                            .toLocaleString("en-GB") +
-                        " steps"
-                    );
-                }
-
-                if (details.length > 0) {
-
-                    name +=
-                        " · " +
-                        details.join(" · ");
-                }
-            }
-
-            return (
-                '<div class="entry">' +
-
-                    '<div class="entry-left">' +
-
-                        '<div class="entry-name">' +
-
-                            (
-                                isFood
-                                    ? "♡ "
-                                    : "✦ "
-                            ) +
-
-                            name +
-
-                        '</div>' +
-
-                        '<div class="entry-time">' +
-                            formatTime(entry.createdAt) +
-                        '</div>' +
-
-                    '</div>' +
-
-                    '<div class="entry-right">' +
-
-                        '<div class="entry-calories ' +
-                            (
-                                isFood
-                                    ? "food-calories"
-                                    : "burned-calories"
-                            ) +
-                        '">' +
-
-                            (
-                                isFood
-                                    ? "+"
-                                    : "−"
-                            ) +
-
-                            entry.calories +
-                            "kcal" +
-
-                        '</div>' +
-
-                        '<div class="entry-actions">' +
-
-                            '<button class="mini-button" onclick="editEntry(\'' +
-                                entry.id +
-                            '\')">Edit</button>' +
-
-                            '<button class="mini-button delete" onclick="deleteEntry(\'' +
-                                entry.id +
-                            '\')">Delete</button>' +
-
-                        '</div>' +
-
-                    '</div>' +
-
-                '</div>'
-            );
-        }).join("");
+            )
+            .join("");
 }
 
 
@@ -2511,45 +4424,79 @@ function renderDiary() {
 function renderStatus(net) {
 
     const status =
-        document.getElementById("status");
+        document.getElementById(
+            "status"
+        );
 
-    status.className = "status";
 
-    if (net < calorieGoal) {
+    status.className =
+        "status";
+
+
+    if (
+        net < calorieGoal
+    ) {
 
         status.textContent =
             "Within daily range ♡";
 
-        status.classList.add("good");
 
-    } else if (net === calorieGoal) {
+        status
+            .classList
+            .add("good");
+
+
+    } else if (
+        net === calorieGoal
+    ) {
 
         status.textContent =
             "Right at your limit ♡";
 
-        status.classList.add("limit");
+
+        status
+            .classList
+            .add("limit");
+
 
     } else {
 
         status.textContent =
             "Over daily range";
 
-        status.classList.add("over");
+
+        status
+            .classList
+            .add("over");
     }
 }
 
 
 function getStatusText(net) {
 
-    if (net < calorieGoal) {
-        return "Within range ♡";
+    if (
+        net < calorieGoal
+    ) {
+
+        return (
+            "Within range ♡"
+        );
     }
 
-    if (net === calorieGoal) {
-        return "Right at your limit ♡";
+
+    if (
+        net === calorieGoal
+    ) {
+
+        return (
+            "Right at your limit ♡"
+        );
     }
 
-    return "Over range";
+
+    return (
+        "Over range"
+    );
 }
 
 
@@ -2560,157 +4507,908 @@ function getStatusText(net) {
 function searchHistory() {
 
     const query =
-        document.getElementById("historySearch")
+        document
+            .getElementById(
+                "historySearch"
+            )
             .value
             .trim()
             .toLowerCase();
 
+
     const container =
-        document.getElementById("searchResults");
+        document.getElementById(
+            "searchResults"
+        );
+
 
     if (!query) {
 
         container.innerHTML = "";
+
         return;
     }
+
 
     const results =
         entries
-            .filter(function(entry) {
+            .filter(
+                function(entry) {
 
-                return String(entry.name || "")
-                    .toLowerCase()
-                    .includes(query);
-            })
-            .sort(function(a,b) {
-
-                if (a.date !== b.date) {
-                    return b.date.localeCompare(a.date);
+                    return (
+                        String(
+                            entry.name ||
+                            ""
+                        )
+                            .toLowerCase()
+                            .includes(
+                                query
+                            )
+                    );
                 }
+            )
+            .sort(
+                function(a,b) {
 
-                return (
-                    new Date(b.createdAt) -
-                    new Date(a.createdAt)
-                );
-            });
+                    if (
+                        a.date !==
+                        b.date
+                    ) {
 
-    if (results.length === 0) {
+                        return (
+                            b.date
+                                .localeCompare(
+                                    a.date
+                                )
+                        );
+                    }
+
+
+                    return (
+                        new Date(
+                            b.createdAt
+                        ) -
+                        new Date(
+                            a.createdAt
+                        )
+                    );
+                }
+            );
+
+
+    if (
+        results.length === 0
+    ) {
 
         container.innerHTML =
+
             '<div class="empty" style="padding:22px 8px 8px;">' +
+
                 'No matches found ♡' +
+
             '</div>';
+
 
         return;
     }
 
+
     container.innerHTML =
+
         '<div class="search-results-title">' +
+
             results.length +
+
             (
                 results.length === 1
                     ? " match"
                     : " matches"
             ) +
+
         '</div>' +
 
-        results.map(function(entry) {
 
-            const isFood =
-                entry.type === "food";
+        results
+            .map(
+                function(entry) {
 
-            let details = "";
+                    const isFood =
+                        entry.type ===
+                        "food";
 
-            if (!isFood) {
 
-                const detailParts = [];
+                    let details = "";
 
-                if (entry.minutes) {
-                    detailParts.push(
-                        entry.minutes + " min"
+
+                    if (!isFood) {
+
+                        const detailParts = [];
+
+
+                        if (
+                            entry.minutes
+                        ) {
+
+                            detailParts.push(
+                                entry.minutes +
+                                " min"
+                            );
+                        }
+
+
+                        if (
+                            entry.steps
+                        ) {
+
+                            detailParts.push(
+
+                                Number(
+                                    entry.steps
+                                )
+                                    .toLocaleString(
+                                        "en-GB"
+                                    ) +
+
+                                " steps"
+                            );
+                        }
+
+
+                        if (
+                            detailParts.length > 0
+                        ) {
+
+                            details =
+                                " · " +
+                                detailParts.join(
+                                    " · "
+                                );
+                        }
+                    }
+
+
+                    return (
+
+                        '<div class="search-result" onclick="openDiaryDate(\'' +
+
+                            entry.date +
+
+                        '\')">' +
+
+
+                            '<div class="search-result-top">' +
+
+
+                                '<div class="search-result-name">' +
+
+                                    (
+                                        isFood
+                                            ? "♡ "
+                                            : "✦ "
+                                    ) +
+
+                                    escapeHTML(
+                                        entry.name
+                                    ) +
+
+                                    details +
+
+                                '</div>' +
+
+
+                                '<div class="search-result-calories ' +
+
+                                    (
+                                        isFood
+                                            ? "food-calories"
+                                            : "burned-calories"
+                                    ) +
+
+                                '">' +
+
+                                    (
+                                        isFood
+                                            ? "+"
+                                            : "−"
+                                    ) +
+
+                                    entry.calories +
+
+                                    " kcal" +
+
+                                '</div>' +
+
+
+                            '</div>' +
+
+
+                            '<div class="search-result-date">' +
+
+                                formatDateKey(
+                                    entry.date
+                                ) +
+
+                                " · " +
+
+                                (
+                                    isFood
+                                        ? "Food"
+                                        : "Activity"
+                                ) +
+
+                            '</div>' +
+
+
+                        '</div>'
                     );
                 }
-
-                if (entry.steps) {
-                    detailParts.push(
-                        Number(entry.steps)
-                            .toLocaleString("en-GB") +
-                        " steps"
-                    );
-                }
-
-                if (detailParts.length > 0) {
-                    details =
-                        " · " +
-                        detailParts.join(" · ");
-                }
-            }
-
-            return (
-                '<div class="search-result" onclick="openDiaryDate(\'' +
-                    entry.date +
-                '\')">' +
-
-                    '<div class="search-result-top">' +
-
-                        '<div class="search-result-name">' +
-
-                            (
-                                isFood
-                                    ? "♡ "
-                                    : "✦ "
-                            ) +
-
-                            escapeHTML(entry.name) +
-                            details +
-
-                        '</div>' +
-
-                        '<div class="search-result-calories ' +
-                            (
-                                isFood
-                                    ? "food-calories"
-                                    : "burned-calories"
-                            ) +
-                        '">' +
-
-                            (
-                                isFood
-                                    ? "+"
-                                    : "−"
-                            ) +
-
-                            entry.calories +
-                            " kcal" +
-
-                        '</div>' +
-
-                    '</div>' +
-
-                    '<div class="search-result-date">' +
-
-                        formatDateKey(entry.date) +
-
-                        " · " +
-
-                        (
-                            isFood
-                                ? "Food"
-                                : "Activity"
-                        ) +
-
-                    '</div>' +
-
-                '</div>'
-            );
-        }).join("");
+            )
+            .join("");
 }
 
 
 function clearHistorySearch() {
 
-    document.getElementById("historySearch").value = "";
-    document.getElementById("searchResults").innerHTML = "";
+    document
+        .getElementById(
+            "historySearch"
+        )
+        .value = "";
+
+
+    document
+        .getElementById(
+            "searchResults"
+        )
+        .innerHTML = "";
+}
+
+
+/* =========================================================
+   HISTORY SELECTED DAY
+========================================================= */
+
+function changeHistoryDate() {
+
+    const input =
+        document.getElementById(
+            "historyDate"
+        );
+
+
+    const value =
+        input.value;
+
+
+    if (!value) {
+        return;
+    }
+
+
+    if (
+        !isAllowedDate(value)
+    ) {
+
+        input.value =
+            selectedHistoryDate;
+
+        return;
+    }
+
+
+    selectedHistoryDate =
+        value;
+
+
+    renderSelectedHistoryDay();
+}
+
+
+function renderSelectedHistoryDay() {
+
+    const container =
+        document.getElementById(
+            "selectedHistoryDay"
+        );
+
+
+    const dayEntries =
+        getEntriesForDate(
+            selectedHistoryDate
+        );
+
+
+    if (
+        dayEntries.length === 0
+    ) {
+
+        container.innerHTML =
+
+            '<div class="empty" style="padding:24px 8px 8px;">' +
+
+                '♡ No diary entries for ' +
+
+                escapeHTML(
+                    formatDateKey(
+                        selectedHistoryDate
+                    )
+                ) +
+
+                '.' +
+
+            '</div>';
+
+
+        return;
+    }
+
+
+    const totals =
+        getTotals(
+            dayEntries
+        );
+
+
+    container.innerHTML =
+
+        '<div class="history-date" style="margin-top:16px;">' +
+
+            '♡ ' +
+
+            escapeHTML(
+                formatDateKey(
+                    selectedHistoryDate
+                )
+            ) +
+
+        '</div>' +
+
+
+        '<div class="history-summary">' +
+
+            '<span>Eaten</span>' +
+
+            '<span class="food-calories">' +
+
+                totals.eaten +
+
+                ' kcal' +
+
+            '</span>' +
+
+        '</div>' +
+
+
+        '<div class="history-summary">' +
+
+            '<span>Burned</span>' +
+
+            '<span class="burned-calories">' +
+
+                totals.burned +
+
+                ' kcal' +
+
+            '</span>' +
+
+        '</div>' +
+
+
+        '<div class="history-summary history-net">' +
+
+            '<span>Net</span>' +
+
+            '<span>' +
+
+                totals.net +
+
+                ' kcal' +
+
+            '</span>' +
+
+        '</div>' +
+
+
+        '<div class="history-summary">' +
+
+            '<span>Status</span>' +
+
+            '<span>' +
+
+                getStatusText(
+                    totals.net
+                ) +
+
+            '</span>' +
+
+        '</div>' +
+
+
+        '<button class="open-day-button" onclick="openDiaryDate(\'' +
+
+            selectedHistoryDate +
+
+        '\')">' +
+
+            'View / edit this day ✧' +
+
+        '</button>';
+}
+
+
+/* =========================================================
+   DIARY SUMMARY
+========================================================= */
+
+function setSummaryPeriod(period) {
+
+    summaryPeriod =
+        period;
+
+
+    document
+        .getElementById(
+            "period7"
+        )
+        .classList
+        .toggle(
+            "selected",
+            period === "7"
+        );
+
+
+    document
+        .getElementById(
+            "period30"
+        )
+        .classList
+        .toggle(
+            "selected",
+            period === "30"
+        );
+
+
+    document
+        .getElementById(
+            "periodAll"
+        )
+        .classList
+        .toggle(
+            "selected",
+            period === "all"
+        );
+
+
+    renderDiaryOverview();
+}
+
+
+function getSummaryEntries() {
+
+    /*
+       Future diary entries are not included in the
+       progress summary, even though tomorrow is
+       available for planning food/activity.
+
+       The summary therefore reflects what has
+       actually happened up to today.
+    */
+
+    const today =
+        getDateKey();
+
+
+    if (
+        summaryPeriod === "all"
+    ) {
+
+        return entries.filter(
+            function(entry) {
+
+                return (
+                    entry.date <=
+                    today
+                );
+            }
+        );
+    }
+
+
+    const numberOfDays =
+        Number(
+            summaryPeriod
+        );
+
+
+    const startDate =
+        new Date();
+
+
+    startDate.setHours(
+        0,
+        0,
+        0,
+        0
+    );
+
+
+    startDate.setDate(
+        startDate.getDate() -
+        (
+            numberOfDays -
+            1
+        )
+    );
+
+
+    const startKey =
+        getDateKey(
+            startDate
+        );
+
+
+    return entries.filter(
+        function(entry) {
+
+            return (
+                entry.date >=
+                    startKey &&
+                entry.date <=
+                    today
+            );
+        }
+    );
+}
+
+
+function renderDiaryOverview() {
+
+    const container =
+        document.getElementById(
+            "diaryOverviewContent"
+        );
+
+
+    const summaryEntries =
+        getSummaryEntries();
+
+
+    if (
+        summaryEntries.length === 0
+    ) {
+
+        container.innerHTML =
+
+            '<div class="empty" style="padding:20px 8px;">' +
+
+                '♡ No tracked diary days in this period yet.' +
+
+            '</div>';
+
+
+        return;
+    }
+
+
+    const days = {};
+
+
+    summaryEntries
+        .forEach(
+            function(entry) {
+
+                if (
+                    !days[
+                        entry.date
+                    ]
+                ) {
+
+                    days[
+                        entry.date
+                    ] = [];
+                }
+
+
+                days[
+                    entry.date
+                ]
+                    .push(
+                        entry
+                    );
+            }
+        );
+
+
+    const dates =
+        Object
+            .keys(days)
+            .sort();
+
+
+    const trackedDays =
+        dates.length;
+
+
+    let withinDays = 0;
+    let aboveDays = 0;
+
+    let totalNet = 0;
+    let totalBurned = 0;
+    let activeDays = 0;
+
+    const activityDays = [];
+
+
+    dates.forEach(
+        function(date) {
+
+            const totals =
+                getTotals(
+                    days[date]
+                );
+
+
+            totalNet +=
+                totals.net;
+
+
+            totalBurned +=
+                totals.burned;
+
+
+            /*
+               Exactly equal to the calorie goal counts
+               as within the limit, as agreed.
+            */
+
+            if (
+                totals.net <=
+                calorieGoal
+            ) {
+
+                withinDays++;
+
+            } else {
+
+                aboveDays++;
+            }
+
+
+            if (
+                totals.burned > 0
+            ) {
+
+                activeDays++;
+
+
+                activityDays.push({
+
+                    date:
+                        date,
+
+                    burned:
+                        totals.burned
+                });
+            }
+        }
+    );
+
+
+    const withinPercent =
+        trackedDays > 0
+            ? Math.round(
+                (
+                    withinDays /
+                    trackedDays
+                ) *
+                100
+            )
+            : 0;
+
+
+    const abovePercent =
+        trackedDays > 0
+            ? Math.round(
+                (
+                    aboveDays /
+                    trackedDays
+                ) *
+                100
+            )
+            : 0;
+
+
+    const averageNet =
+        trackedDays > 0
+            ? Math.round(
+                totalNet /
+                trackedDays
+            )
+            : 0;
+
+
+    let html =
+
+        '<div class="overview-grid">' +
+
+
+            '<div class="overview-stat">' +
+
+                '<div class="overview-stat-name">' +
+                    'Tracked days' +
+                '</div>' +
+
+                '<div class="overview-stat-number">' +
+                    trackedDays +
+                '</div>' +
+
+                '<div class="overview-stat-detail">' +
+                    '♡' +
+                '</div>' +
+
+            '</div>' +
+
+
+            '<div class="overview-stat">' +
+
+                '<div class="overview-stat-name">' +
+                    'Within limit' +
+                '</div>' +
+
+                '<div class="overview-stat-number">' +
+                    withinDays +
+                '</div>' +
+
+                '<div class="overview-stat-detail">' +
+                    withinPercent +
+                    '%' +
+                '</div>' +
+
+            '</div>' +
+
+
+            '<div class="overview-stat">' +
+
+                '<div class="overview-stat-name">' +
+                    'Above limit' +
+                '</div>' +
+
+                '<div class="overview-stat-number">' +
+                    aboveDays +
+                '</div>' +
+
+                '<div class="overview-stat-detail">' +
+                    abovePercent +
+                    '%' +
+                '</div>' +
+
+            '</div>' +
+
+
+        '</div>' +
+
+
+        '<div class="overview-extra-grid">' +
+
+
+            '<div class="overview-extra">' +
+
+                '<div class="overview-extra-name">' +
+                    '♡ Average net' +
+                '</div>' +
+
+                '<div class="overview-extra-number">' +
+                    averageNet +
+                    ' kcal' +
+                '</div>' +
+
+                '<div class="overview-stat-detail">' +
+                    'per tracked day' +
+                '</div>' +
+
+            '</div>' +
+
+
+            '<div class="overview-extra">' +
+
+                '<div class="overview-extra-name">' +
+                    '✦ Active days' +
+                '</div>' +
+
+                '<div class="overview-extra-number">' +
+                    activeDays +
+                '</div>' +
+
+                '<div class="overview-stat-detail">' +
+                    totalBurned +
+                    ' kcal burned' +
+                '</div>' +
+
+            '</div>' +
+
+
+        '</div>' +
+
+
+        '<div class="overview-message">' +
+
+            '♡ You stayed within your calorie limit on ' +
+
+            withinPercent +
+
+            '% of your tracked days.' +
+
+        '</div>' +
+
+
+        '<div class="activity-days-title">' +
+
+            '✦ Days you burned calories' +
+
+        '</div>';
+
+
+    if (
+        activityDays.length === 0
+    ) {
+
+        html +=
+
+            '<div class="no-activity">' +
+
+                'No activity calories recorded in this period ♡' +
+
+            '</div>';
+
+
+    } else {
+
+        activityDays
+            .slice()
+            .sort(
+                function(a,b) {
+
+                    return (
+                        b.date
+                            .localeCompare(
+                                a.date
+                            )
+                    );
+                }
+            )
+            .forEach(
+                function(day) {
+
+                    html +=
+
+                        '<div class="activity-day-row">' +
+
+                            '<span class="activity-day-date">' +
+
+                                escapeHTML(
+                                    formatShortDateKey(
+                                        day.date
+                                    )
+                                ) +
+
+                            '</span>' +
+
+                            '<span class="activity-day-calories">' +
+
+                                day.burned +
+
+                                ' kcal' +
+
+                            '</span>' +
+
+                        '</div>';
+                }
+            );
+    }
+
+
+    container.innerHTML =
+        html;
 }
 
 
@@ -2720,94 +5418,17 @@ function clearHistorySearch() {
 
 function renderHistory() {
 
-    const container =
-        document.getElementById("historyList");
+    document
+        .getElementById(
+            "historyDate"
+        )
+        .value =
+            selectedHistoryDate;
 
-    if (entries.length === 0) {
 
-        container.innerHTML =
-            '<div class="empty">' +
-                '✧ ⋆｡°✩' +
-                '<br>' +
-                'Your diary days will appear here.' +
-            '</div>';
+    renderSelectedHistoryDay();
 
-        return;
-    }
-
-    const days = {};
-
-    entries.forEach(function(entry) {
-
-        if (!days[entry.date]) {
-            days[entry.date] = [];
-        }
-
-        days[entry.date].push(entry);
-    });
-
-    const dates =
-        Object.keys(days)
-            .sort()
-            .reverse();
-
-    container.innerHTML =
-        dates.map(function(date) {
-
-            const totals =
-                getTotals(days[date]);
-
-            const statusText =
-                getStatusText(totals.net);
-
-            return (
-                '<div class="history-day">' +
-
-                    '<div class="history-date">' +
-                        '♡ ' +
-                        formatDateKey(date) +
-                    '</div>' +
-
-                    '<div class="history-summary">' +
-                        '<span>Eaten</span>' +
-                        '<span class="food-calories">' +
-                            totals.eaten +
-                            'kcal' +
-                        '</span>' +
-                    '</div>' +
-
-                    '<div class="history-summary">' +
-                        '<span>Burned</span>' +
-                        '<span class="burned-calories">' +
-                            totals.burned +
-                            'kcal' +
-                        '</span>' +
-                    '</div>' +
-
-                    '<div class="history-summary history-net">' +
-                        '<span>Net</span>' +
-                        '<span>' +
-                            totals.net +
-                            'kcal' +
-                        '</span>' +
-                    '</div>' +
-
-                    '<div class="history-summary">' +
-                        '<span>Status</span>' +
-                        '<span>' +
-                            statusText +
-                        '</span>' +
-                    '</div>' +
-
-                    '<button class="open-day-button" onclick="openDiaryDate(\'' +
-                        date +
-                    '\')">' +
-                        'View / edit this day ✧' +
-                    '</button>' +
-
-                '</div>'
-            );
-        }).join("");
+    renderDiaryOverview();
 
     searchHistory();
 }
@@ -2820,14 +5441,27 @@ function renderHistory() {
 async function saveWeight() {
 
     const date =
-        document.getElementById("weightDate").value;
+        document
+            .getElementById(
+                "weightDate"
+            )
+            .value;
+
 
     const amount =
         Number(
-            document.getElementById("weightAmount").value
+            document
+                .getElementById(
+                    "weightAmount"
+                )
+                .value
         );
 
-    if (!date || amount <= 0) {
+
+    if (
+        !date ||
+        amount <= 0
+    ) {
 
         alert(
             "Please enter a date and weight."
@@ -2836,7 +5470,10 @@ async function saveWeight() {
         return;
     }
 
-    if (!isAllowedDate(date)) {
+
+    if (
+        !isAllowedDate(date)
+    ) {
 
         alert(
             "You can only choose up to tomorrow ♡"
@@ -2845,10 +5482,18 @@ async function saveWeight() {
         return;
     }
 
+
     const existing =
-        weights.find(function(weight) {
-            return weight.date === date;
-        });
+        weights.find(
+            function(weight) {
+
+                return (
+                    weight.date ===
+                    date
+                );
+            }
+        );
+
 
     if (existing) {
 
@@ -2857,13 +5502,20 @@ async function saveWeight() {
                 "You already have a weight recorded for this date. Replace it?"
             );
 
+
         if (!replace) {
             return;
         }
 
-        existing.amount = amount;
+
+        existing.amount =
+            amount;
+
+
         existing.updatedAt =
-            new Date().toISOString();
+            new Date()
+                .toISOString();
+
 
     } else {
 
@@ -2876,17 +5528,28 @@ async function saveWeight() {
                     .toString(16)
                     .slice(2),
 
-            date: date,
-            amount: amount,
+            date:
+                date,
+
+            amount:
+                amount,
 
             createdAt:
-                new Date().toISOString()
+                new Date()
+                    .toISOString()
         });
     }
 
+
     await saveWeights();
 
-    document.getElementById("weightAmount").value = "";
+
+    document
+        .getElementById(
+            "weightAmount"
+        )
+        .value = "";
+
 
     renderWeights();
 }
@@ -2899,16 +5562,25 @@ async function deleteWeight(id) {
             "Delete this weight entry?"
         );
 
+
     if (!confirmed) {
         return;
     }
 
+
     weights =
-        weights.filter(function(weight) {
-            return weight.id !== id;
-        });
+        weights.filter(
+            function(weight) {
+
+                return (
+                    weight.id !== id
+                );
+            }
+        );
+
 
     await saveWeights();
+
 
     renderWeights();
 }
@@ -2917,19 +5589,36 @@ async function deleteWeight(id) {
 function editWeight(id) {
 
     const weight =
-        weights.find(function(item) {
-            return item.id === id;
-        });
+        weights.find(
+            function(item) {
+
+                return (
+                    item.id === id
+                );
+            }
+        );
+
 
     if (!weight) {
         return;
     }
 
-    document.getElementById("weightDate").value =
-        weight.date;
 
-    document.getElementById("weightAmount").value =
-        weight.amount;
+    document
+        .getElementById(
+            "weightDate"
+        )
+        .value =
+            weight.date;
+
+
+    document
+        .getElementById(
+            "weightAmount"
+        )
+        .value =
+            weight.amount;
+
 
     window.scrollTo({
         top: 0,
@@ -2941,15 +5630,31 @@ function editWeight(id) {
 function compareWeights() {
 
     const fromId =
-        document.getElementById("compareFrom").value;
+        document
+            .getElementById(
+                "compareFrom"
+            )
+            .value;
+
 
     const toId =
-        document.getElementById("compareTo").value;
+        document
+            .getElementById(
+                "compareTo"
+            )
+            .value;
+
 
     const result =
-        document.getElementById("compareResult");
+        document.getElementById(
+            "compareResult"
+        );
 
-    if (!fromId || !toId) {
+
+    if (
+        !fromId ||
+        !toId
+    ) {
 
         result.textContent =
             "Choose two weight entries ♡";
@@ -2957,66 +5662,142 @@ function compareWeights() {
         return;
     }
 
+
     const from =
-        weights.find(function(weight) {
-            return weight.id === fromId;
-        });
+        weights.find(
+            function(weight) {
+
+                return (
+                    weight.id ===
+                    fromId
+                );
+            }
+        );
+
 
     const to =
-        weights.find(function(weight) {
-            return weight.id === toId;
-        });
+        weights.find(
+            function(weight) {
 
-    if (!from || !to) {
+                return (
+                    weight.id ===
+                    toId
+                );
+            }
+        );
+
+
+    if (
+        !from ||
+        !to
+    ) {
+
         return;
     }
 
-    let earlier = from;
-    let later = to;
 
-    if (from.date > to.date) {
-        earlier = to;
-        later = from;
+    let earlier =
+        from;
+
+
+    let later =
+        to;
+
+
+    if (
+        from.date >
+        to.date
+    ) {
+
+        earlier =
+            to;
+
+        later =
+            from;
     }
+
 
     const difference =
         Number(
             (
                 later.amount -
                 earlier.amount
-            ).toFixed(1)
+            )
+                .toFixed(1)
         );
 
-    if (difference < 0) {
+
+    if (
+        difference < 0
+    ) {
 
         result.innerHTML =
+
             "♡ You lost <strong>" +
-            Math.abs(difference).toFixed(1) +
-            " kg</strong>" +
-            "<br>" +
-            formatDateKey(earlier.date) +
-            " → " +
-            formatDateKey(later.date);
 
-    } else if (difference > 0) {
+            Math.abs(
+                difference
+            )
+                .toFixed(1) +
+
+            " kg</strong>" +
+
+            "<br>" +
+
+            formatDateKey(
+                earlier.date
+            ) +
+
+            " → " +
+
+            formatDateKey(
+                later.date
+            );
+
+
+    } else if (
+        difference > 0
+    ) {
 
         result.innerHTML =
+
             "✦ You gained <strong>" +
-            difference.toFixed(1) +
+
+            difference
+                .toFixed(1) +
+
             " kg</strong>" +
+
             "<br>" +
-            formatDateKey(earlier.date) +
+
+            formatDateKey(
+                earlier.date
+            ) +
+
             " → " +
-            formatDateKey(later.date);
+
+            formatDateKey(
+                later.date
+            );
+
 
     } else {
 
         result.innerHTML =
+
             "♡ Your weight stayed the same" +
+
             "<br>" +
-            formatDateKey(earlier.date) +
+
+            formatDateKey(
+                earlier.date
+            ) +
+
             " → " +
-            formatDateKey(later.date);
+
+            formatDateKey(
+                later.date
+            );
     }
 }
 
@@ -3024,101 +5805,197 @@ function compareWeights() {
 function renderWeights() {
 
     const history =
-        document.getElementById("weightHistory");
+        document.getElementById(
+            "weightHistory"
+        );
+
 
     const from =
-        document.getElementById("compareFrom");
+        document.getElementById(
+            "compareFrom"
+        );
+
 
     const to =
-        document.getElementById("compareTo");
+        document.getElementById(
+            "compareTo"
+        );
+
 
     const sorted =
         weights
             .slice()
-            .sort(function(a,b) {
-                return b.date.localeCompare(a.date);
-            });
+            .sort(
+                function(a,b) {
 
-    if (sorted.length === 0) {
+                    return (
+                        b.date
+                            .localeCompare(
+                                a.date
+                            )
+                    );
+                }
+            );
+
+
+    if (
+        sorted.length === 0
+    ) {
 
         history.innerHTML =
+
             '<div class="empty">' +
+
                 '♡ No weight entries yet.' +
+
             '</div>';
 
+
         from.innerHTML =
-            '<option value="">No entries</option>';
+
+            '<option value="">' +
+
+                'No entries' +
+
+            '</option>';
+
 
         to.innerHTML =
-            '<option value="">No entries</option>';
 
-        document.getElementById("compareResult").textContent = "";
+            '<option value="">' +
+
+                'No entries' +
+
+            '</option>';
+
+
+        document
+            .getElementById(
+                "compareResult"
+            )
+            .textContent = "";
+
 
         return;
     }
 
+
     history.innerHTML =
-        sorted.map(function(weight) {
+        sorted
+            .map(
+                function(weight) {
 
-            return (
-                '<div class="weight-card">' +
+                    return (
 
-                    '<div class="weight-number">' +
-                        weight.amount +
-                        ' kg' +
-                    '</div>' +
+                        '<div class="weight-card">' +
 
-                    '<div class="weight-date">' +
-                        formatDateKey(weight.date) +
-                    '</div>' +
 
-                    '<div class="weight-actions">' +
+                            '<div class="weight-number">' +
 
-                        '<button class="mini-button" onclick="editWeight(\'' +
-                            weight.id +
-                        '\')">Edit</button>' +
+                                weight.amount +
 
-                        '<button class="mini-button delete" onclick="deleteWeight(\'' +
-                            weight.id +
-                        '\')">Delete</button>' +
+                                ' kg' +
 
-                    '</div>' +
+                            '</div>' +
 
-                '</div>'
-            );
-        }).join("");
+
+                            '<div class="weight-date">' +
+
+                                formatDateKey(
+                                    weight.date
+                                ) +
+
+                            '</div>' +
+
+
+                            '<div class="weight-actions">' +
+
+
+                                '<button class="mini-button" onclick="editWeight(\'' +
+
+                                    weight.id +
+
+                                '\')">Edit</button>' +
+
+
+                                '<button class="mini-button delete" onclick="deleteWeight(\'' +
+
+                                    weight.id +
+
+                                '\')">Delete</button>' +
+
+
+                            '</div>' +
+
+
+                        '</div>'
+                    );
+                }
+            )
+            .join("");
+
 
     const chronological =
         weights
             .slice()
-            .sort(function(a,b) {
-                return a.date.localeCompare(b.date);
-            });
+            .sort(
+                function(a,b) {
+
+                    return (
+                        a.date
+                            .localeCompare(
+                                b.date
+                            )
+                    );
+                }
+            );
+
 
     const options =
-        chronological.map(function(weight) {
+        chronological
+            .map(
+                function(weight) {
 
-            return (
-                '<option value="' +
-                    weight.id +
-                '">' +
+                    return (
 
-                    formatDateKey(weight.date) +
-                    " · " +
-                    weight.amount +
-                    " kg" +
+                        '<option value="' +
 
-                '</option>'
-            );
-        }).join("");
+                            weight.id +
 
-    from.innerHTML = options;
-    to.innerHTML = options;
+                        '">' +
 
-    if (chronological.length >= 2) {
+                            formatDateKey(
+                                weight.date
+                            ) +
+
+                            " · " +
+
+                            weight.amount +
+
+                            " kg" +
+
+                        '</option>'
+                    );
+                }
+            )
+            .join("");
+
+
+    from.innerHTML =
+        options;
+
+
+    to.innerHTML =
+        options;
+
+
+    if (
+        chronological.length >= 2
+    ) {
 
         from.value =
             chronological[0].id;
+
 
         to.value =
             chronological[
@@ -3137,43 +6014,77 @@ function showPage(page) {
     const pages = [
         "diary",
         "history",
-        "weight"
+        "weight",
+        "settings"
     ];
 
-    pages.forEach(function(name) {
 
-        document
-            .getElementById(name + "Page")
-            .classList
-            .toggle(
-                "hidden",
-                name !== page
-            );
+    pages.forEach(
+        function(name) {
 
-        document
-            .getElementById(name + "Nav")
-            .classList
-            .toggle(
-                "active",
-                name === page
-            );
-    });
+            document
+                .getElementById(
+                    name + "Page"
+                )
+                .classList
+                .toggle(
+                    "hidden",
+                    name !== page
+                );
+
+
+            document
+                .getElementById(
+                    name + "Nav"
+                )
+                .classList
+                .toggle(
+                    "active",
+                    name === page
+                );
+        }
+    );
+
 
     document
-        .getElementById("addButton")
+        .getElementById(
+            "addButton"
+        )
         .classList
         .toggle(
             "hidden",
             page !== "diary"
         );
 
-    if (page === "history") {
+
+    if (
+        page === "history"
+    ) {
+
         renderHistory();
     }
 
-    if (page === "weight") {
+
+    if (
+        page === "weight"
+    ) {
+
         renderWeights();
     }
+
+
+    if (
+        page === "settings"
+    ) {
+
+        document
+            .getElementById(
+                "calorieGoalInput"
+            )
+            .value =
+                calorieGoal;
+    }
+
 
     window.scrollTo({
         top: 0,
@@ -3189,10 +6100,16 @@ function showPage(page) {
 function escapeHTML(text) {
 
     const div =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     div.textContent =
-        String(text ?? "");
+        String(
+            text ?? ""
+        );
+
 
     return div.innerHTML;
 }
@@ -3204,19 +6121,47 @@ function escapeHTML(text) {
 
 function renderAll() {
 
-    document.getElementById("todayHeaderDate").textContent =
-        formatDate(new Date());
+    document
+        .getElementById(
+            "todayHeaderDate"
+        )
+        .textContent =
+            formatDate(
+                new Date()
+            );
 
-    document.getElementById("diaryDate").value =
-        selectedDiaryDate;
 
-    document.getElementById("calorieGoalInput").value =
-        calorieGoal;
+    document
+        .getElementById(
+            "diaryDate"
+        )
+        .value =
+            selectedDiaryDate;
+
+
+    document
+        .getElementById(
+            "historyDate"
+        )
+        .value =
+            selectedHistoryDate;
+
+
+    document
+        .getElementById(
+            "calorieGoalInput"
+        )
+        .value =
+            calorieGoal;
+
 
     applyDateLimits();
 
+
     renderDiary();
+
     renderHistory();
+
     renderWeights();
 }
 
@@ -3231,78 +6176,142 @@ async function startApp() {
 
         await openDatabase();
 
+
         await migrateLocalStorageOnce();
 
-        entries =
-            await getAllFromStore("entries");
-
-        let entriesNeedSaving = false;
 
         entries =
-            entries.map(function(entry) {
+            await getAllFromStore(
+                "entries"
+            );
 
-                let updated = entry;
 
-                if (!Array.isArray(entry.editHistory)) {
+        let entriesNeedSaving =
+            false;
 
-                    updated = {
-                        ...updated,
-                        editHistory: []
-                    };
 
-                    entriesNeedSaving = true;
+        entries =
+            entries.map(
+                function(entry) {
+
+                    let updated =
+                        entry;
+
+
+                    if (
+                        !Array.isArray(
+                            entry.editHistory
+                        )
+                    ) {
+
+                        updated = {
+                            ...updated,
+                            editHistory: []
+                        };
+
+
+                        entriesNeedSaving =
+                            true;
+                    }
+
+
+                    if (
+                        !Object
+                            .prototype
+                            .hasOwnProperty
+                            .call(
+                                updated,
+                                "steps"
+                            )
+                    ) {
+
+                        updated = {
+                            ...updated,
+                            steps: null
+                        };
+
+
+                        entriesNeedSaving =
+                            true;
+                    }
+
+
+                    return updated;
                 }
+            );
 
-                if (
-                    !Object.prototype.hasOwnProperty.call(
-                        updated,
-                        "steps"
-                    )
-                ) {
 
-                    updated = {
-                        ...updated,
-                        steps: null
-                    };
+        if (
+            entriesNeedSaving
+        ) {
 
-                    entriesNeedSaving = true;
-                }
-
-                return updated;
-            });
-
-        if (entriesNeedSaving) {
             await saveEntries();
         }
 
+
         weights =
-            await getAllFromStore("weights");
+            await getAllFromStore(
+                "weights"
+            );
+
 
         await loadCalorieGoal();
 
-        document.getElementById("weightDate").value =
+
+        document
+            .getElementById(
+                "weightDate"
+            )
+            .value =
+                getDateKey();
+
+
+        document
+            .getElementById(
+                "diaryDate"
+            )
+            .value =
+                selectedDiaryDate;
+
+
+        selectedHistoryDate =
             getDateKey();
 
-        document.getElementById("diaryDate").value =
-            selectedDiaryDate;
+
+        document
+            .getElementById(
+                "historyDate"
+            )
+            .value =
+                selectedHistoryDate;
+
 
         applyDateLimits();
 
+
         renderAll();
 
-        setTimeout(function() {
-            checkBackupReminder();
-        },500);
+
+        setTimeout(
+            function() {
+
+                checkBackupReminder();
+            },
+            500
+        );
+
 
     } catch (error) {
 
         console.error(error);
+
 
         alert(
             "The local database could not be opened. Please reload the app."
         );
     }
 }
+
 
 startApp();
 
@@ -3311,21 +6320,28 @@ startApp();
 
 <script>
 
-if ("serviceWorker" in navigator) {
+if (
+    "serviceWorker" in navigator
+) {
 
     window.addEventListener(
         "load",
         function() {
 
-            navigator.serviceWorker
-                .register("./sw.js")
-                .catch(function(error) {
+            navigator
+                .serviceWorker
+                .register(
+                    "./sw.js"
+                )
+                .catch(
+                    function(error) {
 
-                    console.error(
-                        "Service worker registration failed:",
-                        error
-                    );
-                });
+                        console.error(
+                            "Service worker registration failed:",
+                            error
+                        );
+                    }
+                );
         }
     );
 }
